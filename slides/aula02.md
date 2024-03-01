@@ -71,6 +71,7 @@ img {
 # WWW
 - Sistema de informação que utiliza a internet como meio de transmissão
 - Páginas de multimídia interligadas através de *hyperlinks*
+- Arquitetura Cliente/Servidor
 - Conceitos:
     - HTTP - Protocolo de transmissão de hypertexto
         - Realiza a comunicação com um servidor Web através de requisições e respostas bem definidas.
@@ -108,9 +109,14 @@ img {
 - Organizado em 4 camadas: enlace, internet, transporte e aplicação. 
 
 ---
-# IP e DNS
+# IP
 - O IP (*Internet Protocol*) é responsável pelo encaminhamento de dados entre as máquinas na rede;
 - As máquinas são identificadas por um endereço IP, ex: 122.220.98.4.
+- Além do IP também existem *portas*, que podem ser acessadas por diferentes serviços.
+- As portas são representadas com `:` após o IP, ex. `127.0.0.1:2046`
+
+---
+# DNS
 - DNS (*Domain Name Server*) é responsável por traduzir as URLs para os IPs dos servidores associados.
 - Conveniência.
 - Para obter uma URL é necessário pagar para um *registrar*. Ex. GoDaddy, Registro.br
@@ -123,6 +129,123 @@ img {
     - Ex. Google Chrome, Internet Explorer, Microsoft Edge, Mozilla Firefox, Opera, Brave, Chromium...
 - Faz requisições HTTP/HTTPS e renderiza os dados recebidos.
 - É o cliente.
+
+---
+# Resumo (simplificado)
+- O navegador (cliente) faz uma requisição HTTP direcionada a uma URL;
+- O servidor DNS traduz a URL para um IP e direciona a requisição para o IP do servidor;
+- O servidor recebe a requisição e responde de volta para o cliente;
+- Caso a resposta seja positiva, o navegador renderiza o HTML recebido.
+
+---
+# Sites Estáticos
+- O que foi feito nas disciplinas anteriores;
+- O conteúdo do site é definido no momento da escrita do HTML;
+- O usuário não é capaz de armazenar/modificar dados no sistema;
+- É o suficiente?
+
+---
+# Sites Dinâmicos
+- A página é construída em `tempo de execução`;
+- O conteúdo pode estar armazenado em um banco de dados;
+- Permitem a apresentação de dados e funcionalidades mais complexas;
+- O processamento é realizado no servidor;
+- "Web 2.0";
+- Exemplos?
+
+---
+
+# <!-- fit --> Programação de Sistemas para Internet
+
+---
+# Sistema Web
+- Aplicação acessada pela Web
+- Aplicação Desktop
+- Aplicação Mobile
+- Vantagens/Desvantagens?
+
+---
+# Front-end e Back-end e Full-Stack
+- Front-end: parte visual, interface com o usuário
+    - Tecnologias: HTML, CSS, JavaScript
+- Back-end: processamento, armazenamento de dados, segurança, páginas dinâmicas.
+    - Tecnologias: PHP, Java, Python, Ruby, JavaScript, SQL, etc.
+- Full-stack: tudo.
+- E o Designer?
+
+---
+
+# <!-- fit --> Protocolo HTTP
+
+---
+# Protocolo HTTP
+
+- *Hyper text transfer protocol*
+- Camada de aplicação
+- Baseado no modelo cliente-servidor
+- Padrão de mensagens de requisição e respostas
+- Porta 80 (ou 443 para HTTPS)
+- Cada mensagem é composta por Método/Cabeçalho/Corpo
+- [Referência](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Overview)
+
+---
+
+# Métodos HTTP
+
+| Método  | Descrição                                  |
+| ------- | ------                                     |
+| GET     | Recebe um recurso existente                |
+| POST    | Cria um novo recurso                       |
+| PUT     | Atualiza um recurso existente              |
+| PATCH   | Atualiza parcialmente um recurso existente |
+| DELETE  | Remove um recurso                          |
+
+---
+# Códigos de status
+
+| Faixa   | Categoria        |
+| ------- | ------           |
+| 2xx     | Sucesso          |
+| 3xx     | Redirecionamento |
+| 4xx     | Erro de cliente  |
+| 5xx     | Erro de servidor |
+
+---
+# Códigos de status
+
+<style scoped>
+table {
+  font-size: 16px;
+}
+</style>
+| Código | Significado                | Descrição                                                                      |
+|--------|----------------------------|--------------------------------------------------------------------------------|
+| 200    | OK                         | The requested action was successful.                                           |
+| 201    | Created                    | A new resource was created.                                                    |
+| 202    | Accepted                   | The request was received, but no modification has been made yet.               |
+| 204    | No Content                 | The request was successful, but the response has no content.                   |
+| 400    | Bad Request                | The request was malformed.                                                     |
+| 401    | Unauthorized               | The client is not authorized to perform the requested action.                  |
+| 404    | Not Found                  | The requested resource was not found.                                          |
+| 415    | Unsupported Media Type     | The request data format is not supported by the server.                        |
+| 422    | Unprocessable Entity       | The request data was properly formatted but contained invalid or missing data. |
+| 500    | Internal Server Error      | The server threw an error when processing the request.                         |
+
+---
+# Cabeçalho HTTP
+<style scoped>
+table {
+  font-size: 18px;
+}
+</style>
+
+| Dado           | Descrição                                                        |
+| ---            | ---                                                              |
+| Accept         | O tipo de conteúdo que o cliente aceita                          |
+| Content-Type   | O tipo de conteúdo que o servidor retorna                        |
+| User-Agent     | Que software o cliente está usando para comunicar com o servidor |
+| Server         | Que software o servidor usa para comunicar com o cliente         |
+| Authentication | Quem chama a API que quais suas credenciais                      |
 
 ---
 # <!--fit--> Dúvidas? 🤔
