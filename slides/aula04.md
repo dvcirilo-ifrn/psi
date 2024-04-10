@@ -47,6 +47,13 @@ img {
 - Facilita a colaboração entre desenvolvedores
 
 ---
+# *Framework*
+- Exige um estudo específico da ferramenta
+- Curva de aprendizagem pode ser desafiadora
+- É importante se aprender e se adequar aos padrões
+- Desempenho
+
+---
 # Django
 - *Framework* web para Python
 - Criado em 2005 e baseado no Ruby on Rails
@@ -128,11 +135,36 @@ python manage.py runserver
 - Para finalizar o servidor use Ctrl+C.
 
 ---
+# Resumo
+- Para instalar o Django (crie e ative um *venv* antes!!):
+```
+pip install django
+```
+
+- Para inicializar um projeto Django (dentro da pasta que você quer trabalhar)
+```
+django-admin startproject config .
+```
+
+- Para rodar o servidor de desenvolvimento:
+```
+python manage.py runserver
+```
+
+---
+# Erros
+- Sempre leia os erros que aparecerem com cuidado, normalmente eles já indicam a solução
+- Certifique-se que o `venv` está ativo
+- Para erros que indiquem que arquivos ou comandos não foram encontrados, verifique se você está rodando o comando no diretório correto
+- Use o comando `ls` no terminal para confirmar se o arquivo que você está tentando user existe
+- Use o `Tab` no teclado para auto-completar os comandos e evitar erros de digitação
+
+---
 # Tarefa 1
-- Configure o ambiente de acordo com as aulas passadas;
+- Configure o ambiente(git/venv) de acordo com as aulas passadas;
 - Instale o Django
 - Crie uma pasta `blog`
-- Dentro dessa pasta inicialize um projeto `config`
+- **Dentro** dessa pasta inicialize um projeto `config` (entre na pasta com `cd blog`)
 - Rode o sistema
 - Verifique se está funcionando no navegador.
 
@@ -164,3 +196,39 @@ meuapp
 └── views.py
 ```
 
+---
+# Estrutura de um app
+- `admin.py` - Configuração da interface padrão de administração do Django
+- `apps.py` - Configurações do *app*
+- `migrations` - Pasta onde aparecerão as *migrations*, que são as definições/alterações na estrutura do BD.
+- `models.py` - Onde serão descritos os `models`, que definem a estrutura de dados do sistema.
+- `tests.py` - Testes de software.
+- `views.py` - Descrição das *views*.
+
+---
+# Ativando um *app*
+- Não basta criar o *app*
+- O arquivo `settings.py` contém a lista dos *apps* ativos
+- Para ativar, basta adicionar o nome do *app* na lista.
+
+```py
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'meuapp',
+]
+```
+
+---
+# Templates
+- Até agora não existe um lugar para colocar o HTML/CSS/JS e imagens do site
+
+---
+
+# <!--fit--> Dúvidas? 🤔

@@ -44,28 +44,8 @@ img {
 - Em 1991 o cientista Tim Berners-Lee do CERN cria o WWW (*World Wide Web*)
     - Antes só existia email, FTP e Telnet
     - Serviços.
-- Depois do WWW foi criado o Mosaic, o primeiro navegador para *web*.
+- Depois do WWW foi criado o Mosaic, o primeiro navegador para *web* que renderizava imagens;
 - Em 1993 a internet é aberta para exploração comercial nos EUA, e o mesmo ocorre um ano depois no Brasil;
-
----
-# RNP em 1992
-
-![width:700px](../img/rnp1992.jpg)
-
----
-# RNP em 1995
-
-![width:700px](../img/rnp1995.jpg)
-
----
-# RNP em 2011
-
-![width:700px](../img/rnp2011.jpg)
-
----
-# RNP em 2021
-
-![width:800px](../img/rnp2021.png)
 
 ---
 # WWW
@@ -77,7 +57,8 @@ img {
         - Realiza a comunicação com um servidor Web através de requisições e respostas bem definidas.
     - URL - Sistema de endereços
         - `http://www.ifrn.edu.br/`
-    - HTML - Linguagem de marcação de texto
+    - HTML - Linguagem de marcação de hypertexto
+        - *Hyper*?
         - Formatação para texto, inserção de imagens e *links*
 
 ---
@@ -104,8 +85,7 @@ img {
 
 ---
 # Protocolo TCP/IP
-- Conjunto de regras e padrões que permitem a comunicação entre computadores;
-- Também chamado de pilha;
+- Conjunto de regras e padrões que permitem a comunicação entre computadores na rede;
 - Organizado em 4 camadas: enlace, internet, transporte e aplicação. 
 
 ---
@@ -136,46 +116,6 @@ img {
 - O servidor DNS traduz a URL para um IP e direciona a requisição para o IP do servidor;
 - O servidor recebe a requisição e responde de volta para o cliente;
 - Caso a resposta seja positiva, o navegador renderiza o HTML recebido.
-
----
-# Sites Estáticos
-- O que foi feito nas disciplinas anteriores;
-- O conteúdo do site é definido no momento da escrita do HTML;
-- O usuário não é capaz de armazenar/modificar dados no sistema;
-- É o suficiente?
-
----
-# Sites Dinâmicos
-- A página é construída em `tempo de execução`;
-- O conteúdo pode estar armazenado em um banco de dados;
-- Permitem a apresentação de dados e funcionalidades mais complexas;
-- O processamento é realizado no servidor;
-- "Web 2.0";
-- Exemplos?
-
----
-
-# <!-- fit --> Programação de Sistemas para Internet
-
----
-# Sistema Web
-- Aplicação acessada pela Web
-- Aplicação Desktop
-- Aplicação Mobile
-- Vantagens/Desvantagens?
-
----
-# Front-end e Back-end e Full-Stack
-- Front-end: parte visual, interface com o usuário
-    - Tecnologias: HTML, CSS, JavaScript
-- Back-end: processamento, armazenamento de dados, segurança, páginas dinâmicas.
-    - Tecnologias: PHP, Java, Python, Ruby, JavaScript, SQL, etc.
-- Full-stack: tudo.
-- E o Designer?
-
----
-
-# <!-- fit --> Protocolo HTTP
 
 ---
 # Protocolo HTTP
@@ -246,6 +186,54 @@ table {
 | User-Agent     | Que software o cliente está usando para comunicar com o servidor |
 | Server         | Que software o servidor usa para comunicar com o cliente         |
 | Authentication | Quem chama a API que quais suas credenciais                      |
+
+---
+
+# <!-- fit --> Programação de Sistemas para Internet
+
+---
+# Sites Estáticos
+- Primeiro tipo de site existente;
+- O que foi feito nas disciplinas anteriores;
+- O conteúdo do site é definido no momento da escrita do HTML;
+- O usuário não é capaz de armazenar/modificar dados no sistema;
+- É o suficiente?
+
+---
+# Sites Dinâmicos
+- A página é construída em `tempo de execução`;
+- O conteúdo pode estar armazenado em um banco de dados;
+- Permitem a apresentação de dados e funcionalidades mais complexas;
+- O processamento é realizado no servidor;
+- "Web 2.0";
+- Exemplos?
+
+---
+# Sites Dinâmicos
+- CGI (*Common Gateway Interface*)
+    - Processamento de *forms* e acesso a banco de dados)
+    - Executa um programa em uma linguagem qualquer que processa a requisição e retorna o HTML formado.
+- PHP (*Personal Home Page*, depois *PHP: Hypertext Preprocessor*)
+    - Permite descrever a lógica dentro de um arquivo HTML que é pré-processado pelo servidor antes de ser disponibilizado para o cliente.
+    - Linguagem muito popular até hoje e inicialmente desenvolvida para *web*.
+- ASP, Java, Ruby, Python, JS, etc
+- Frameworks
+
+---
+# Sistema Web
+- Aplicação acessada pela Web
+- Aplicação Desktop
+- Aplicação Mobile
+- Vantagens/Desvantagens?
+
+---
+# Front-end e Back-end e Full-Stack
+- Front-end: parte visual, interface com o usuário
+    - Tecnologias: HTML, CSS, JavaScript
+- Back-end: processamento, armazenamento de dados, segurança, páginas dinâmicas.
+    - Tecnologias: PHP, Java, Python, Ruby, JavaScript, SQL, etc.
+- Full-stack: tudo.
+- E o Designer?
 
 ---
 # <!--fit--> Dúvidas? 🤔
