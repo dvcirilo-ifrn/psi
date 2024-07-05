@@ -50,7 +50,7 @@ img {
 # *Framework*
 - Exige um estudo específico da ferramenta
 - Curva de aprendizagem pode ser desafiadora
-- É importante se aprender e se adequar aos padrões
+- É importante aprender e se adequar aos padrões
 - Desempenho
 
 ---
@@ -70,6 +70,10 @@ img {
 - *Model*: define a estrutura dos dados (se relaciona com o BD);
 - *View*: lógica de controle, recebe as requisições, carrega e filtra dados dos *Models* e retorna para o *Template*;
 - *Template*: Define a visualização. Baseado em HTML com acesso a variáveis oriundas das *Views* e *tags* para condicionais, laços, etc.
+
+---
+# Django MVT
+![](../img/django-architecture.png)
 
 ---
 # Instalação
@@ -156,7 +160,7 @@ python manage.py runserver
 - Sempre leia os erros que aparecerem com cuidado, normalmente eles já indicam a solução
 - Certifique-se que o `venv` está ativo
 - Para erros que indiquem que arquivos ou comandos não foram encontrados, verifique se você está rodando o comando no diretório correto
-- Use o comando `ls` no terminal para confirmar se o arquivo que você está tentando user existe
+- Use o comando `ls` no terminal para confirmar se o arquivo que você está tentando usar existe
 - Use o `Tab` no teclado para auto-completar os comandos e evitar erros de digitação
 
 ---
@@ -226,8 +230,46 @@ INSTALLED_APPS = [
 ```
 
 ---
+# URLs
+- *Uniform Resource Locator*
+- Também conhecido como *rotas*.
+- Os recursos que o usuário procura na URL do navegador são *filtrados* no `urls.py`.
+- Os filtros direcionam cada URL solicitada para uma *view* que será responsável por processar a requisição.
+- É possível organizar as URLs por *apps*.
+
+---
+# `urls.py`
+```py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path("", include("blog.urls")),
+    path("admin/", admin.site.urls),
+]
+```
+
+---
+# Criando `urls.py` no *app*
+
+---
+# Views
+- Provavelmente o arquivo mais "movimentado" no projeto.
+- Recebem e processam as requisições, retornando um conteúdo baseado nos *templates*.
+- Podem ser escritas como funções (*Funcion-based View* - FBVs) ou como classes (*Class-based View* - CBVs)
+
+---
+# FBV
+
+---
+# CBV
+
+---
 # Templates
-- Até agora não existe um lugar para colocar o HTML/CSS/JS e imagens do site
+
+---
+
+![](../img/css.gif)
 
 ---
 
