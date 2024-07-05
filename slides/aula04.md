@@ -167,8 +167,8 @@ python manage.py runserver
 # Tarefa 1
 - Configure o ambiente(git/venv) de acordo com as aulas passadas;
 - Instale o Django
-- Crie uma pasta `blog`
-- **Dentro** dessa pasta inicialize um projeto `config` (entre na pasta com `cd blog`)
+- Crie uma pasta `tarefas`
+- **Dentro** dessa pasta inicialize um projeto `config` (entre na pasta com `cd tarefas`)
 - Rode o sistema
 - Verifique se está funcionando no navegador.
 
@@ -244,7 +244,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("", include("blog.urls")),
+    path("", include("tarefas.urls")),
     path("admin/", admin.site.urls),
 ]
 ```
