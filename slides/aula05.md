@@ -150,11 +150,14 @@ def index(request):
 - É possível configurar outra pasta no arquivo `settings.py`
 
 ---
-# Arquivos Estáticos
-- Static
----
-
-![](../img/css.gif)
+# Tarefa
+- Configure o ambiente (venv, git)
+- Inicialize um projeto (`config`) e um *app* chamado `exemplo`
+- Configure as *urls* do projeto (em `config`) e as *urls* do *app*.
+- As *urls* do *app* devem apontar para uma *view*: `index`.
+- Crie a *views* `index` e o *template* `index.html`. O conteúdo do *template* pode ser uma página simples.
+- Verifique o funcionamento do sistema.
+- Faça os commits quando julgar necessário, e envie para o Github. 
 
 ---
 
