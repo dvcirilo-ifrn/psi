@@ -215,7 +215,7 @@ def index(request):
 ---
 # Arquivos Estáticos
 - Usamos `{% load static %}` no início da página.
-- Usamos `{% static "nomedoarquivo.etc" %}` no lugar do nome do arquivo.
+- Usamos `{% static 'nomedoarquivo.etc' %}` no lugar do nome do arquivo.
 - Os caminhos são relativos ao diretório `static`.
 - Ex.
 ```django
