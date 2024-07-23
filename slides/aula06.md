@@ -37,7 +37,7 @@ img {
 # Tags
 
 - `{{ variáveis }}`
-- `{$ tags/funções $}`
+- `{% tags/funções %}`
 - [Lista das tags](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#ref-templates-builtins-tags)
 
 ---
@@ -151,7 +151,90 @@ def index(request):
 - As outras páginas apenas substituem partes do template base.
 
 ---
-# 
+# Herança de templates
+- Na página base:
+```django
+{% block nome-do-bloco %}
+    <conteúdo padrão do bloco>
+{% endblock %}
+```
+- Na página que herda:
+```django
+{% extends "pagina-base.html" %}
+...
+{% block nome-do-bloco %}
+    <novo conteúdo do bloco>
+{% endblock %}
+```
+---
+# Herança de templates
+- A *tag* `extends` deve ser a primeira do documento.
+- É possível criar vários `block`s no mesmo template, sem repetir seus nomes.
+- O conteúdo padrão do `block` pai pode ser acessado com `{{ block.super }}`
+
+---
+# Exemplo
+- `base.html`:
+```django
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Título base do site{% endblock %}</title>
+  </head>
+  <body>
+    {% block content %}
+      <p>Conteúdo do site</p>
+    {% endblock %}
+  </body>
+</html>
+```
+
+---
+# Exemplo
+- `pagina.html`
+```django
+{% extends "base.html" %}
+{% block title %}{{ block.super }} - Nome da página{% endblock %}
+{% block content %}
+<div class="classe">
+  <h1> Conteúdo do meu site </h1>
+</div>
+{% endblock %}
+```
+
+---
+# Arquivos Estáticos
+- Os arquivos estáticos não ficam dentro de `templates`
+- O motivo é: os `templates` não são páginas HTML! Não ficam públicos para os clientes.
+- Os `templates` são renderizados e então disponibilizados pelo servidor.
+- Os arquivos estáticos, como imagens, JS e CSS são disponibilizados diretamente pelo servidor web.
+- O caminho padrão do Django é a pasta `static` dentro do *app*
+
+--
+# Arquivos Estáticos
+- Usamos `{% load static %}` no início da página.
+- Usamos `{% static "nomedoarquivo.etc" %}` no lugar do nome do arquivo.
+- Os caminhos são relativos ao diretório `static`.
+- Ex.
+```django
+<img src="{% static 'cat.jpg' %}" alt="Foto do gato">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+```
+
+---
+# URLs/Links
+- É possível escrever os links diretamente:
+```
+<a href="/index">Página Inicial</a>
+```
+- Também é possível usar os templates:
+```
+<a href="{% url 'index' %}">Página Inicial</a>
+```
+- Usamos o mesmo `name` definido nos arquivos `urls.py`.
+
 ---
 ![](../img/css.gif)
 
