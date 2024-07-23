@@ -212,7 +212,7 @@ def index(request):
 - Os arquivos estáticos, como imagens, JS e CSS são disponibilizados diretamente pelo servidor web.
 - O caminho padrão do Django é a pasta `static` dentro do *app*
 
---
+---
 # Arquivos Estáticos
 - Usamos `{% load static %}` no início da página.
 - Usamos `{% static "nomedoarquivo.etc" %}` no lugar do nome do arquivo.
