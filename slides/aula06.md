@@ -236,6 +236,18 @@ def index(request):
 - Usamos o mesmo `name` definido nos arquivos `urls.py`.
 
 ---
+# Tarefa
+- Utilizando seus conhecimentos de *webdesign*:
+    - Crie um site para divulgar uma equipe de futebol (masculino, feminino, seleção, etc).
+    - O site deve ter 3 páginas: Início, Jogadores, Sobre.
+    - Início: informações gerais sobre o time, com imagens, histórico, etc.
+    - Atletas: foto, nome, idade, posição e local de nascimento. Basta 11 atletas.
+    - Sobre: informações sobre o site, autores, etc.
+- O site deve ter um menu global e um *footer* com informações como *copyright*.
+- O site deve funcionar dentro do Django, usando um *template* base e os atletas devem ser descritos em um dicionário na *view*.
+- Use o repositório modelo para fazer o upload do trabalho.
+
+---
 ![](../img/css.gif)
 
 ---
