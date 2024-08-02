@@ -236,6 +236,7 @@ def index(request):
 - Usamos o mesmo `name` definido nos arquivos `urls.py`.
 
 ---
+<style scoped>section { font-size: 20px; }</style>
 # Tarefa
 - Utilizando seus conhecimentos de *webdesign*:
     - Crie um site para divulgar uma equipe de futebol (masculino, feminino, seleção, etc).
