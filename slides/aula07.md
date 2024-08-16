@@ -24,12 +24,30 @@ img {
 ---
 # Dados do sistema
 - Como armazenar os dados do sistema?
+- Conteúdo, dados de usuário, etc.
 - SGBD - Sistema de Gerenciamento de Banco de Dados
 - SQL - *Structured Query Language*
 
 ---
 # Configurações do BD
-- No arquivo `settings.py` há a seção `DATABASE`
+- No arquivo `settings.py` há a seção `DATABASES`
+- Podemos configurar diversos SGBDs
+- Ex. MySQL, PostGres, SQLite, etc.
+- Para desenvolvimento o SQLite é simples e exige menos configuração
+- No sistema final devemos usar um SGBD mais completo (veremos em ICS)
+
+---
+# Configurações de BD
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
+
 ---
 # ORM
 - Gerenciar comandos SQL pode ser complicado.
@@ -62,6 +80,20 @@ CREATE TABLE myapp_pessoa (
 ```
 
 ---
+# Alguns tipos de dados
+
+- CharField: Textos curtos (nomes, títulos).
+- TextField: Textos longos (descrições, artigos).
+- IntegerField: Números inteiros (idades, quantidades).
+- FloatField: Números decimais (preços, médias).
+- BooleanField: Valores booleanos (Verdadeiro/Falso).
+- DateField: Datas (aniversários, datas de criação).
+- DateTimeField: Datas e horas (eventos, logs).
+- EmailField: Endereços de e-mail (validação automática).
+- ForeignKey: Relacionamentos um-para-muitos.
+- ManyToManyField: Relacionamentos muitos-para-muitos.
+
+---
 # Migrations
 - Arquivo com comandos para o SGBD
 - Permite recriar a estrutura (*schema*) do BD em qualquer computador.
@@ -72,4 +104,33 @@ CREATE TABLE myapp_pessoa (
 - É importante sempre lembrar de criar/aplicar as migrations.
 
 ---
-# 
+# Django Admin
+- O Django foi pensado para facilitar o processo de desenvolvimento
+- Um projeto Django já possui uma interface de administração pronta
+- Para ativar, temos que:
+    - Adicionar os models ao arquivo `admin.py`
+    - Criar um *superuser* do sistema
+    - Executar as *migrations*
+
+---
+# Django Admin
+```
+from django.contrib import admin
+
+from .models import Tarefa
+
+admin.site.register(Tarefa)
+```
+
+---
+# Django Admin
+- Para criar o *superuser*
+- `python manage.py createsuperuser`
+- Para criar as *migrations*
+- `python manage.py makemigrations`
+- Para executar as *migrations*
+- `python manage.py migrate`
+
+---
+
+# <!--fit--> Dúvidas? 🤔
