@@ -1,7 +1,8 @@
 # Desenvolvimento Web com Django
 
 Material desenvolvido pelo Professor Erikson Silacier para a disciplina de Programação de Sistemas para Internet do IFRN Campus São Paulo do Potengi em 2023.
-Adaptação em conversão para markdown por Diego Cirilo.
+
+Adaptação e conversão para markdown por [Diego Cirilo](https://github.com/dvcirilo).
 
 ## Conteúdo
 
