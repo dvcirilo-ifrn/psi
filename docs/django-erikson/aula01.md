@@ -89,11 +89,11 @@ Em seguida, digite no terminal os seguintes comandos:
 
 O primeiro serve para criar um banco de dados básico, que cobriremos mais tarde. O segundo serve para rodar na máquina um servidor e pôr o nosso site localmente no ar. Caso queira testar, basta clicar no link que aparece no terminal.  
 
-![](img/01/image3)  
+![](img/01/image3.png)  
 
 Se tudo tiver dado certo, você deve ver a seguinte página:  
 
-![](img/01/image4)  
+![](img/01/image4.png)  
 
 Para encerrar a execução do servidor, aperte CTRL+C no terminal.
 
@@ -109,7 +109,7 @@ O próximo passo é criar o nosso primeiro módulo. Os módulos vão nos auxilia
 *python manage.py startapp **paginas***
 
 O Django irá criar uma nova pasta no projeto com alguns arquivos.  
-	![][img/01/image5]  
+	![](img/01/image5.png)  
 *admin.py* 	Classes e modelos que vão aparecer na página admin  
 	*apps.py*	Usado para ativar o módulo no projeto  
 	*models.py*	Aqui vai ficar as classes do banco de dados  
@@ -117,7 +117,7 @@ O Django irá criar uma nova pasta no projeto com alguns arquivos.
 	*views.py*	É aqui que vamos conectar as requisições e respostas e onde vai acontecer boa parte do código.
 
 Vamos criar a primeira página da aplicação que será a página inicial do projeto. Vamos criar dentro da pasta do módulo (pasta páginas) uma pasta chamada *templates*, que terá todos os HTML que criarmos para as diferentes páginas do projeto. E, dentro da pasta, um arquivo chamado *index.html*, que será a nossa página inicial.  
-	![][img/01/image6]
+	![](img/01/image6.png)
 
 Apenas como teste, vamos pôr no *index.html* algo bem simples:  
 \<\!DOCTYPE html\>  
@@ -168,12 +168,12 @@ Para ter como link inicial:
 
 Mais uma vez, vamos acessar nosso arquivo *settings.py* e nele vamos procurar por *INSTALLED\_APPS*, adicionando dentro das \[ \], na última linha:  
 	*'paginas.apps.PaginasConfig',*  
-![][img/01/image7]  
+![](img/01/image7.png)  
 Agora, com tudo configurado, devemos conseguir rodar o servidor e abrir nossa página em:  
 	*http://127.0.0.1:8000/inicio/*  
 **Arquivos Estáticos:**  
 Arquivos estáticos são arquivos que são enviados ao navegador exatamente como estão no HD do servidor, ou seja, sempre serão os mesmos, não sofrendo alterações. Exemplo disso seriam arquivos de imagem, CSS e JavaScripts. Por questão de organização, vamos criar na 'raiz' do projeto (pasta base) uma pasta chamada static (padrão do Django) e mais uma pasta para cada tipo de arquivo, seguindo o seguinte modelo:  
-	![][img/01/image8]  
+	![](img/01/image8.png)  
 Agora precisamos indicar ao nosso projeto onde essa pasta está localizada. Para isso, vamos abrir o arquivo *settings.py* e buscar por *STATIC\_URL*, adicionando logo após:  
 	*STATIC\_URL \= 'static/'*
 
@@ -190,7 +190,7 @@ Em *index.html* vamos adicionar duas linhas de código, a primeira na primeira l
 E a segunda abaixo de *\<title\>*:  
 	*\<link rel="stylesheet" href="{% static 'css/estilo.css' %}"\>*  
 Tendo algo como:  
-![][img/01/image9]  
+![](img/01/image9.png)  
 Se atualizarmos nossa página inicial, devemos vê-la com uma cor de fundo diferente do branco padrão.
 
 **Importante:** Usaremos essa notação do django com frequência e ela sempre segue esse mesmo padrão. Atente-se ao fato de que existe um espaço entre o comando e os símbolos %, assim como **não** há espaço entre as chaves {} e os símbolos %.  
@@ -206,7 +206,7 @@ Agora vamos criar nosso primeiro modelo, já aproveitando para importar o BootSt
 Primeiro, vamos acessar o site do BootStrap para pegar os links necessários. Em:  
 *https://getbootstrap.com/docs/4.0/getting-started/introduction/*  
 Nós teremos acesso a tudo o que é necessário para a importação.  
-	![][img/01/image10]
+	![](img/01/image10.png)
 
 Vamos começar criando em *paginas/templates* um arquivo chamado *modelo.html* e nele vamos colocar:  
 	*\<\!DOCTYPE html\>*  
@@ -233,9 +233,9 @@ Atualizando a página inicial. Lembre-se de **desfazer** essa mudança.
 **Extra:** Caso queira, você pode acessar os links em *href* e em *src* e baixar os arquivos css e js, adicionando-os na pasta static e importando-os utilizando o Django. Lembre-se de pôr na primeira linha o comando:  
 	*{% load static %}*  
 Também é importante lembrar de salvar os arquivos e usar o mesmo nome na hora da importação. Dessa forma, é possível ter os seguintes arquivos na pasta static:  
-	![][img/01/image11]  
+	![](img/01/image11.png)  
 E um arquivo modelo muito mais "limpo":  
-![][img/01/image12]
+![](img/01/image12.png)
 
 **Importante:** Nós importamos o arquivo css do BootStrap no header (bloco *head*) pois é algo necessário para carregar a página e será importado logo após o título da página ser definido. Os arquivos JavaScript nós importamos apenas na última linha do bloco body, pois, caso contrário, o navegador iria primeiro importar esses arquivos antes de começar a gerar o restante da página. Colocando essas importações por último, garantimos que a página será gerada e o usuário poderá interagir com esta enquanto os JavaScript (e demais arquivos) são importados em segundo plano.
 
@@ -300,7 +300,7 @@ E podemos substituir o que tem no arquivo *index.html* por:
 *\</div\>*  
 *{% endblock %}*  
 Agora, se executarmos nossa aplicação novamente, devemos ter algo como isso na página inicial:  
-	![][img/01/image13]  
+	![](img/01/image13.png)  
 Lembrando que o logo foi importado e é uma imagem da pasta static/img de nome *logo.png*.
 
 Agora vamos criar mais uma página e digamos que não queremos que o bloco *destaques* apareça nela. Primeiro vamos em *views.py* para adicionar:  
@@ -354,14 +354,14 @@ Eu vou deletar o botão Navbar, por questão de preferência (*\<a class … /bu
 *\</nav\>*  
 *{% endblock %}*  
 Se eu recarregar minha página web, terei isso como menu de navegação:  
-![][img/01/image14]  
+![](img/01/image14.png)  
 Apesar de visualmente pronto, os links ainda não funcionam, pois não configuramos para onde cada link irá redirecionar o usuário. Para isso, no campo *href* do link Início e Sobre vamos substituir o símbolo \# de cada um por, respectivamente:  
 	*{% url 'inicio' %}*  
 	*{% url 'sobre' %}*  
 Com isso, devemos conseguir alternar entre as duas páginas criadas, *index.html* e *sobre.html*, utilizando os links do menu de navegação.
 
 **Importante:** Os nomes *'inicio'* e *'sobre'* usados na importação do link vem do arquivo *paginas/urls.py*:  
-	![][img/01/image15]
+	![](img/01/image15.png)
 
 **Models e Banco de Dados:**  
 Começaremos agora a interagir com o banco de dados e, para isso, usaremos os *models* do Django. Mas antes, vamos criar um novo módulo exclusivamente para lidar com essa interação com o BD e manter o nosso código organizado. Para isso, basta digitar no terminal:  
@@ -369,7 +369,7 @@ Começaremos agora a interagir com o banco de dados e, para isso, usaremos os *m
 Você pode dar o nome que quiser para o módulo, mas para este projeto chamarei este módulo de **cadastros**.
 
 Assim como fizemos no módulo páginas, vamos criar na pasta cadastros o arquivo *urls.py* e a pasta *template*, que usaremos em breve. Dessa forma, devemos ter na pasta cadastros:  
-	![][img/01/image16]  
+	![](img/01/image16.png)  
 Também precisamos ir em *settings.py* e adicionar na última linha de *INSTALLED\_APPS*:  
 	*'cadastros.apps.CadastrosConfig',*  
 Após essa configuração inicial, vamos abrir o arquivo *cadastros/models.py*. É nele que vamos definir as classes que serão criadas no banco de dados. Para este projeto, vou criar duas classes. A primeira será **Turma** e a segunda será **Atividade**. Esta última será associada a uma Turma já existente. O arquivo *cadastros/models.py* ficará assim:  
@@ -423,7 +423,7 @@ Por fim, vamos fazer as classes aparecerem na página admin. Isso vai nos permit
 *admin.site.register(Atividade)*  
 Com isso, devemos conseguir acessar o link admin e ver nossas classes.  
 	*http://127.0.0.1:8000/admin*  
-	![][img/01/image17]
+	![](img/01/image17.png)
 
 Pelo link admin, já conseguimos realizar o **CRUD** completo. CRUD sendo referente as quatro operações realizadas numa classe do banco de dados:  
 *Create		\-	Criar*  
@@ -461,7 +461,7 @@ Além da página que será usada (form.html), também precisamos definir o ender
 *\]*  
 Também precisamos adicionar esses caminhos ao arquivo urls.py do projeto. Em *urlpatterns*, vamos adicionar na última linha:  
 	*path('', include('cadastros.urls')),*  
-	*![][img/01/image18]*  
+	*![](img/01/image18.png)*  
 Como deixamos esse último link vazio (''), o endereço para os cadastros serão:  
 	*http://127.0.0.1:8000/cadastrar/turma/*  
 	*http://127.0.0.1:8000/cadastrar/atividade/*  
@@ -491,7 +491,7 @@ Agora vamos criar o arquivo *form.html* dentro da pasta *cadastros/templates*. V
 *{% endblock %}*  
 Temos um HTML simples com um *form* convencional. Contudo, dentro do *form* estamos utilizando o Django e deixando que ele faça basicamente tudo por nós. O *csrf\_token* é algo do próprio Django utilizado para averiguar e assegurar contra certos malwares e ataques maliciosos contra o sistema e o *button submit* serve para enviar o formulário para o servidor.  
 Quando declaramos a classe *TurmaCreate*, indicamos ao Django o modelo que seria usado (Turma), assim como os campos (fields) que deveriam ser preenchidos. Assim, quando esta página for gerada, junto a ela terá associado esses dados. Dessa forma, ao usarmos o *form.as\_p*, o Django irá formatar todos os campos como um parágrafo. Além disso, o Django também irá validar os dados para nós.  
-![][img/01/image19]
+![](img/01/image19.png)
 
 **Extra:** É possível utilizar o *django-crispy-forms* para formatar os formulários. Para isso, precisamos realizar apenas alguns simples passos. Primeiro, vamos instalá-lo (caso já não tenha).  
 	*pip install django-crispy-forms*  
@@ -509,7 +509,7 @@ Apenas para confirmar, o *crispy\_forms* e o *crispy\_bootstrap4* ficará **dent
 e trocar *form.as\_p* por:  
 	*{{ form|crispy }}*  
 Atenção para o símbolo usado. É uma barra vertical | e não inclinada como \\ ou /. Com o crispy, teremos:  
-	![][img/01/image20]
+	![](img/01/image20.png)
 
 Agora que terminamos o cadastro, vamos para o Update. A lógica é a mesma de antes. Vamos começar editando *cadastros/views.py*. Vamos adicionar o UpdateView ao import:  
 	*from django.views.generic.edit import CreateView, **UpdateView***  
@@ -608,7 +608,7 @@ E em urlpatterns adicionamos os caminhos no fim:
 *path('listar/turmas/', TurmaList.as\_view(), name='listar-turmas'),*  
 *path('listar/atividades/', AtividadeList.as\_view(), name='listar-atividades'),*  
 Resta criar os HTMLs. Por questão de organização, já que cada classe no banco terá seu próprio HTML, colocarei esses arquivos em uma pasta separada. Para isso, em *cadastros/templates* eu criarei a pasta *lista* e, dentro dessa pasta, os dois arquivos HTML. Assim, teremos na pasta *cadastros*:  
-	![][img/01/image21]  
+	![](img/01/image21.png)  
 Mais uma vez usarei o *modelo.html* como base, alterando apenas o necessário para a nova página. Começando com *turma.html*, a ideia é listar as turmas em uma tabela com três colunas: Nome, Descrição e Opções. Onde em Opções terá um link para editar e outro para excluir o item. Também irei adicionar um link para cadastrar uma nova turma. Assim, não precisaremos mais ficar digitando os links por extenso na barra de navegação. Com uma pitada de BootStrap, teremos:  
 *{% extends 'modelo.html' %}*  
 *{% load static %}*
@@ -660,7 +660,7 @@ Temos algumas novidades nesse arquivo.
 
 Acessando a página, devemos ter algo como:  
 	*http://127.0.0.1:8000/listar/turmas/*  
-![][img/01/image22]
+![](img/01/image22.png)
 
 E, com isso, concluímos o CRUD completo para a classe Turma do nosso banco de dados. Se adicionarmos o link dessa página na nossa página inicial (assim como Início e Sobre), poderemos navegar por todo o site sem precisar digitar nenhum link.  
 **Extra:** Agora que temos nossa página de listagem, podemos ir no arquivo *cadastros/views.py* e alterar todos os *success\_url* das classes Turma para:  
