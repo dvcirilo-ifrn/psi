@@ -20,63 +20,81 @@ O usuário interage com o *View*. O view faz uma requisição ao *Model* para qu
 
 Uma das principais vantagens do Django é o reaproveitamento do código, o qual traz por si só diversos benefícios, mantendo o projeto mais simples ao passo que evita o retrabalho. Outra vantagem é a página admin que permite interagir diretamente com o banco de dados.
 
-**Instalação Inicial:**  
+## Instalação Inicial:
+
 Primeiro instale o Python, baixando-o do próprio site. Deve-se marcar a opção de adicioná-lo ao *PATH* durante a instalação para que ele possa ser acessado de qualquer pasta do computador.
 
 **Extra:** Como passo adicional, é possível instalar virtualenv e virtualenvwrapper com os comandos:  
-*pip install virtualenv*  
-	*pip install virtualenvwrapper-win*  
+
+`pip install virtualenv`  
+`pip install virtualenvwrapper-win`  
+
 Após a instalação, é possível utilizar o seguinte comando para criar um ambiente virtual:  
-	*mkvirtualenv NOME\_DO\_AMBIENTE*  
+`mkvirtualenv NOME\_DO\_AMBIENTE`  
+
 Para trabalhar dentro desse ambiente, basta digitar:  
-	*workon NOME\_DO\_AMBIENTE*  
+`workon NOME\_DO\_AMBIENTE`  
+
 E para sair:  
-	*deactivate*  
+`deactivate`  
+
 A vantagem de se utilizar um ambiente virtual para se criar um projeto é saber o que é necessário para o funcionamento do projeto como um todo. Para isso, basta usar o seguinte comando dentro do ambiente virtual para saber tudo o que há instalado nele (a princípio, deve estar vazio):  
-	*pip freeze*  
+`pip freeze`  
+
 Caso crie o ambiente virtual, digite os comandos seguintes dentro do ambiente (após usar workon) para instalar o django apenas no ambiente virtual. Caso contrário, o django será instalado na máquina e poderá ser acessado de qualquer pasta, assim como o python.
 
 A seguir, abre o terminal do windows e instale os seguintes pacotes:  
-	*pip install django*  
-	*pip install django-crispy-forms*  
-	*pip install crispy-bootstrap4*  
-	*pip install django-braces*  
-	*pip install django-cleanup*  
+`pip install django`  
+`pip install django-crispy-forms`  
+`pip install crispy-bootstrap4`  
+`pip install django-braces`  
+`pip install django-cleanup`  
+
 Instale o VSCode, também baixando-o do próprio site. Algumas extensões úteis que podem ser baixadas no próprio VSCode:  
-	*Portuguese*  
-	*Python*  
-	*Bootstrap*  
-	*jQuery code snippets*
+`Portuguese`  
+`Python`  
+`Bootstrap`  
+`jQuery code snippets`
 
 **Importante**: Utilize o terminal padrão do windows (cmd) ao invés do PowerShell, pois o PS pode dar conflito com o python, django e virtualenv.
 
 **Criando e configurando o primeiro projeto:**  
 No VSCode, abra o terminal (cmd) e digite:  
-	*django-admin startproject NOME\_DO\_PROJETO*  
+`django-admin startproject NOME\_DO\_PROJETO`  
+
 **Extra:** Caso queira escolher outra pasta para criar o projeto, você pode mover pelas pastas do sistema usando os seguintes códigos no terminal:  
-	*dir*		para listar todos os arquivos na pasta atual  
-	*cd NOME*	para ir para a pasta escolhida  
-	*cd ..* 		para voltar uma pasta
+	`dir`		para listar todos os arquivos na pasta atual  
+	`cd NOME`	para ir para a pasta escolhida  
+	`cd ..` 		para voltar uma pasta
 
-Após criar o projeto, vá em *Arquivo \- Abrir Pasta* e procure pela pasta criada pelo terminal.  
-**Importante:** O comando startproject cria duas pastas com o mesmo nome. Ex:  
-	AppWeb  
-		AppWeb  
-		manage.py  
-![][img/01/image2.png]  
-Escolha a primeira pasta. Ao abrir a pasta, deve ter um arquivo 'manage.py' no final. Caso não tenha, você deve ter aberto a segunda página.
+Após criar o projeto, vá em `Arquivo \- Abrir Pasta` e procure pela pasta criada pelo terminal.  
 
-Procure pelo arquivo *settings.py* e, próximo ao fim do arquivo, edite as seguintes linhas para definir o idioma para português e o fuso horário para SP:  
-	*LANGUAGE\_CODE \= 'pt-br'*  
-*TIME\_ZONE \= 'America/Sao\_Paulo'*
+**Importante:** O comando `startproject` cria duas pastas com o mesmo nome. Ex:  
+```
+AppWeb  
+    AppWeb  
+    manage.py  
+```
+![](img/01/image2.png)  
+
+Escolha a primeira pasta. Ao abrir a pasta, deve ter um arquivo `manage.py` no final. Caso não tenha, você deve ter aberto a segunda página.
+
+Procure pelo arquivo `settings.py` e, próximo ao fim do arquivo, edite as seguintes linhas para definir o idioma para português e o fuso horário para SP:  
+`LANGUAGE\_CODE \= 'pt-br'`  
+`TIME\_ZONE \= 'America/Sao\_Paulo'`
 
 Em seguida, digite no terminal os seguintes comandos:  
-	*python manage.py migrate*  
-	*python manage.py runserver*  
+`python manage.py migrate`  
+`python manage.py runserver`  
+
 O primeiro serve para criar um banco de dados básico, que cobriremos mais tarde. O segundo serve para rodar na máquina um servidor e pôr o nosso site localmente no ar. Caso queira testar, basta clicar no link que aparece no terminal.  
-![][img/01/image3]  
+
+![](img/01/image3)  
+
 Se tudo tiver dado certo, você deve ver a seguinte página:  
-![][img/01/image4]  
+
+![](img/01/image4)  
+
 Para encerrar a execução do servidor, aperte CTRL+C no terminal.
 
 Para continuar, vamos criar um "super usuário" (ou Administrador). No terminal, digite:  
