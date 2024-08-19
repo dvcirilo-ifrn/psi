@@ -1,11 +1,11 @@
-**Ajax**
+# Ajax - Primeiro GET
 
 Ajax significa *Asynchronous JavaScript and XML*, ou *JavaScript e XML Assíncronos.* Ele permite que aplicações trabalhem de modo assíncrono, processando qualquer requisição ao servidor em segundo plano, enviando e recebendo dados do servidor sem precisar recarregar a página inteira.
 
 Um exemplo bem conhecido do Ajax é a ferramenta de sugestões de pesquisa do Google, onde conforme você digita um termo de busca, sugestões são dadas enquanto que o restante da página permanece estática. Sem o Ajax, a cada letra digitada a página teria que ser inteiramente carregada, o que tornaria essa ferramenta nada prática.  
 ![](img/05/image1.png)
 
-**Importação**
+## Importação
 
 O Ajax usa como base o jQuery e, portanto, precisamos importá-lo primeiro.
 
@@ -18,7 +18,8 @@ Daí basta salvar o arquivo na pasta *static/js* e importar essa versão no arqu
 ![](img/05/image2.png)
 
 Lembrando que a ordem é jQuery, Popper e BootStrap por último. Com essa atualização feita, podemos começar a utilizar o Ajax.  
-**Get Form**
+
+## Get Form
 
 No Google Sala de Aula tem um projeto (Eventos) para usarmos como base no nosso estudo do Ajax. Ele possui um registro chamado Evento que possui dois campos: Descrição e Data. O CRUD foi implementado da forma que vimos anteriormente, utilizando o Django como facilitador e cada operação sendo realizada em uma página distinta, com a listagem sendo realizada no arquivo *listas/evento.html*. Baixe o projeto e dê uma olhada no código e no cliente para se familiarizar antes de começarmos.
 

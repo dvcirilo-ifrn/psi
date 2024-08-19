@@ -1,4 +1,4 @@
-**Editar registro (Update)**
+# Ajax - Editar registro (Update)
 
 Com o Create e o Read implementados, o próximo passo será o Update. Boa parte do que é necessário para fazermos a edição de um registro é igual ao que fizemos para criar um novo registro no banco de dados. Sendo assim, para podermos reutilizar o código, vamos dividir as funções que criamos para o Create em duas: uma com o código que será reutilizado e outra com o código que será específico para o Create. Daí, basta criar uma terceira função, essa específica para o Update, para concluirmos esta etapa. Então, vamos começar no views.py. Primeiro de tudo, vamos fazer a seguinte importação, caso já não tenha no projeto:
 

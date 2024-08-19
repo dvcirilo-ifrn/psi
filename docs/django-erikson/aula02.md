@@ -1,4 +1,6 @@
-**Criação de um novo módulo**
+# Django - Autenticação
+
+## Criação de um novo módulo
 
 Antes de começarmos com a parte de autenticação do sistema, vamos criar um novo módulo para manter o projeto organizado. Para isso, vamos pôr no terminal:  
 	*python manage.py startapp usuarios*  
@@ -14,7 +16,7 @@ Por fim, ainda na pasta do projeto, vamos abrir o arquivo urls.py e nele adicion
 	*path('', include('usuarios.urls')),*  
 Com isso feito, temos nosso módulo criado e configurado e podemos finalmente começar a criar a parte de Autenticação.
 
-**Login e Logout**
+## Login e Logout
 
 Vamos começar abrindo o arquivo *urls.py* da pasta *usuários*, que deve estar vazio no momento. Nele, vamos colocar:  
 *from django.urls import path*  
@@ -74,7 +76,7 @@ Utilizamos o django para poder usar um IF e nele definimos dois links: Caso o us
 **Extra:** Caso queira informar o nome do usuário em algum lugar na página, você pode usar:  
 	*{{ request.user }}*
 
-**Autenticação**
+## Autenticação
 
 No momento, o usuário consegue logar e deslogar no sistema, mas isso não implica em nada, pois mesmo deslogado o usuário consegue ver todas as páginas. Vamos mudar isso\! Em *cadastros/views.py*, vamos importar:  
 	*from django.contrib.auth.mixins import LoginRequiredMixin*  
@@ -176,7 +178,7 @@ E vamos editar a função *get\_object* das classes **Update** e **Delete** para
 *self.object \= get\_object\_or\_404(Turma, pk \= self.kwargs\['pk'\], usuario \= self.request.user)*  
 *return self.object*
 
-**Enviar dados para Template**
+## Enviar dados para Template
 
 É possível enviar informação das nossas views para os nossos templates (HTML), como o título das páginas, por exemplo. Para isso, primeiro precisamos definir essas informações nas nossas views (ex.: cadastros/views.py, classe TurmaCreate) .  
 *class…*   
@@ -191,7 +193,7 @@ Daí, no template html (ex.: form.html), podemos pegar essa informação com as 
     \<h3\>{{ Titulo }}\</h3\>  
 **Atenção:** O único "problema" de enviar os dados para o template é que você deve configurar o *context* para todas as views que usam aquele template, caso contrário não irá aparecer nada ao usar as chaves duplas.
 
-**Cadastro de Usuário**
+## Cadastro de Usuário
 
 O usuário já está funcional, com login, logout e relação entre ele e os seus registros. Falta agora disponibilizar ao usuário uma tela de cadastros, já que no momento só é possível criar um novo usuário pela página do admin. Para isso, vamos em *usuarios/views.py* e vamos digitar:  
 *from django.views.generic.edit import CreateView*  
@@ -229,7 +231,8 @@ E, de volta para o *usuarios/views.py*, vamos modificá-lo para:
 *template\_name \= 'form.html'*  
 *success\_url \= reverse\_lazy('login')*  
 Em negrito está o que adicionamos e em tachado (~~texto~~) está o que vamos remover. O motivo de removermos essas três linhas é porque elas já estão no arquivo forms, que importamos. Agora resta colocar um link no menu do navbar para a página de registro e está pronto.   
-**Adicionar usuário em grupos**
+
+## Adicionar usuário em grupos
 
 Em alguns casos, onde há poucos grupos e/ou grupos previamente definidos, essa parte é feita manualmente pelo administrador pela página admin. Contudo, caso se deseje adicionar um usuário a um grupo automaticamente durante o registro, é possível.   
 Para isso, vamos em *usuarios/views.py* para adicionar as seguintes importações:  

@@ -1,4 +1,4 @@
-**Paginação**
+## Paginação
 
 A DataTable consegue dividir os nossos dados em páginas e mostrar um conjunto de informações por vez, mas a página web irá baixar todos os registros de uma vez do banco de dados. Caso a quantidade de registros seja de centenas ou milhares, isso pode levar um tempo muito alto, o que não é o ideal. Portanto, pode ser necessário fazermos a paginação através do Django, de forma que apenas uma parcela dos registros seja transferida do banco de dados para a página web por vez.
 
@@ -40,7 +40,7 @@ Agora nós informamos a página em que o usuário está atualmente (em *span*) e
 	*…*  
 	*\<a href="?page={{page\_obj.paginator.num\_pages}}"\>Última\</a\>*
 
-**Busca**
+## Busca
 
 Além da paginação, podemos adicionar um campo de busca para que o usuário possa filtrar os registros e encontrar o que procura mais facilmente. Para isso, vamos começar adicionando no html o seguinte formulário:
 
@@ -72,7 +72,7 @@ Para corrigir esse problema, precisamos passar adiante o termo procurado pelo us
 	*\<a href=?page={{...}}**\&nome={{request.GET.nome}}**"\>...*  
 O que estamos fazendo aqui é definindo, para cada link, dois parâmetros: O *page* representa a página, o *nome* representa o termo de busca. E, para separá-los, usamos o símbolo &. Dessa forma, o termo será passado adiante e a paginação com a busca está pronta.
 
-**Busca em dois ou mais campos**
+## Busca em dois ou mais campos
 
 Para uma busca mais completa, é possível aplicar um filtro em múltiplos campos. O primeiro passo é decidir se será um único termo aplicado em múltiplos campos (como os resultados terem "info" no campo Nome e/ou no campo Descrição) ou se será múltiplos termos aplicados em múltiplos campos (ou seja, um campo de busca para cada campo). No caso de haver múltiplos campos, será necessário criar novas caixas de texto no template, seguindo o mesmo modelo de antes. Algo como:
 

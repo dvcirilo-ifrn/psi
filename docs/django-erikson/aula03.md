@@ -1,10 +1,10 @@
-**jQuery**
+# jQuery
 
 jQuery é uma biblioteca JavaScript rápida, pequena e rica em recursos. Ela torna coisas como manipulação de documentos HTML, manipulação de eventos, animação e Ajax muito mais simples com uma API fácil de usar que funciona em vários navegadores.
 
 A importação do jQuery é bem simples, basta acessar o site ([https://jquery.com/](https://jquery.com/)), baixar o arquivo e importar na página HTML onde ele será usado. Contudo, nós já importamos o jquery junto com o BootStrap, pois o próprio BootStrap utiliza o jQuery para algumas de suas funcionalidades. Sendo assim, podemos pular esta etapa.
 
-**Utilizando o jQuery**
+## Utilizando o jQuery
 
 Antes de usarmos o jQuery, precisamos fazer um pequeno ajuste no nosso projeto. O uso do jQuery deve ser após a sua importação e, como o importamos no final do arquivo *modelo.html*, precisamos utilizá-lo após isso.  
 ![](img/03/image1.png)  
@@ -25,7 +25,8 @@ Com esse ajuste, vamos abrir o arquivo *cadastros/templates/form.html* para real
 *{% endblock %}*
 
 Um script jQuery tem como padrão *$(seletor).ação();*. Esse seletor pode ser um ID, uma Classe, ou a própria página (*Document*). Nesse exemplo, o que o jQuery vai fazer é exibir uma mensagem de alerta quando a página estiver pronta, ou seja, quando ela for completamente gerada pelo navegador e os javascripts forem importados.  
-**jQuery Masks**
+
+## jQuery Masks
 
 Além do jQuery "puro", também há diversos plugins disponíveis que utilizam o jQuery como base. Um deles é o jQuery Masks criado por Igor Escobar. É possível ver o plugin em ação ao acessar o seguinte link: [https://igorescobar.github.io/jQuery-Mask-Plugin/](https://igorescobar.github.io/jQuery-Mask-Plugin/)
 
@@ -56,7 +57,8 @@ De forma que utilizar uma máscara não irá interferir com os dados adquiridos.
 
 **Extra:** Para utilizar o comando static do Django, primeiro é necessário usar o *load static* no início do arquivo. Como realizamos esse teste no *form.html*, onde já tem o *load static*, o exemplo funcionará perfeitamente. Mas caso você resolva usar em outro template, verifique e adicione a seguinte linha no início do arquivo, se necessário:  
 *{% load static %}*  
-**DataTable**
+
+## DataTable
 
 DataTable é mais um plugin que utiliza o jQuery como base. Também é possível testar suas funcionalidade online, acessando o seguinte link: [https://datatables.net/](https://datatables.net/)
 
@@ -134,7 +136,7 @@ Novamente, atente-se à primeira linha do bloco, onde importamos a DataTable. J�
 
 Basicamente, o que fazemos é definir uma tradução para cada termo da tabela. Ex.: *previous* será substituído por *anterior.* Assim, mantemos o nosso site acessível para qualquer falante de português.
 
-**Paginação**
+## Paginação
 
 A DataTable consegue dividir os nossos dados em páginas e mostrar um conjunto de informações por vez, mas a página web irá baixar todos os registros de uma vez do banco de dados. Caso a quantidade de registros seja de centenas ou milhares, isso pode levar um tempo muito alto, o que não é o ideal. Portanto, pode ser necessário fazermos a paginação através do Django, de forma que apenas uma parcela dos registros seja transferida do banco de dados para a página web por vez.
 

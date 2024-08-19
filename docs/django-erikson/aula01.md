@@ -1,4 +1,6 @@
-# **Django** \- Framework web full stack open source baseado em python.
+# Django - Instalação e projeto base
+
+## Django - Framework web full stack open source baseado em python.
 
 *Framework*, assim como uma biblioteca, é como uma caixa de ferramentas: um conjunto de recursos e facilidades que auxiliam um desenvolvedor na hora de construir um projeto.
 
@@ -26,8 +28,10 @@ Primeiro instale o Python, baixando-o do próprio site. Deve-se marcar a opção
 
 **Extra:** Como passo adicional, é possível instalar virtualenv e virtualenvwrapper com os comandos:  
 
-`pip install virtualenv`  
-`pip install virtualenvwrapper-win`  
+```
+pip install virtualenv
+pip install virtualenvwrapper-win
+```
 
 Após a instalação, é possível utilizar o seguinte comando para criar um ambiente virtual:  
 `mkvirtualenv NOME\_DO\_AMBIENTE`  
@@ -43,33 +47,40 @@ A vantagem de se utilizar um ambiente virtual para se criar um projeto é saber 
 
 Caso crie o ambiente virtual, digite os comandos seguintes dentro do ambiente (após usar workon) para instalar o django apenas no ambiente virtual. Caso contrário, o django será instalado na máquina e poderá ser acessado de qualquer pasta, assim como o python.
 
-A seguir, abre o terminal do windows e instale os seguintes pacotes:  
-`pip install django`  
-`pip install django-crispy-forms`  
-`pip install crispy-bootstrap4`  
-`pip install django-braces`  
-`pip install django-cleanup`  
+A seguir, abre o terminal do windows e instale os seguintes pacotes
+```
+pip install django
+pip install django-crispy-forms
+pip install crispy-bootstrap4
+pip install django-braces
+pip install django-cleanup
+```
 
 Instale o VSCode, também baixando-o do próprio site. Algumas extensões úteis que podem ser baixadas no próprio VSCode:  
-`Portuguese`  
-`Python`  
-`Bootstrap`  
-`jQuery code snippets`
+
+```
+Portuguese
+Python
+Bootstrap
+jQuery code snippets
+```
 
 **Importante**: Utilize o terminal padrão do windows (cmd) ao invés do PowerShell, pois o PS pode dar conflito com o python, django e virtualenv.
 
-**Criando e configurando o primeiro projeto:**  
+## Criando e configurando o primeiro projeto:
+
 No VSCode, abra o terminal (cmd) e digite:  
 `django-admin startproject NOME\_DO\_PROJETO`  
 
-**Extra:** Caso queira escolher outra pasta para criar o projeto, você pode mover pelas pastas do sistema usando os seguintes códigos no terminal:  
-	`dir`		para listar todos os arquivos na pasta atual  
-	`cd NOME`	para ir para a pasta escolhida  
-	`cd ..` 		para voltar uma pasta
+**Extra:** Caso queira escolher outra pasta para criar o projeto, você pode mover pelas pastas do sistema usando os seguintes códigos no terminal:	
+- `dir`		para listar todos os arquivos na pasta atual  
+- `cd NOME`	para ir para a pasta escolhida  
+- `cd ..` 	para voltar uma pasta
 
 Após criar o projeto, vá em `Arquivo \- Abrir Pasta` e procure pela pasta criada pelo terminal.  
 
 **Importante:** O comando `startproject` cria duas pastas com o mesmo nome. Ex:  
+
 ```
 AppWeb  
     AppWeb  
@@ -98,84 +109,128 @@ Se tudo tiver dado certo, você deve ver a seguinte página:
 Para encerrar a execução do servidor, aperte CTRL+C no terminal.
 
 Para continuar, vamos criar um "super usuário" (ou Administrador). No terminal, digite:  
-	*python manage.py createsuperuser*  
+
+`python manage.py createsuperuser`  
+
 Pelo próprio terminal, preencha login, e-mail e senha. Você pode testar o login em:  
-	*http://127.0.0.1:8000/admin*  
-Por esse painel admin é possível interagir diretamente com o banco de dados. A princípio, temos apenas 'Grupos' e 'Usuários', criado pelo próprio Django quando o comando *'migrate'* foi utilizado. Veremos isso mais a frente, quando criarmos mais classes para o BD.
+
+http://127.0.0.1:8000/admin
+
+Por esse painel admin é possível interagir diretamente com o banco de dados. A princípio, temos apenas 'Grupos' e 'Usuários', criado pelo próprio Django quando o comando `migrate` foi utilizado. Veremos isso mais a frente, quando criarmos mais classes para o BD.
 
 O próximo passo é criar o nosso primeiro módulo. Os módulos vão nos auxiliar a separar as funcionalidades da aplicação e manter tudo mais organizado. Começaremos criando um módulo para as páginas HTML que criaremos para o site. No terminal, digite:  
-	*python manage.py startapp NOME\_DO\_MODULO*  
+
+`python manage.py startapp NOME\_DO\_MODULO`  
+
 **Importante:** Para este projeto, chamarei este primeiro módulo de ***paginas***  
-*python manage.py startapp **paginas***
+
+`python manage.py startapp paginas`
 
 O Django irá criar uma nova pasta no projeto com alguns arquivos.  
-	![](img/01/image5.png)  
-*admin.py* 	Classes e modelos que vão aparecer na página admin  
-	*apps.py*	Usado para ativar o módulo no projeto  
-	*models.py*	Aqui vai ficar as classes do banco de dados  
-	*tests.py*	Usado para criar testes automatizados  
-	*views.py*	É aqui que vamos conectar as requisições e respostas e onde vai acontecer boa parte do código.
+
+![](img/01/image5.png)  
+
+
+```
+admin.py    	Classes e modelos que vão aparecer na página admin  
+apps.py	    Usado para ativar o módulo no projeto  
+models.py 	Aqui vai ficar as classes do banco de dados  
+tests.py 	Usado para criar testes automatizados  
+views.py 	É aqui que vamos conectar as requisições e respostas e onde vai acontecer boa parte do código.
+```
 
 Vamos criar a primeira página da aplicação que será a página inicial do projeto. Vamos criar dentro da pasta do módulo (pasta páginas) uma pasta chamada *templates*, que terá todos os HTML que criarmos para as diferentes páginas do projeto. E, dentro da pasta, um arquivo chamado *index.html*, que será a nossa página inicial.  
-	![](img/01/image6.png)
+
+![](img/01/image6.png)
 
 Apenas como teste, vamos pôr no *index.html* algo bem simples:  
-\<\!DOCTYPE html\>  
-\<html lang="pt-br"\>  
-\<head\>  
-\<meta charset="UTF-8"\>  
-\<meta name="viewport" content="width=device-width, initial-scale=1.0"\>  
-\<title\>Página Inicial\</title\>  
-\</head\>  
-\<body\>  
-\<h3\>Bem vindos ao módulo páginas.\</h3\>  
-\</body\>  
-\</html\>
 
-Com a página criada, vamos em *views.py*, trocando o seu conteúdo por:  
-	*from django.views.generic import TemplateView*
+```
+<DOCTYPE html>  
+<html lang="pt-br">  
+    <head>  
+        <meta charset="UTF-8">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <title>Página Inicial</title>  
+    </head>  
+    <body>  
+        <h3>Bem vindos ao módulo páginas.</h3>  
+    </body>  
+</html>
+```
 
-*\# Create your views here.*  
-*class IndexView(TemplateView):*  
-    *template\_name \= "index.html"*  
+Com a página criada, vamos em `views.py`, trocando o seu conteúdo por:  
+
+```
+from django.views.generic import TemplateView
+
+# Create your views here.
+class IndexView(TemplateView):
+    template_name = "index.html"
+```
+
 Estamos importando o *TemplateView* do Django e usando-o como parâmetro para criar nossa classe *IndexView*. O único parâmetro que precisamos definir ao utilizar o *TemplateView* é *template\_name* e todo o resto será lidado pelo próprio django. Atente-se que o valor do atributo (*"index.html"*) é o mesmo nome que demos ao arquivo que criamos agora a pouco. Resta apenas importar esse template no projeto. Para isso, vamos em *settings.py* e, antes da primeira linha de código, vamos adicionar:  
-	*import os*  
+
+`import os`  
+
 No mesmo arquivo, mais abaixo, vamos procurar por *TEMPLATES* e editar a linha *DIRS* para:  
-	*'DIRS': \[os.path.join(BASE\_DIR, 'templates')\],*  
+
+`'DIRS': [os.path.join(BASE_DIR, 'templates')],`  
+
 O que estamos fazendo aqui é adicionando aos templates do projeto a pasta *templates* que criamos anteriormente. Dessa forma, todos os arquivos que colocarmos naquela pasta já serão identificados pelo projeto automaticamente.
 
 Além da página, precisamos configurar seu endereço. Para isso, dentro da pasta do módulo, vamos criar mais um arquivo chamado *urls.py* e nele vamos adicionar:  
-	*from django.urls import path*  
-*from .views import IndexView*
 
-*urlpatterns \= \[*  
-*path('inicio/', IndexView.as\_view(), name='inicio'),*  
-*\]*  
+```
+from django.urls import path
+from .views import IndexView
+
+urlpatterns = [  
+    path('inicio/', IndexView.as_view(), name='inicio'),
+]  
+```
+
 Basicamente estamos informando que o endereço (*path*) *'início/'* vai ser "representado" pelo *IndexView* (que é a nossa página *index.html*). Agora, vamos no outro arquivo do projeto chamado *urls.py*, fora da pasta do módulo, e vamos editar para:  
-	*from django.contrib import admin*  
-*from django.urls import path, include*
 
-*urlpatterns \= \[*  
-    *path('admin/', admin.site.urls),*  
-    *path('cadastros/', include('paginas.urls')),*  
-*\]*  
+```
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [  
+    path('admin/', admin.site.urls),  
+    path('cadastros/', include('paginas.urls')),
+]  
+```
+
 Aqui nós estamos dando um nome para este caminho do link (*cadastros/*) e incluindo após ele o que estiver no arquivo em *paginas*/*urls.py*. Sendo assim, agora o endereço da nossa página inicial seria:  
-	*http://127.0.0.1:8000/cadastros/inicio/*  
-Caso queira, você pode deixar o *path* vazio para que não seja necessário adicionar nada no caminho da página e, portanto, encurtando o link. Dessa forma, podemos deletar *cadastros/* e deixar apenas:  
-*path('', include('paginas.urls')),*  
-Para ter como link inicial:  
-	*http://127.0.0.1:8000/inicio/*
 
-Mais uma vez, vamos acessar nosso arquivo *settings.py* e nele vamos procurar por *INSTALLED\_APPS*, adicionando dentro das \[ \], na última linha:  
-	*'paginas.apps.PaginasConfig',*  
+http://127.0.0.1:8000/cadastros/inicio/
+
+Caso queira, você pode deixar o *path* vazio para que não seja necessário adicionar nada no caminho da página e, portanto, encurtando o link. Dessa forma, podemos deletar *cadastros/* e deixar apenas:  
+
+`path('', include('paginas.urls')),`  
+
+Para ter como link inicial: http://127.0.0.1:8000/inicio/
+
+Mais uma vez, vamos acessar nosso arquivo *settings.py* e nele vamos procurar por `INSTALLED_APPS`, adicionando dentro das `[ ]`, na última linha:  
+
+`'paginas.apps.PaginasConfig',`  
+
 ![](img/01/image7.png)  
+
 Agora, com tudo configurado, devemos conseguir rodar o servidor e abrir nossa página em:  
-	*http://127.0.0.1:8000/inicio/*  
-**Arquivos Estáticos:**  
+
+http://127.0.0.1:8000/inicio/
+
+## Arquivos Estáticos:
+
 Arquivos estáticos são arquivos que são enviados ao navegador exatamente como estão no HD do servidor, ou seja, sempre serão os mesmos, não sofrendo alterações. Exemplo disso seriam arquivos de imagem, CSS e JavaScripts. Por questão de organização, vamos criar na 'raiz' do projeto (pasta base) uma pasta chamada static (padrão do Django) e mais uma pasta para cada tipo de arquivo, seguindo o seguinte modelo:  
-	![](img/01/image8.png)  
+
+![](img/01/image8.png)  
+
 Agora precisamos indicar ao nosso projeto onde essa pasta está localizada. Para isso, vamos abrir o arquivo *settings.py* e buscar por *STATIC\_URL*, adicionando logo após:  
-	*STATIC\_URL \= 'static/'*
+
+*STATIC\_URL \= 'static/'*
 
 *STATICFILES\_DIRS \= \[*  
 *os.path.join(BASE\_DIR, 'static')*  
@@ -200,7 +255,9 @@ Podemos baixar uma imagem, colocá-la na pasta *img* e importá-la de forma simi
 	*\<img src="{% static 'img/logo.png' %}" alt=""\>*
 
 **Extra:** Tente usar nomes simples e que indiquem o que o arquivo significa. É melhor *'logo.png'* do que *'1315885218621.png'*.  
-**Criando um Modelo:**  
+
+## Criando um Modelo
+
 Agora vamos criar nosso primeiro modelo, já aproveitando para importar o BootStrap. O modelo será usado como base para as demais páginas HTML, servindo, por exemplo, para programar um menu de navegação que aparecerá em todas as páginas. Após criar esse menu uma única vez no arquivo modelo, podemos importá-lo facilmente nas outras páginas, reutilizando o código e mantendo o nosso projeto mais simples e mais facilmente editável. O BootStrap, por sua vez, irá nos ajudar principalmente com a interface da nossa aplicação web.
 
 Primeiro, vamos acessar o site do BootStrap para pegar os links necessários. Em:  
@@ -363,7 +420,8 @@ Com isso, devemos conseguir alternar entre as duas páginas criadas, *index.html
 **Importante:** Os nomes *'inicio'* e *'sobre'* usados na importação do link vem do arquivo *paginas/urls.py*:  
 	![](img/01/image15.png)
 
-**Models e Banco de Dados:**  
+## Models e Banco de Dados
+
 Começaremos agora a interagir com o banco de dados e, para isso, usaremos os *models* do Django. Mas antes, vamos criar um novo módulo exclusivamente para lidar com essa interação com o BD e manter o nosso código organizado. Para isso, basta digitar no terminal:  
 	*python manage.py startapp **cadastros***  
 Você pode dar o nome que quiser para o módulo, mas para este projeto chamarei este módulo de **cadastros**.

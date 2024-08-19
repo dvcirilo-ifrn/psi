@@ -1,4 +1,4 @@
-**Páginas de Erro**
+# Páginas de Erro
 
 Usualmente já existem páginas de erro pré-configuradas na criação de um projeto Web, seja utilizando o Django ou não. Essa páginas padrão costumam ser bem simples e informam apenas o número do erro e nada mais, como 404 (página não encontrada).
 
@@ -10,7 +10,7 @@ Veja as páginas de erro do Google e do Lego, por exemplo:
 
 O design da sua página de erro pode tanto usar texto e CSS, como imagens, sendo uma decisão a ser feita a depender do projeto em si. Mas independente da aparência da sua página, a configuração dela segue o mesmo padrão.
 
-**Configurando uma página de Erro no Django**
+## Configurando uma página de Erro no Django
 
 Vamos começar com o erro mais comum, 404\. O erro 404 ocorre quando o usuário tenta acessar uma página que não existe. Você pode forçar esse erro facilmente ao tentar acessar um endereço que não foi cadastrado nas suas urls.  
 		*link/algumacoisa*  
@@ -38,7 +38,7 @@ O mesmo funciona para qualquer outro código. Os códigos de erro mais comuns, s
 400: Bad Request (Erro abrangente do Cliente)  
 500: Server Error (Erro abrangente do Servidor)
 
-**Como forçar uma página de erro**
+## Como forçar uma página de erro
 
 O erro 404 é um erro simples de forçar para teste, mas outros erros são mais complicados e causar erros de forma intencional no seu código para gerá-los pode não ser a melhor ideia. Pensando nisso, foram criadas formas de se forçar uma página de erro, e vamos ver como fazer isso agora, usando o erro 403 para isso.
 

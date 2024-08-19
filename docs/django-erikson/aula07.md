@@ -1,4 +1,4 @@
-**Atualizar tabela (List)**
+# Ajax - Atualizar tabela (List)
 
 Até agora, nós fizemos o Create do CRUD utilizando o ajax, contudo precisamos atualizar a página para poder conferir a lista de registros atualizada. Vamos mudar isso. Primeiro, vamos criar um novo arquivo na pasta templates/listas chamado *parcial\_list.html*. Nesse template, nós vamos colocar a parte da página que será atualizada pelo ajax. Como nós queremos atualizar a lista com os registros, vamos copiar o corpo da tabela do arquivo evento.html para esse arquivo que acabamos de criar.
 

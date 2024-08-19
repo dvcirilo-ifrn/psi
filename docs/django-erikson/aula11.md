@@ -1,3 +1,5 @@
+# Google Lighthouse
+
 É uma ferramenta que tem por objetivo testar e devolver aos desenvolvedores recomendações para melhorias como, por exemplo, o desempenho, o SEO (otimização para motores de busca), a segurança, as práticas recomendadas e a acessibilidade de um site\! É uma forma de se ter feedback do site, sem a necessidade de um usuário ou testes manuais.
 
 Para usar essa ferramenta, primeiro é necessário instalar a extensão no G. Chrome. Para isso, basta buscar por 'Google Lighthouse' ou acessar o link abaixo:  

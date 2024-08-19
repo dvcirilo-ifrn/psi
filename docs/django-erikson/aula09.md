@@ -1,4 +1,4 @@
-**Excluir registro (Delete)**
+# Ajax - Excluir registro (Delete)
 
 A última etapa para concluirmos o CRUD completo com ajax é o Delete. Ele funciona de forma similar ao Update, sendo necessário um pk (chave primária) para indicar o registro que será deletado, contudo, iremos apagar o registro do banco de dados ao invés de salvá-lo. Sendo assim, ao invés de reutilizarmos aquela mesma função que usamos para o Create e o Update (save\_form), vamos criar uma única para o delete. Então, no arquivo views.py, vamos adicionar a função:
 

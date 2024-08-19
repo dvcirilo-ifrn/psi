@@ -1,4 +1,6 @@
-**Post Create**
+# Ajax - Primeiro POST
+
+## Post Create
 
 Nós já conseguimos solicitar informação do servidor e atualizar um pedaço da página sem a necessidade de atualizá-la por completo. Agora vamos enviar informação para o servidor sem atualizar a página. O primeiro passo será aprimorar a função *evento\_create* que criamos no arquivo views.py para lidar com os dois tipos de requisição (get e post).
 

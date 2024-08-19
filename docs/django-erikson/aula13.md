@@ -1,11 +1,12 @@
-**Testes**
+# Testes
 
 Ter feedback de usuários alpha/beta e/ou ter um programador (ou mais) com a tarefa de testar o projeto é algo ótimo para evitar erros e bugs durante a produção, ou seja, após disponibilizar o acesso ao projeto para o usuário comum. No entanto, nem sempre isso é possível, restando ao programador que está criando o projeto também ser o responsável pelos testes.
 
 O procedimento de testar um projeto, ainda mais um projeto web que costuma ser extenso e possuir dezenas, senão centenas, de arquivos, é algo trabalhoso e que demanda muito tempo. Se o programador desejar testar o projeto com frequência, então, pior ainda.
 
 Nesses casos, é possível automatizar alguns testes pelo django, utilizando os arquivos tests.py. Dessa forma, apesar do trabalho extra inicial, para se criar os testes, todos os demais testes são feitos de forma automática, consumindo não mais do que alguns segundos do programados.  
-**Testando Funções**
+
+## Testando Funções
 
 **Atenção:** Para os exemplos a seguir, será usado o projeto Agenda postado no GSA:  
 Em models.py, vamos adicionar ao fim do modelo Lembrete uma função simples para testarmos:  
@@ -68,7 +69,7 @@ Um teste executado, tudo OK.
 
 **Extra 2:** O número de testes representa a quantidade de funções de testes criadas, sem contar com os setUp e tearDown. Nesse caso, apenas uma (testValidarObs).
 
-**Simulando um Cliente (Navegador) \- GET**
+## Simulando um Cliente (Navegador) - GET
 
 Outra forma de realizar testes é simulando um acesso remoto ao servidor, seja tentando acessar páginas ou cadastrar novos registros. Para isso, primeiro precisamos criar um objeto *Client*, para poder simular esse acesso. No arquivo tests.py, vamos importar:  
 *from django.test.client import Client*  
@@ -111,7 +112,7 @@ Além desses testes, é possível realizar vários outros usando a resposta da r
 
 Dois testes executados (testValidarObs e testValidarCliente), resultado OK.
 
-**Simulando um Cliente (Navegador) \- POST**
+## Simulando um Cliente (Navegador) - POST
 
 Vamos realizar uma simulação de um POST, cadastrando um novo registro ao sistema. Ainda na função testValidarCliente, vamos adicionar ao fim:  
         *\# Faz uma requisição POST*  

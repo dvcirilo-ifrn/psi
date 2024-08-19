@@ -1,4 +1,4 @@
-**Hospedagem**
+# Hospedagem
 
 Hospedagem é um processo muito importante no processo de criar um sistema para internet, já que sem a hospedagem, basicamente ninguém será capaz de utilizar o seu sistema. Normalmente, é necessário pagar algum servidor para ser apto a hospedar um site em seu domínio. O endereço escolhido (Ex.: google.com ou wikipedia.com) também costuma ser um custo extra na hospedagem de um sistema. Esse custo pode ser do programador, da empresa na qual ele trabalha ou até mesmo do próprio cliente, a depender do contexto da situação
 
@@ -117,7 +117,8 @@ Mais uma vez, **atenção** para os *user* e *projeto*. Troque-os pelos nomes co
 
 As seis flags que vem depois são referentes à segurança do site e podem causar alguns conflitos durante a implementação e testes do sistema, e é por isso que vamos adicionar apenas no servidor e não no arquivo que temos no computador e usamos para testes.
 
-**Flags:**  
+## Flags
+
 *SECURE\_SSL\_REDIRECT* redireciona requisições http para https. Ou seja, se alguém tentar acessar o seu site com o link:  
 	***http**://user.pythonanywhere.com/*  
 Ele será automaticamente redirecionado para:  
