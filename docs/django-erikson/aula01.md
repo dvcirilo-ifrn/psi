@@ -1,4 +1,4 @@
-**Django** \- Framework web full stack open source baseado em python.
+# **Django** \- Framework web full stack open source baseado em python.
 
 *Framework*, assim como uma biblioteca, é como uma caixa de ferramentas: um conjunto de recursos e facilidades que auxiliam um desenvolvedor na hora de construir um projeto.
 
@@ -16,7 +16,7 @@ O Django usa o modelo *MVT*, sendo:
 
 O usuário interage com o *View*. O view faz uma requisição ao *Model* para que este acesse o banco de dados e retorne os dados necessários para o *View*, que repassa para o *Template*, onde será gerado a página web que será enviada de volta ao usuário.
 
-![][img/01/image1.png]
+![](img/01/image1.png)
 
 Uma das principais vantagens do Django é o reaproveitamento do código, o qual traz por si só diversos benefícios, mantendo o projeto mais simples ao passo que evita o retrabalho. Outra vantagem é a página admin que permite interagir diretamente com o banco de dados.
 
