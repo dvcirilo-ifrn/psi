@@ -1,4 +1,5 @@
 # Paginação com busca
+## Paginação
 
 A DataTable consegue dividir os nossos dados em páginas e mostrar um conjunto de informações por vez, mas a página web irá baixar todos os registros de uma vez do banco de dados. Caso a quantidade de registros seja de centenas ou milhares, isso pode levar um tempo muito alto, o que não é o ideal. Portanto, pode ser necessário fazermos a paginação através do Django, de forma que apenas uma parcela dos registros seja transferida do banco de dados para a página web por vez.
 
@@ -75,9 +76,9 @@ Agora que o usuário já consegue escrever um termo para a busca e nós já cons
 def get_queryset(self):  
     nome = self.request.GET.get('nome')  
     if nome:  
-			turmas = Turma.objects.filter(nome__icontains = nome)  
-		else:  
-			turmas = Turma.objects.all()  
+        turmas = Turma.objects.filter(nome__icontains = nome)  
+    else:  
+        turmas = Turma.objects.all()  
     return turmas
 ```
 
@@ -86,7 +87,7 @@ Na primeira linha nós estamos buscando a informação no link da página, como 
 Para corrigir esse problema, precisamos passar adiante o termo procurado pelo usuário sempre que mudamos de página. Assim sendo, vamos retornar ao template e, em cada link que criamos durante a paginação, vamos adicionar:  
 
 ```django
-<a href=?page={{...}}*&nome={{request.GET.nome}}**">...*  
+<a href=?page={{...}}&nome={{request.GET.nome}}">...  
 ```
 
 O que estamos fazendo aqui é definindo, para cada link, dois parâmetros: O `page` representa a página, o `nome` representa o termo de busca. E, para separá-los, usamos o símbolo `&`. Dessa forma, o termo será passado adiante e a paginação com a busca está pronta.
@@ -117,7 +118,7 @@ def get_queryset(self):
         turmas = turmas.filter(nome__icontains = nome)  
     if estado:  
         turmas = turmas.filter(descricao__icontains = descricao)  
-    return Turma
+    return turmas
 ```
 
 Normalmente, essa não seria uma boa prática de programação, pois em caso de haver dois termos, seria aplicado um acesso ao banco de dados, seguido de um filtro, seguido de um segundo filtro. Três operações distintas, cada qual com seu processo de processamento, resultando em algo lento e nada prático. No entanto, o Django possui algo chamado de *Lazy Query*, onde os filtros são acumulados e executados apenas uma única vez, resultando em apenas uma operação.  
