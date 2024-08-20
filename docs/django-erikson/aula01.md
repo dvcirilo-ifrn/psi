@@ -28,32 +28,32 @@ Primeiro instale o Python, baixando-o do próprio site. Deve-se marcar a opção
 
 **Extra:** Como passo adicional, é possível instalar `virtualenv` e `virtualenvwrapper` com os comandos:  
 
-```
+```sh
 pip install virtualenv
 pip install virtualenvwrapper-win
 ```
 
 Após a instalação, é possível utilizar o seguinte comando para criar um ambiente virtual:  
 
-```
+```sh
 mkvirtualenv NOME_DO_AMBIENTE  
 ```
 
 Para trabalhar dentro desse ambiente, basta digitar:  
 
-```
+```sh
 workon NOME_DO_AMBIENTE  
 ```
 
 E para sair:  
 
-```
+```sh
 deactivate  
 ```
 
 A vantagem de se utilizar um ambiente virtual para se criar um projeto é saber o que é necessário para o funcionamento do projeto como um todo. Para isso, basta usar o seguinte comando dentro do ambiente virtual para saber tudo o que há instalado nele (a princípio, deve estar vazio):  
 
-```
+```sh
 pip freeze  
 ```
 
@@ -61,7 +61,7 @@ Caso crie o ambiente virtual, digite os comandos seguintes dentro do ambiente (a
 
 A seguir, abra o terminal do Windows e instale os seguintes pacotes:
 
-```
+```sh
 pip install django django-crispy-forms crispy-bootstrap4 django-braces django-cleanup
 ```
 
@@ -80,7 +80,7 @@ jQuery code snippets
 
 No VSCode, abra o terminal (`cmd`) e digite:  
 
-```
+```sh
 django-admin startproject NOME_DO_PROJETO  
 ```
 
@@ -106,14 +106,14 @@ Escolha a primeira pasta. Ao abrir a pasta, deve ter um arquivo `manage.py` no f
 
 Procure pelo arquivo `settings.py` e, próximo ao fim do arquivo, edite as seguintes linhas para definir o idioma para português e o fuso horário para SP:  
 
-```
+```py
 LANGUAGE_CODE = 'pt-br'  
 TIME_ZONE = 'America/Sao_Paulo'
 ```
 
 Em seguida, digite no terminal os seguintes comandos:  
 
-```
+```sh
 python manage.py migrate  
 python manage.py runserver  
 ```
@@ -130,7 +130,7 @@ Para encerrar a execução do servidor, aperte CTRL+C no terminal.
 
 Para continuar, vamos criar um "super usuário" (ou Administrador). No terminal, digite:  
 
-```
+```sh
 python manage.py createsuperuser  
 ```
 
@@ -142,13 +142,13 @@ Por esse painel *admin* é possível interagir diretamente com o banco de dados.
 
 O próximo passo é criar o nosso primeiro módulo. Os módulos vão nos auxiliar a separar as funcionalidades da aplicação e manter tudo mais organizado. Começaremos criando um módulo para as páginas HTML que criaremos para o site. No terminal, digite:  
 
-```
+```sh
 python manage.py startapp NOME_DO_MODULO  
 ```
 
 **Importante:** Para este projeto, chamarei este primeiro módulo de ***paginas***  
 
-```
+```sh
 python manage.py startapp paginas
 ```
 
@@ -168,7 +168,7 @@ Vamos criar a primeira página da aplicação que será a página inicial do pro
 
 Apenas como teste, vamos pôr no `index.html` algo bem simples:  
 
-```
+```django
 <DOCTYPE html>  
 <html lang="pt-br">  
     <head>  
@@ -184,7 +184,7 @@ Apenas como teste, vamos pôr no `index.html` algo bem simples:
 
 Com a página criada, vamos em `views.py`, trocando o seu conteúdo por:  
 
-```
+```py
 from django.views.generic import TemplateView
 
 # Create your views here.
@@ -194,13 +194,13 @@ class IndexView(TemplateView):
 
 Estamos importando o `TemplateView` do Django e usando-o como parâmetro para criar nossa classe `IndexView`. O único parâmetro que precisamos definir ao utilizar o `TemplateView` é `template_name` e todo o resto será lidado pelo próprio Django. Atente-se que o valor do atributo (`"index.html"`) é o mesmo nome que demos ao arquivo que criamos agora a pouco. Resta apenas importar esse template no projeto. Para isso, vamos em `settings.py` e, antes da primeira linha de código, vamos adicionar:  
 
-```
+```py
 import os 
 ```
 
 No mesmo arquivo, mais abaixo, vamos procurar por `TEMPLATES` e editar a linha `DIRS` para:  
 
-```
+```py
 'DIRS': [os.path.join(BASE_DIR, 'templates')],  
 ```
 
@@ -208,7 +208,7 @@ O que estamos fazendo aqui é adicionando aos templates do projeto a pasta `temp
 
 Além da página, precisamos configurar seu endereço. Para isso, dentro da pasta do módulo, vamos criar mais um arquivo chamado `urls.py` e nele vamos adicionar:  
 
-```
+```py
 from django.urls import path
 from .views import IndexView
 
@@ -219,7 +219,7 @@ urlpatterns = [
 
 Basicamente estamos informando que o endereço (`path`) `'início/'` vai ser "representado" pelo `IndexView` (que é a nossa página `index.html`). Agora, vamos no outro arquivo do projeto chamado `urls.py`, fora da pasta do módulo, e vamos editar para:  
 
-```
+```py
 from django.contrib import admin
 from django.urls import path, include
 
@@ -235,7 +235,7 @@ http://127.0.0.1:8000/cadastros/inicio/
 
 Caso queira, você pode deixar o *path* vazio para que não seja necessário adicionar nada no caminho da página e, portanto, encurtando o link. Dessa forma, podemos deletar *cadastros/* e deixar apenas:  
 
-```
+```py
 path('', include('paginas.urls')),  
 ```
 
@@ -243,7 +243,7 @@ Para ter como link inicial: http://127.0.0.1:8000/inicio/
 
 Mais uma vez, vamos acessar nosso arquivo `settings.py` e nele vamos procurar por `INSTALLED_APPS`, adicionando dentro das `[ ]`, na última linha:  
 
-```
+```py
 'paginas.apps.PaginasConfig',  
 ```
 
@@ -261,11 +261,11 @@ Arquivos estáticos são arquivos que são enviados ao navegador exatamente como
 
 Agora precisamos indicar ao nosso projeto onde essa pasta está localizada. Para isso, vamos abrir o arquivo `settings.py` e buscar por `STATIC_URL`, adicionando logo após:  
 
-```
+```py
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [  
-os.path.join(BASE_DIR, 'static')  
+    os.path.join(BASE_DIR, 'static')  
 ]
 ```
 
@@ -279,13 +279,13 @@ body {
 
 Em `index.html` vamos adicionar duas linhas de código, a primeira na primeira linha do arquivo:  
 
-```
+```django
 {% load static %}  
 ```
 
 E a segunda abaixo de `<title>`:  
 
-```
+```django
 <link rel="stylesheet" href="{% static 'css/estilo.css' %}">  
 ```
 
@@ -297,13 +297,13 @@ Se atualizarmos nossa página inicial, devemos vê-la com uma cor de fundo difer
 
 **Importante:** Usaremos essa notação do Django com frequência e ela sempre segue esse mesmo padrão. Atente-se ao fato de que existe um espaço entre o comando e os símbolos `%,` assim como **não** há espaço entre as chaves `{}` e os símbolos `%`.  
 
-```
+```django
 {% comando %}
 ```
 
 Podemos baixar uma imagem, colocá-la na pasta `img` e importá-la de forma similar, colocando na parte `body`, embaixo da `tag` `h3`:  
 
-```
+```django
 <img src="{% static 'img/logo.png' %}" alt="">
 ```
 
@@ -343,13 +343,13 @@ Vamos começar criando em `paginas/templates` um arquivo chamado `modelo.html` e
 
 Esses links são os que estão no site do *BootStrap*, basta copiar e colar. Caso queira testar, você pode ir em `views.py` e trocar:  
 
-```
+```py
 template_name = "index.html"  
 ```
 
 para:  
 
-```
+```py
 template_name = "modelo.html"  
 ```
 
@@ -357,7 +357,7 @@ Atualizando a página inicial. Lembre-se de **desfazer** essa mudança.
 
 **Extra:** Caso queira, você pode acessar os links em `href` e em `src` e baixar os arquivos css e js, adicionando-os na pasta static e importando-os utilizando o Django. Lembre-se de pôr na primeira linha o comando:  
 
-```
+```django
 {% load static %}  
 ```
 
@@ -373,7 +373,7 @@ E um arquivo modelo muito mais "limpo":
 
 Com a página modelo criada e o *BootStrap* importado, nós podemos criar um layout inicial e utilizar mais um comando do Django para separar o nosso modelo em blocos:  
 
-```
+```django
 {% block NOME_DO_BLOCO %}  
     …HTML/CSS…  
 {% endblock %}  
@@ -427,7 +427,7 @@ Daí, podemos importar o modelo como um todo em nossas outras páginas e usar o 
 
 E podemos substituir o que tem no arquivo `index.html` por:  
 
-```
+```django
 {% extends 'modelo.html' %}  
 {% load static %}
 
@@ -458,19 +458,19 @@ class SobreView(TemplateView):
 
 Em `paginas/urls.py` vamos editar o `import` para:  
 
-```
+```py
 from .views import IndexView, SobreView  
 ```
 
 E adicionar em `urlpatterns`:  
 
-```
+```py
 path('sobre/', SobreView.as_view(), name='sobre'),  
 ```
 
 Por fim, vamos criar na pasta `templates` o arquivo `sobre.html` e pôr:  
 
-```
+```django
 {% extends 'modelo.html' %}
 
 {% block titulo %}  
@@ -495,7 +495,7 @@ http://127.0.0.1:8000/sobre/
 
 **Importante:** Caso você vá usar alguma importação do Django (`{% static … %}`) na página, lembre de colocar na segunda linha, logo após o `extends`:  
 
-```
+```django
 {% load static %}  
 ```
 
@@ -507,7 +507,7 @@ https://getbootstrap.com/docs/4.0/components/navbar/
 
 Eu vou deletar o botão *Navbar*, por questão de preferência (`<a class … /button>`), e vou copiar todo o bloco do elemento *Home* e colar uma cópia no fim da lista (após *Disabled*). Também vou trocar os textos com *Home* pôr *Início* e *Sobre*.  
 
-```
+```django
 {% block menu %}  
 <nav class="navbar navbar-expand-lg navbar-light bg-light">  
     <div class="collapse navbar-collapse" id="navbarSupportedContent">  
@@ -532,7 +532,7 @@ Se eu recarregar minha página web, terei isso como menu de navegação:
 
 Apesar de visualmente pronto, os links ainda não funcionam, pois não configuramos para onde cada link irá redirecionar o usuário. Para isso, no campo `href` do link *Início* e *Sobre* vamos substituir o símbolo `#` de cada um por, respectivamente:  
 
-```
+```django
 {% url 'inicio' %}  
 {% url 'sobre' %}  
 ```
@@ -547,7 +547,7 @@ Com isso, devemos conseguir alternar entre as duas páginas criadas, `index.html
 
 Começaremos agora a interagir com o banco de dados e, para isso, usaremos os *models* do Django. Mas antes, vamos criar um novo módulo exclusivamente para lidar com essa interação com o BD e manter o nosso código organizado. Para isso, basta digitar no terminal:  
 
-```
+```sh
 python manage.py startapp cadastros
 ```
 
@@ -559,13 +559,13 @@ Assim como fizemos no módulo páginas, vamos criar na pasta cadastros o arquivo
 
 Também precisamos ir em `settings.py` e adicionar na última linha de `INSTALLED_APPS`:  
 
-```
+```py
 'cadastros.apps.CadastrosConfig',  
 ```
 
 Após essa configuração inicial, vamos abrir o arquivo `cadastros/models.py`. É nele que vamos definir as classes que serão criadas no banco de dados. Para este projeto, vou criar duas classes. A primeira será `Turma` e a segunda será `Atividade`. Esta última será associada a uma *Turma* já existente. O arquivo `cadastros/models.py` ficará assim:  
 
-```
+```py
 from django.db import models
 
 class Turma(models.Model):  
@@ -623,14 +623,14 @@ Número - Descrição (Nome da Turma)
 
 Após as classes serem definidas, precisamos adicioná-las ao banco. Para isso, vamos digitar no terminal os seguintes comandos:  
 
-```
+```sh
 python manage.py makemigrations  
 python manage.py migrate  
 ```
 
 Por fim, vamos fazer as classes aparecerem na página `admin`. Isso vai nos permitir interagir com elas imediatamente. Para isso, vamos abrir o arquivo `cadastros/admin.py` e pôr:  
 
-```
+```py
 from django.contrib import admin  
 from .models import Turma, Atividade
 
@@ -656,7 +656,7 @@ No entanto, não queremos que os usuários tenham acesso à página `admin`. Por
 
 Vamos começar com o **Create**. Em `cadastros/views.py` vamos colocar:  
 
-```
+```py
 from django.views.generic.edit import CreateView  
 from django.urls import reverse_lazy  
 from .models import Turma, Atividade
@@ -679,19 +679,19 @@ Para cada classe, precisamos definir quatro informações: o *model* a qual ele 
 
 Além da página que será usada (`form.html`), também precisamos definir o endereço de cada view. Para isso, vamos abrir o arquivo `cadastros/urls.py` e digitar:  
 
-```
+```python
 from django.urls import path  
 from .views import TurmaCreate, AtividadeCreate
 
 urlpatterns = [  
-path('cadastrar/turma/', TurmaCreate.as_view(), name='cadastrar-turma'),  
-path('cadastrar/atividade/', AtividadeCreate.as_view(), name='cadastrar-atividade'),  
+    path('cadastrar/turma/', TurmaCreate.as_view(), name='cadastrar-turma'),  
+    path('cadastrar/atividade/', AtividadeCreate.as_view(), name='cadastrar-atividade'),  
 ]  
 ```
 
 Também precisamos adicionar esses caminhos ao arquivo `urls.py` do projeto. Em `urlpatterns`, vamos adicionar na última linha:  
 
-```
+```py
 path('', include('cadastros.urls')),  
 ```
 
@@ -704,7 +704,7 @@ http://127.0.0.1:8000/cadastrar/atividade/
 
 Agora vamos criar o arquivo `form.html` dentro da pasta `cadastros/templates`. Vamos usar como base para este HTML o mesmo modelo que criamos anteriormente, alterando apenas o título e o conteúdo da página.  
 
-```
+```django
 {% extends 'modelo.html' %}  
 {% load static %}
 
@@ -737,14 +737,14 @@ Quando declaramos a classe `TurmaCreate`, indicamos ao Django o modelo que seria
 
 **Extra:** É possível utilizar o `django-crispy-forms` para formatar os formulários. Para isso, precisamos realizar apenas alguns simples passos. Primeiro, vamos instalá-lo (caso já não tenha).  
 
-```
+```sh
 pip install django-crispy-forms  
 pip install crispy-bootstrap4  
 ```
 
 Agora vamos em `settings.py`. Em `INSTALLED_APPS`, vamos adicionar no fim:  
 
-```
+```py
 INSTALLED_APPS = [  
     …,  
     'crispy_forms',  
@@ -756,13 +756,13 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 Apenas para confirmar, o `crispy_forms` e o `crispy_bootstrap4` ficará **dentro** do `INSTALLED_APPS` e o `crispy_template_pack` ficará **fora**. Com isso, podemos retornar à nossa página HTML e adicionar logo após o `load static`:  
 
-```
+```django
 {% load crispy_forms_tags %}  
 ```
 
 e trocar `form.as_p` por:  
 
-```
+```py
 {{ form|crispy }}  
 ```
 
@@ -772,13 +772,13 @@ Atenção para o símbolo usado. É uma barra vertical | e não inclinada como  
 
 Agora que terminamos o cadastro, vamos para o *Update*. A lógica é a mesma de antes. Vamos começar editando `cadastros/views.py`. Vamos adicionar o `UpdateView` ao *import*:  
 
-```
+```py
 from django.views.generic.edit import CreateView, UpdateView
 ```
 
 E criar mais duas classes para o *Update*, uma para cada classe no banco.  
 
-```
+```py
 # Update  
 class TurmaUpdate(UpdateView):  
     model = Turma  
@@ -893,7 +893,7 @@ Atenção ao PK (ID) no final.
 
 Por fim, vamos ao Listar, completando assim o CRUD do banco de dados. Em `cadastros/views.py`, vamos adicionar o *import*:  
 
-```
+```py
 from django.views.generic.edit import CreateView, UpdateView, DeleteView  
 from django.views.generic.list import ListView
 ```
@@ -902,7 +902,7 @@ from django.views.generic.list import ListView
 
 Ainda em `cadastros/views.py`, vamos criar as duas classes no fim:  
 
-```
+```py
 # List  
 class TurmaList(ListView):  
     model = Turma  
