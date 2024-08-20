@@ -116,7 +116,8 @@ Agora restam apenas mais duas etapas para completarmos a primeira parte desse pr
 </form>
 ```
 
-Começamos com o uso do `csrf_token`, lembrando que isso é um token usado pelo django para evitar alguns ataques de roubo de credenciais. A primeira `div` dentro do `form` é o cabeçalho com apenas um título e um botão para fechar a janela modal. A segunda `div` é o formulário em si, onde usamos o Django para formatar os campos para nós. E a última `div` é o botão para enviar o formulário. Essa é a única parte do site que será atualizada no site após a requisição ajax. Vamos agora para o javascript. Na pasta `static/js`, vamos criar um arquivo chamado `evento.js`. É nele que vamos configurar todas as operações ajax que faremos nesse projeto. Vamos começar com:
+Começamos com o uso do `csrf_token`, lembrando que isso é um token usado pelo Django para evitar alguns ataques de roubo de credenciais. A primeira `div` dentro do `form` é o cabeçalho com apenas um título e um botão para fechar a janela modal. A segunda `div` é o formulário em si, onde usamos o Django para formatar os campos para nós. E a última `div` é o botão para enviar o formulário. Essa é a única parte do site que será atualizada no site após a requisição ajax. Vamos agora para o javascript. Na pasta `static/js`, vamos criar um arquivo chamado `evento.js`. É nele que vamos configurar todas as operações ajax que faremos nesse projeto. Vamos começar com:
+
 
 ```js
 $(function(){  
