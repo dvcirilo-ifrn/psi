@@ -27,6 +27,9 @@ img {
 - Formulários - *Forms*
 
 ---
+<style>
+p { columns: 2; }
+</style>
 # HTML Forms
 - Definidos pela tag `<form></form>`
 - Os dados são preenchidos nos elementos `<input>`
@@ -37,17 +40,21 @@ img {
     - `<input type="date">`
     - `<input type="datetime-local">`
     - `<input type="email">`
-    - `<input type="file">`
-    - `<input type="hidden">`
-    - `<input type="image">`
-    - `<input type="month">`
 
 ---
 # Inputs
 - Cont.
+    - `<input type="file">`
+    - `<input type="hidden">`
+    - `<input type="image">`
+    - `<input type="month">`
     - `<input type="number">`
     - `<input type="password">`
     - `<input type="radio">`
+
+---
+# Inputs
+- Cont.
     - `<input type="range">`
     - `<input type="reset">`
     - `<input type="search">`
@@ -163,15 +170,27 @@ class MyModelForm(forms.ModelForm):
 - Um form vazio é utilizado para um formulário de criação
 - Um form com dados pode ser utilizado para receber/tratar/armazenar dados ou para realizar a alteração dos dados
 
+---
+# Usando o Django Forms nas views
+
 ```python
 from .forms import MeuForm
 
 def minha_view(request):
+    if request.method == 'POST':
+        form = MeuForm(request.POST)
+        if form.is_valid():
+            form.save()  # Salva os dados no banco
+            return render(request, 'success.html')
+    else:
+        form = MeuForm()
+    return render(request, 'form_template.html', {'form': form})
     
 ```
 
 ---
 # Validação
+- O método `is_valid` executa as validações do form.
 
 ---
 # Mensagens de Erro
