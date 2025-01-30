@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 09: Autenticação e Autorização
+title: Aula 09: Autenticação
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,7 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 09**: Autenticação e Autorização
+**Aula 09**: Autenticação
 
 ---
 # Autenticação e Autorização
@@ -125,6 +125,15 @@ urlpatterns = [
 ```
 
 ---
+# Configurações Úteis
+```
+AUTH_USER_MODEL = "usuarios.User"
+
+LOGOUT_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = "index"
+```
+
+---
 # Templates
 - Os *templates* devem ser colocados em `templates/registration` por padrão.
 - Os nomes são respectivamente: `login.html`, `logged_out.html`, `password_change_form.html`, `password_change_done.html`, `password_reset_form.html`, `password_reset_done.html`, `password_reset_confirm.html`, `password_reset_complete`.
@@ -150,13 +159,9 @@ path("change-password/",
 - O backend padrão para testes o Django apenas imprime o email no terminal.
 
 ---
-# Autorização
-- A autorização define os recursos que podem ser acessados pelo usuário logado.
-- Podemos limitar o acesso a views específicas apenas para usuários logados com o *decorator* `@login_required`
-- É possível fazer verificação por meio de atributos específicos do model ou permissões do próprio Django.
-
----
-# Permissões
+# Limitando acesso a usuários logados
+- Quando usamos o *decorator* `@login_required` em uma view, apenas usuários logados terão acesso ao recurso.
+- Caso o usuário não esteja logado, ele será redirecionado para `LOGIN_URL`, definida no `settings.py`
 
 ---
 # Referências
