@@ -108,6 +108,36 @@ usuario.groups.remove(grupo)
 ```
 
 ---
+# Configurando Grupos/Permissões
+- Remover permissão de um grupo:
+```py
+grupo.permissions.remove(permission)
+```
+
+- Remover um grupo:
+```py
+grupo.delete()
+```
+
+---
+# Configurando Grupos/Permissões
+- Adicionando permissões para um usuário:
+```py
+usuario = User.objects.get(id=4)
+permissao = Permission.objects.get(codename='nomedapermissao')
+usuario.user_permissions.add(permissao)
+
+```
+- Remover permissão de usuário:
+```py
+usuario.user_permissions.remove(permissao)
+```
+- Remover todas as permissões de usuário:
+```py
+usuario.user_permissions.clear()
+```
+
+---
 # Verificando Permissões
 - As permissões podem ser verificadas:
     - Usando o *decorator* `@permission_required("nomedoapp.nomedapermissao")`
