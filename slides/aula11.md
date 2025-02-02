@@ -23,32 +23,32 @@ img {
 
 ---
 # Autorização
-- A autorização define os recursos que podem ser acessados pelo usuário logado.
-- É possível desenvolver um sistema próprio de autorização por meio de atributos.
+- A autorização define os recursos que podem ser acessados pelo usuário logado;
+- É possível desenvolver um sistema próprio de autorização por meio de atributos;
 - O Django já tem o seu próprio sistema.
 
 ---
 # Autorização no Django
 - Existem 3 conceitos principais no sistema de autorização do Django:
-    - Usuários
-    - Grupos
-    - Permissões
+    - Usuários;
+    - Grupos;
+    - Permissões.
 
 ---
 # Usuários e Grupos
-- Usuários como vistos na aula passada
-- Grupos permitem atribuir permissões para conjuntos de usuários
+- Usuários como vistos na aula passada;
+- Grupos permitem atribuir permissões para conjuntos de usuários;
 - Um usuário pode ter permissões individuais e fazer parte de um ou mais grupos.
 
 ---
 # Permissões
-- Regras de acesso a recursos.
-- No Django as permissões são relativas a um *Model*.
+- Regras de acesso a recursos;
+- No Django as permissões são relativas a um *Model*;
 - Para cada model, o Django cria automaticamente 4 permissões:
-    - `add_nomedomodel`
-    - `change_nomedomodel`
-    - `delete_nomedomodel`
-    - `view_nomedomodel`
+    - `add_nomedomodel`;
+    - `change_nomedomodel`;
+    - `delete_nomedomodel`;
+    - `view_nomedomodel`;
 - Também é possível criar outras permissões além das padrão.
 
 ---
@@ -68,7 +68,7 @@ class Livro(models.Model):
 
 ---
 # Permissões
-- Cada uma dessas permissões pode ser habilitada para cada usuário ou grupo.
+- Cada uma dessas permissões pode ser habilitada para cada usuário ou grupo;
 - As permissões podem ser configuradas na interface de Admin ou em código.
 
 ---
@@ -140,9 +140,9 @@ usuario.user_permissions.clear()
 ---
 # Verificando Permissões
 - As permissões podem ser verificadas:
-    - Usando o *decorator* `@permission_required("nomedoapp.nomedapermissao")`
-    - Testando o usuário com `user.has_perm("nomedoapp.nomedapermissao")`
-    - Diretamente nos templates com `{% if perms.nomedoapp.nomedapermissao %}`
+    - Usando o *decorator* `@permission_required("nomedoapp.nomedapermissao")`;
+    - Testando o usuário com `user.has_perm("nomedoapp.nomedapermissao")`;
+    - Diretamente nos templates com `{% if perms.nomedoapp.nomedapermissao %}`;
 
 - Para o *decorator* é necessário importar:
 ```

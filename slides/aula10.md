@@ -23,33 +23,34 @@ img {
 
 ---
 # Autenticação e Autorização
-- É necessário limitar o acesso a operações nos sistemas web
-- Usuários devem apresentar credenciais (*login* e senha) para *provar* sua identidade para o sistema - Autenticação
-- Cada usuário tem um conjunto de operações permitidas - Autorização
-- O Django já possui essas funcionalidades
+- É necessário limitar o acesso a operações nos sistemas web;
+- Usuários devem apresentar credenciais (*login* e senha) para *provar* sua identidade para o sistema - Autenticação;
+- Cada usuário tem um conjunto de operações permitidas - Autorização;
+- O Django já possui essas funcionalidades.
 
 ---
 # Django User Model
-- O Django já possui um Model padrão para User
+- O Django já possui um Model padrão para User;
 - Já conta com vários atributos:
-    - `username`, `first_name`, `last_name`, `email`, `password`, `groups`, `user_permissions`, `is_staff`, `is_active`, `is_superuser`, `last_login` e `date_joined`
+    - `username`, `first_name`, `last_name`, `email`, `password`, `groups`, `user_permissions`, `is_staff`, `is_active`, `is_superuser`, `last_login` e `date_joined`;
 ---
 # Custom User
-- Nem sempre o User do Django atende as nossas necessidades
+- Nem sempre o User do Django atende as nossas necessidades;
 - Há duas possibilidades:
-    - Criar nossa própria classe *User*, herdando de *AbstractUser* ou *AbstractBaseUser*
-    - Criar uma nova classe com os dados extras, deixando *User* apenas para autenticação
+    - Criar nossa própria classe *User*, herdando de *AbstractUser* ou *AbstractBaseUser*;
+    - Criar uma nova classe com os dados extras, deixando *User* apenas para autenticação;
 - Qual a melhor?
 
 ---
 # Custom User
 - *AbstractUser*: É basicamente o *User* do Django, porém como classe abstrata. 
 - *AbstractBaseUser*: É classe base, sem a maioria dos atributos da classe *User*. É útil quando não temos interesse nesses atributos padrão.
-- [Referência](https://docs.djangoproject.com/en/5.1/topics/auth/customizing/)
+- A não ser que você tenha um bom motivo, recomendo herdar de *AbstractUser*;
+- [Referência](https://docs.djangoproject.com/en/5.1/topics/auth/customizing/).
 
 ---
 # Exemplos
-- Classe *User* customizada (`models.py`)
+- Classe *User* customizada (`models.py`):
 ```python
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -64,8 +65,8 @@ AUTH_USER_MODEL = "nomedoapp.User"
 
 ---
 # Exemplos
-- Classe de *Perfil*, que adiciona campos extras sem alterar *User*
-- Exemplo (`models.py`)
+- Classe de *Perfil*, que adiciona campos extras sem alterar *User*;
+- Exemplo (`models.py`):
 ```python
 from django.db import models
 from django.contrib.auth.models import User
@@ -85,15 +86,15 @@ cpf_do_user = usuario.perfil.cpf
 
 ---
 # Views padrão de autenticação
-- O Django possui um sistema completo de autenticação pronto
-- Views de Login/Logout/Alterar Senha/etc
-- Views de cadastro não incluídas
-- Templates também não incluídos
-- Como tudo no Django, é possível customizar
+- O Django possui um sistema completo de autenticação pronto;
+- Views de Login/Logout/Alterar Senha/etc.;
+- Views de cadastro não incluídas;
+- Templates também não incluídos;
+- Como tudo no Django, é possível customizar.
 
 ---
 # URLs
-- Para utilizar as views padrão, devemos adicionar ao `config/urls.py` (ou diretamente no app)
+- Para utilizar as views padrão, devemos adicionar ao `config/urls.py` (ou diretamente no app):
 ```
 
 urlpatterns = [
@@ -135,7 +136,7 @@ LOGIN_REDIRECT_URL = "index"
 
 ---
 # Templates
-- Os *templates* devem ser colocados em `templates/registration` por padrão.
+- Os *templates* devem ser colocados em `templates/registration` por padrão;
 - Os nomes são respectivamente: `login.html`, `logged_out.html`, `password_change_form.html`, `password_change_done.html`, `password_reset_form.html`, `password_reset_done.html`, `password_reset_confirm.html`, `password_reset_complete`.
 - Também é possível customizar com:
 ```
@@ -146,21 +147,21 @@ path("change-password/",
 
 ---
 # Forms
-- Apesar de ser necessário criar os *templates* os forms já estão disponíveis.
-- Basta usar `{{ form  }}`
-- Assim como os forms comuns é possível customizar ou construir o form diretamente.
-- Esses forms podem ser utilizados diretamente em outras partes do sistema, como o *PasswordChangeForm*.
+- Apesar de ser necessário criar os *templates* os forms já estão disponíveis;
+- Basta usar `{{ form  }}`;
+- Assim como os forms comuns é possível customizar ou construir o form diretamente;
+- Esses forms podem ser utilizados diretamente em outras partes do sistema, como o *PasswordChangeForm*;
 - Outro form importante é o *BaseUserCreationForm* que pode ser utilizado na página de registro.
 
 ---
 # Recuperação de Senha
-- O Django já gera o email com o link para recuperação de senha.
-- Para que o email seja enviado, é necessário ter um servidor de emails e configurar o `EMAIL_BACKEND` no `settings.py`.
+- O Django já gera o email com o link para recuperação de senha;
+- Para que o email seja enviado, é necessário ter um servidor de emails e configurar o `EMAIL_BACKEND` no `settings.py`;
 - O backend padrão para testes o Django apenas imprime o email no terminal.
 
 ---
 # Limitando acesso a usuários logados
-- Quando usamos o *decorator* `@login_required` em uma view, apenas usuários logados terão acesso ao recurso.
+- Quando usamos o *decorator* `@login_required` em uma view, apenas usuários logados terão acesso ao recurso;
 - Caso o usuário não esteja logado, ele será redirecionado para `LOGIN_URL`, definida no `settings.py`
 
 ---

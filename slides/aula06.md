@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 05: Apps Django
+title: Aula 06: Function-based Views
 author: Diego Cirilo
 
 ---
@@ -142,14 +142,14 @@ def usuarios(request):
 
 ---
 # Redirecionamento
-- Além de usar o `return render('template.html')` é possível redirecionar para outra URL;
+- Além de usar o `return render(request, 'template.html')` é possível redirecionar para outra URL;
 - Usamos o `redirect(nome-da-url)`
 - Ex.:
 ```python
 def minha_view(request):
     if not request.GET.get("status"):
         print("Não veio o status na querystring!")
-        redirect('nomedoapp:nomedaview') # o nomedoapp é opcional!
+        return redirect('nomedoapp:nomedaview') # o nomedoapp é opcional!
 ```
 
 ---
