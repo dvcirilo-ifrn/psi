@@ -29,7 +29,7 @@ img {
 
 ---
 # Criando um *app* no Django
-- Utilizamos o *script* `manage.py`
+- Utilizamos o *script* `manage.py`:
 ```
 python manage.py startapp meuapp
 ```
@@ -51,18 +51,18 @@ meuapp
 
 ---
 # Estrutura de um app
-- `admin.py` - Configuração da interface padrão de administração do Django
-- `apps.py` - Configurações do *app*
-- `migrations` - Pasta onde aparecerão as *migrations*, que são as definições/alterações na estrutura do BD.
-- `models.py` - Onde serão descritos os `models`, que definem a estrutura de dados do sistema.
-- `tests.py` - Testes de software.
+- `admin.py` - Configuração da interface padrão de administração do Django;
+- `apps.py` - Configurações do *app*;
+- `migrations` - Pasta onde aparecerão as *migrations*, que são as definições/alterações na estrutura do BD;
+- `models.py` - Onde serão descritos os `models`, que definem a estrutura de dados do sistema;
+- `tests.py` - Testes de software;
 - `views.py` - Descrição das *views*.
 
 ---
 # Ativando um *app*
-- Não basta criar o *app*
-- O arquivo `settings.py` contém a lista dos *apps* ativos
-- Para ativar, basta adicionar o nome do *app* na lista.
+- Não basta criar o *app*;
+- O arquivo `settings.py` contém a lista dos *apps* ativos;
+- Para ativar, basta adicionar o nome do *app* na lista:
 
 ```py
 # Application definition
@@ -80,10 +80,10 @@ INSTALLED_APPS = [
 
 ---
 # URLs
-- *Uniform Resource Locator*
-- Também conhecido como *rotas*.
-- Os recursos que o usuário procura na URL do navegador são *filtrados* no `urls.py`.
-- Os filtros direcionam cada URL solicitada para uma *view* que será responsável por processar a requisição.
+- *Uniform Resource Locator*;
+- Também conhecido como *rotas*;
+- Os recursos que o usuário procura na URL do navegador são *filtrados* no `urls.py`;
+- Os filtros direcionam cada URL solicitada para uma *view* que será responsável por processar a requisição;
 - É possível organizar as URLs por *apps*.
 
 ---
@@ -113,18 +113,18 @@ urlpatterns = [
 
 ---
 # Views
-- Provavelmente o arquivo mais "movimentado" no projeto.
-- Recebem e processam as requisições, retornando um conteúdo baseado nos *templates*.
-- Podem ser escritas como funções (*Funcion-based View* - FBVs) ou como classes (*Class-based View* - CBVs).
-- Iniciaremos com FBVs.
+- Provavelmente o arquivo mais "movimentado" no projeto;
+- Recebem e processam as requisições, retornando um conteúdo baseado nos *templates*;
+- Podem ser escritas como funções (*Funcion-based View* - FBVs) ou como classes (*Class-based View* - CBVs);
+- Iniciaremos com FBVs;
 - As requisições são direcionadas para cada *view* a partir da regra da rota (`urls.py`).
 
 ---
 # FBV
-- As funções são chamadas a partir das regras de `urls.py`.
-- Cada função recebe um argumento `request`, que traz os dados da requisição.
-- Dentro da função fazemos o processamento/tratamento/aquisição/armazenamento/etc dos dados.
-- No fim a função retorna uma página web, através de *templates*.
+- As funções são chamadas a partir das regras de `urls.py`;
+- Cada função recebe um argumento `request`, que traz os dados da requisição;
+- Dentro da função fazemos o processamento/tratamento/aquisição/armazenamento/etc dos dados;
+- No fim a função *renderiza* e retorna uma página web, através de *templates*.
 
 ---
 # Views
@@ -140,17 +140,52 @@ def index(request):
 ---
 # Templates
 - As *views* podem retornar páginas estáticas, mas qual seria a vantagem?
-- Templates permitem a substituição dinâmica de dados em uma página HTML
-- Isso é possível através de *tags*.
+- Templates permitem a substituição dinâmica de dados em uma página HTML;
+- Isso é possível através de *tags*;
 - A estrutura é de um HTML normal, com *tags* extras.
 
 ---
 # Templates
-- O Django por padrão procura os templates na pasta `templates` em cada *app*
-- É possível configurar outra pasta no arquivo `settings.py`
+- O Django por padrão procura os templates na pasta `templates` em cada *app*;
+- É possível configurar outras pastas no arquivo `settings.py`.
+- Ex. uma pasta chamada `templates` na raiz do projeto:
+```python
+TEMPLATES = [
+    {
+        ...
+        "DIRS": [BASE_DIR / "templates"],
+        ...
+    },
+]
+```
 
 ---
-# Tarefa
+# Templates
+- Para evitar conflitos, o Django recomenda criar uma pasta com o nome do *app* dentro de cada pasta de *templates*;
+- Ex.:
+```
+meuprojeto
+├── ...
+├── config
+│   ├── ...
+├── meuapp
+│   ├── ...
+│   ├── templates
+│   │   └── meuapp
+│   │       ├── base.html
+│   │       └── index.html
+│   └── ...
+├── outroapp
+│   ├── ...
+│   ├── templates
+│   │   └── index.html
+│   └── ...
+└── ...
+```
+- Nesse caso, na função `render` colocamos o caminho relativo para o *template*: `render(request, "meuapp/index.html")`.
+
+---
+# Tarefa 02
 - Configure o ambiente (venv, git)
 - Inicialize um projeto (`config`) e um *app* chamado `exemplo`
 - Configure as *urls* do projeto (em `config`) e as *urls* do *app*.

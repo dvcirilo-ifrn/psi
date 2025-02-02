@@ -23,27 +23,27 @@ img {
 
 ---
 # Ferramentas utilizadas na disciplina
-- Python/HTML/CSS/JS
-- Ambiente Virtual Python (`venv`)
-- Frameworks Flask e Django
-- VSCode
-- Git/Github para versionamento ([minicurso](https://dvcirilo.github.io/tutorials/git/git.html))
+- Python/HTML/CSS/JS;
+- Ambiente Virtual Python (`venv`);
+- Frameworks Flask e Django;
+- VSCode;
+- Git/Github para versionamento ([minicurso](https://dvcirilo.github.io/tutorials/git/git.html)).
 
 ---
 # Ambiente Virtual Python (`venv`)
-- Ferramenta para gerenciar pacotes Python em um ambiente isolado
-- Evita conflitos com outros projetos ou sistemas
-- Facilita a instalação e remoção de pacotes
-- Mantém a organização e reprodutibilidade do projeto
-- [Documentação](https://docs.python.org/pt-br/3/library/venv.html)
+- Ferramenta para gerenciar pacotes Python em um ambiente isolado;
+- Evita conflitos com outros projetos ou sistemas;
+- Facilita a instalação e remoção de pacotes;
+- Mantém a organização e reprodutibilidade do projeto;
+- [Documentação](https://docs.python.org/pt-br/3/library/venv.html).
 
 ---
 # Benefícios do uso do `venv`
-- Isolamento: Pacotes específicos para cada projeto
-- Organização: Evita conflitos e facilita a gerenciamento de pacotes
-- Reprodutibilidade: Garante que o projeto possa ser executado em diferentes ambientes
-- Segurança: Protege o sistema operacional de pacotes maliciosos
-- Portabilidade: Facilita o compartilhamento e a execução do projeto em diferentes máquinas
+- Isolamento: Pacotes específicos para cada projeto;
+- Organização: Evita conflitos e facilita a gerenciamento de pacotes;
+- Reprodutibilidade: Garante que o projeto possa ser executado em diferentes ambientes;
+- Segurança: Protege o sistema operacional de pacotes maliciosos;
+- Portabilidade: Facilita o compartilhamento e a execução do projeto em diferentes máquinas.
 
 ---
 # Comandos básicos do `venv`
@@ -62,7 +62,7 @@ python -m venv venv
 ```sh
 .\venv\Scripts\Activate.ps1
 ```
-- Dica: use sempre a tecla "Tab" no teclado (ao lado da letra Q) para completar os comandos. Digite apenas as primeiras letras e complete com "Tab".
+- Dica: use sempre a tecla "Tab" no teclado (ao lado da letra Q) para completar os comandos. Digite apenas as primeiras letras e complete com "Tab";
 - Para desativar:
 ```sh
 deactivate
@@ -70,33 +70,33 @@ deactivate
 
 ---
 # Pacotes Python
-- Bibliotecas que permitem acesso a novas funcionalidades
-- Mais cômodo que copiar e usar o código diretamente
-- Permitem o reuso
-- Agilidade
-- Python Package Index ([PyPI](https://pypi.org))
+- Bibliotecas que permitem acesso a novas funcionalidades;
+- Mais cômodo que copiar e usar o código diretamente;
+- Permitem o reuso;
+- Agilidade;
+- Python Package Index ([PyPI](https://pypi.org)).
 
 ---
 # Gerenciador de Pacotes Python
 - `pip`
-- Gerenciador de pacotes padrão para Python
-- Instala, atualiza e remove pacotes Python de um repositório online
-- Simplifica o processo de gerenciamento de dependências de projetos Python
-- Disponível na maioria das distribuições Python modernas
+- Gerenciador de pacotes padrão para Python;
+- Instala, atualiza e remove pacotes Python de um repositório online;
+- Simplifica o processo de gerenciamento de dependências de projetos Python;
+- Disponível na maioria das distribuições Python modernas.
 
 ---
 # Usando o *pip*
-- Instalar um pacote: `pip install <nome_do_pacote>`
-- Exemplo: `pip install requests` (instala o pacote requests)
-- Atualizar um pacote: `pip install --upgrade <nome_do_pacote>`
-- Remover um pacote: `pip uninstall <nome_do_pacote>`
-- Listar pacotes instalados: `pip list`
-- Exibir informações de um pacote: `pip show <nome_do_pacote>`
+- Instalar um pacote: `pip install <nome_do_pacote>`;
+- Exemplo: `pip install requests` (instala o pacote requests);
+- Atualizar um pacote: `pip install --upgrade <nome_do_pacote>`;
+- Remover um pacote: `pip uninstall <nome_do_pacote>`;
+- Listar pacotes instalados: `pip list`;
+- Exibir informações de um pacote: `pip show <nome_do_pacote>`.
 
 ---
 # Usando o pip com venv
-- Não devemos reutilizar o diretório do venv em outras máquinas
-- Podemos usar o `pip` para recriar o ambiente
+- Não devemos reutilizar o diretório do venv em outras máquinas;
+- Podemos usar o `pip` para recriar o ambiente;
 - Na máquina original:
 ```sh
 pip freeze > requirements.txt

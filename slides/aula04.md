@@ -29,8 +29,8 @@ img {
 
 ---
 # Desenvolvimento de *back-end*
-- Linguagens PHP, Java, Ruby, Python, ASP, etc.
-- Seu programa recebe requisições HTTP (através de um servidor web) e responde HTTP com o conteúdo em HTML, que será renderizada pelo navegador.
+- Linguagens PHP, Java, Ruby, Python, ASP, etc.;
+- Seu programa recebe requisições HTTP (através de um servidor web) e responde HTTP com o conteúdo em HTML, que será renderizada pelo navegador;
 - Programar tudo do zero é viável?
 
 ---
@@ -40,30 +40,30 @@ img {
 
 ---
 # *Framework*
-- Conjunto de ferramentas e bibliotecas pré-construídas
-- Agiliza o desenvolvimento
-- Padroniza o código e a estrutura do projeto
-- Promove a reutilização de código
-- Facilita a colaboração entre desenvolvedores
+- Conjunto de ferramentas e bibliotecas pré-construídas;
+- Agiliza o desenvolvimento;
+- Padroniza o código e a estrutura do projeto;
+- Promove a reutilização de código;
+- Facilita a colaboração entre desenvolvedores.
 
 ---
 # *Framework*
-- Exige um estudo específico da ferramenta
-- Curva de aprendizagem pode ser desafiadora
-- É importante aprender e se adequar aos padrões
-- Desempenho
+- Exige um estudo específico da ferramenta;
+- Curva de aprendizagem pode ser desafiadora;
+- É importante aprender e se adequar aos padrões;
+- Desempenho.
 
 ---
 # Django
-- *Framework* web para Python
-- Criado em 2005 e baseado no Ruby on Rails
-- Utiliza o padrão MVT (*model-view-template*)
+- *Framework* web para Python;
+- Criado em 2005 e baseado no Ruby on Rails;
+- Utiliza o padrão MVT (*model-view-template*);
 - Objetivos gerais:
-    - DRY - *Don't Repeat Yourself*
-    - Desenvolvimento rápido
-    - Menos código
-    - Baixo acoplamento
-- Sites que usam Django (não necessariamente para todos os serviços) [link](https://djangostars.com/blog/10-popular-sites-made-on-django/)
+    - DRY - *Don't Repeat Yourself*;
+    - Desenvolvimento rápido;
+    - Menos código;
+    - Baixo acoplamento.
+- Sites que usam Django (não necessariamente para todos os serviços) [link](https://djangostars.com/blog/10-popular-sites-made-on-django/).
 
 ---
 # MVT
@@ -77,7 +77,7 @@ img {
 
 ---
 # Instalação
-- É importante usar *venv* para projetos Django
+- É importante usar *venv* para projetos Django;
 - Com o *venv* ativado:
 ```
 pip install django
@@ -85,7 +85,7 @@ pip install django
 
 ---
 # Inicializando um projeto
-- O Django disponibiliza a ferramenta `django-admin`
+- O Django disponibiliza a ferramenta `django-admin`;
 - Para criar um projeto:
 ```
 django-admin startproject nome-do-projeto .
@@ -112,18 +112,18 @@ pasta-do-projeto
 
 ---
 # O projeto Django
-- `manage.py`: *script* de gerenciamento do projeto.
+- `manage.py`: *script* de gerenciamento do projeto;
 - `nome-do-projeto`: armazena os arquivos de configuração a seguir:
-    - `__init__.py`: indica que o diretório é um pacote Python
-    - `asgi.py` e `wsgi.py`: utilizados para o `deploy` (rodar o sistema no servidor)
-    - `settings.py`: configurações do projeto
-    - `urls.py`: definições quais *Views* são chamadas por quais *rotas*/URLs
+    - `__init__.py`: indica que o diretório é um pacote Pytho;
+    - `asgi.py` e `wsgi.py`: utilizados para o `deploy` (rodar o sistema no servidor;
+    - `settings.py`: configurações do projet;
+    - `urls.py`: definições quais *Views* são chamadas por quais *rotas*/URLs.
 
 ---
 # O projeto Django
-- Como a pasta `nome-do-projeto` armazena os arquivos de configuração, podemos usar um nome padrão para o projeto
-- `config`, `core`, etc.
-- Na disciplina vamos **convencionar** usar `config`
+- Como a pasta `nome-do-projeto` armazena os arquivos de configuração, podemos usar um nome padrão para o projeto:
+    - `config`, `core`, etc.
+- Na disciplina vamos **convencionar** usar `config`;
 - Portanto, para criar um projeto vamos usar:
 ```
 django-admin startproject config .
@@ -131,7 +131,7 @@ django-admin startproject config .
 
 ---
 # Executando um sistema Django
-- Utilizamos o *script* `manage.py`
+- Utilizamos o *script* `manage.py`:
 ```
 python manage.py runserver
 ```
@@ -157,21 +157,20 @@ python manage.py runserver
 
 ---
 # Erros
-- Sempre leia os erros que aparecerem com cuidado, normalmente eles já indicam a solução
-- Certifique-se que o `venv` está ativo
-- Para erros que indiquem que arquivos ou comandos não foram encontrados, verifique se você está rodando o comando no diretório correto
-- Use o comando `ls` no terminal para confirmar se o arquivo que você está tentando usar existe
-- Use o `Tab` no teclado para auto-completar os comandos e evitar erros de digitação
+- Sempre leia os erros que aparecerem com cuidado, normalmente eles já indicam a solução;
+- Certifique-se que o `venv` está ativo;
+- Para erros que indiquem que arquivos ou comandos não foram encontrados, verifique se você está rodando o comando no diretório correto;
+- Use o comando `ls` no terminal para confirmar se o arquivo que você está tentando usar existe;
+- Use o `Tab` no teclado para auto-completar os comandos e evitar erros de digitação.
 
 ---
-# Tarefa 1
+# Tarefa
 - Configure o ambiente(git/venv) de acordo com as aulas passadas;
-- Instale o Django
-- Crie uma pasta `tarefas`
-- **Dentro** dessa pasta inicialize um projeto `config` (entre na pasta com `cd tarefas`)
-- Rode o sistema
+- Instale o Django;
+- Crie uma pasta `tarefas`;
+- **Dentro** dessa pasta inicialize um projeto `config` (entre na pasta com `cd tarefas`);
+- Rode o sistema;
 - Verifique se está funcionando no navegador.
 
 ---
-
 # <!--fit--> Dúvidas? 🤔
