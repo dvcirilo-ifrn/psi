@@ -54,6 +54,7 @@ img {
 - Arquitetura Cliente/Servidor.
 
 ---
+<style scoped>section { font-size: 26px; }</style>
 # WWW
 - Conceitos:
     - HTTP - Protocolo de transmissão de hypertexto (*Hypertext Transmission Protocol*):
@@ -65,7 +66,7 @@ img {
         - Formatação para texto, inserção de imagens e *links*.
 
 ---
-<style scoped>section { font-size: 20px; }</style>
+<style scoped>section { font-size: 24px; }</style>
 # URL
 - *Uniform Resource Locator*
 - Protocolo/Domínio/Recurso
