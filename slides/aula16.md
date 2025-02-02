@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 15: Introdução ao JavaScript
+title: Aula 16: Introdução ao JavaScript
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,7 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 15**: Introdução ao JavaScript
+**Aula 16**: Introdução ao JavaScript
 
 ---
 # <!--fit--> Dúvidas? 🤔

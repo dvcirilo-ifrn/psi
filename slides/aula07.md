@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 06: Templates
+title: Aula 07: Templates
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,7 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 06**: Templates
+**Aula 07**: Templates
 
 ---
 # Templates
@@ -49,7 +49,7 @@ TEMPLATES = [
 
 ---
 <style scoped>pre { font-size: 16px; }</style>
-<style scoped>section { font-size: 24px; }</style>
+<style scoped>section { font-size: 22px; }</style>
 # Templates
 - Para evitar conflitos, o Django recomenda criar uma pasta com o nome do *app* dentro de cada pasta de *templates*. Ex.:
 ```

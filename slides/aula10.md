@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 09: Autenticação
+title: Aula 10: Autenticação
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,7 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 09**: Autenticação
+**Aula 10**: Autenticação
 
 ---
 # Autenticação e Autorização

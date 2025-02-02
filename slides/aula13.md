@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 12: AJAX
+title: Aula 13: AJAX
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,7 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 12**: AJAX
+**Aula 13**: AJAX
 
 ---
 # <!--fit--> Dúvidas? 🤔

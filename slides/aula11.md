@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 10: Autorização
+title: Aula 11: Autorização
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,7 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 10**: Autorização
+**Aula 11**: Autorização
 
 ---
 # Autorização

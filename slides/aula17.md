@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 16: Customizando o Django Admin
+title: Aula 17: Customizando o Django Admin
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,7 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 16**: Customizando o Django Admin
+**Aula 17**: Customizando o Django Admin
 
 ---
 # Customizando o Django Admin

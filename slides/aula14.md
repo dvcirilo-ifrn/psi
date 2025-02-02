@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 13: Class-based Views
+title: Aula 14: Class-based Views
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,7 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 13**: Class-based Views
+**Aula 14**: Class-based Views
 
 ---
 # <!--fit--> Dúvidas? 🤔

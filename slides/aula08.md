@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 07: Models
+title: Aula 08: Models
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,7 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 07**: Models
+**Aula 08**: Models
 
 ---
 # Dados do sistema
@@ -172,6 +172,50 @@ class Pessoa(models.Model):
 - `startswith` - começa com;
 - `endswith` - termina com;
 - [Referência](https://docs.djangoproject.com/en/5.1/ref/models/querysets/#field-lookups).
+
+---
+# *Shortcuts*
+- O Django disponibiliza alguns atalhos;
+- Já usamos o `render` e o `redirect`
+- Para acesso aos models existem os:
+    - `get_object_or_404()`
+    - `get_list_or_404()`
+- Podemos passar um Model e uma query, se não houver resposta, o sistema redireciona para a página de erro 404;
+- [Referência](https://docs.djangoproject.com/en/5.1/topics/http/shortcuts/#module-django.shortcuts).
+
+---
+# Exemplos
+- views.py:
+```python
+from django.shortcuts import render, get_object_or_404, get_list_or_404
+from .models import Livro
+
+def detalhar_livro(request, id_do_livro):
+    livro = get_object_or_404(Livro, id=id_do_livro)
+    context = {
+        'livro': livro,
+    }
+    return render(request, "detalhar_livro.html", context)
+
+def listar_livros(request):
+    livros = get_list_or_404(Livro)
+    context = {
+        'livros': livros,
+    }
+    return render(request, "listar_livros.html", context)
+```
+
+---
+# Exemplos
+- Também é possível filtrar diretamente ou usar QuerySets:
+```python
+...
+livros_com_M = get_list_or_404(Livro, titulo__startswith="M")
+
+livros_com_N = Livros.objects.filter(titulo__startswith="N") #queryset
+livros_com_N_do_autor1 = get_object_or_404(livros_com_N, autor=1)
+...
+```
 
 ---
 # Configurações do BD
