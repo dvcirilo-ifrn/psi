@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 14: Class-based Views
+title: Aula 14: AJAX
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,8 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 14**: Class-based Views
+**Aula 14**: AJAX
 
 ---
 # <!--fit--> Dúvidas? 🤔
+

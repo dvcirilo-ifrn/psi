@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 16: Sessão/Cookies/Context Processors
+title: Aula 15: Sessão/Cookies/Context Processors
 author: Diego Cirilo
 
 ---

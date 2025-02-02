@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 13: AJAX
+title: Aula 13: Introdução ao JavaScript
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,7 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 13**: AJAX
+**Aula 13**: Introdução ao JavaScript
 
 ---
 # <!--fit--> Dúvidas? 🤔
