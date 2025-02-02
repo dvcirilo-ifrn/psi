@@ -54,7 +54,7 @@ img {
 - Arquitetura Cliente/Servidor.
 
 ---
-<style scoped>section { font-size: 26px; }</style>
+<style scoped>section { font-size: 28px; }</style>
 # WWW
 - Conceitos:
     - HTTP - Protocolo de transmissão de hypertexto (*Hypertext Transmission Protocol*):
@@ -89,6 +89,7 @@ img {
 - https://g1.globo.com/rn
 
 ---
+<style scoped>section { font-size: 28px; }</style>
 # Protocolo TCP/IP
 - *Transmission Control Protocol/Internet Protocol*;
 - Conjunto de regras e padrões que permitem a comunicação entre computadores na rede;
@@ -186,7 +187,7 @@ table {
 # Cabeçalho HTTP
 <style scoped>
 table {
-  font-size: 18px;
+  font-size: 20px;
 }
 </style>
 
@@ -220,7 +221,7 @@ table {
 - Exemplos?
 
 ---
-<style scoped>section { font-size: 20px; }</style>
+<style scoped>section { font-size: 26px; }</style>
 # Sites Dinâmicos
 - CGI (*Common Gateway Interface*):
     - Processamento de *forms* e acesso a banco de dados);

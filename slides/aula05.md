@@ -147,7 +147,7 @@ def index(request):
 ---
 # Templates
 - O Django por padrão procura os templates na pasta `templates` em cada *app*;
-- É possível configurar outras pastas no arquivo `settings.py`.
+- É possível configurar outras pastas no arquivo `settings.py`;
 - Ex. uma pasta chamada `templates` na raiz do projeto:
 ```python
 TEMPLATES = [
@@ -160,38 +160,14 @@ TEMPLATES = [
 ```
 
 ---
-# Templates
-- Para evitar conflitos, o Django recomenda criar uma pasta com o nome do *app* dentro de cada pasta de *templates*;
-- Ex.:
-```
-meuprojeto
-├── ...
-├── config
-│   ├── ...
-├── meuapp
-│   ├── ...
-│   ├── templates
-│   │   └── meuapp
-│   │       ├── base.html
-│   │       └── index.html
-│   └── ...
-├── outroapp
-│   ├── ...
-│   ├── templates
-│   │   └── index.html
-│   └── ...
-└── ...
-```
-- Nesse caso, na função `render` colocamos o caminho relativo para o *template*: `render(request, "meuapp/index.html")`.
-
----
+<style scoped>section { font-size: 28px; }</style>
 # Tarefa 02
-- Configure o ambiente (venv, git)
-- Inicialize um projeto (`config`) e um *app* chamado `exemplo`
-- Configure as *urls* do projeto (em `config`) e as *urls* do *app*.
-- As *urls* do *app* devem apontar para uma *view*: `index`.
-- Crie a *views* `index` e o *template* `index.html`. O conteúdo do *template* pode ser uma página simples.
-- Verifique o funcionamento do sistema.
+- Configure o ambiente (venv, git);
+- Inicialize um projeto (`config`) e um *app* chamado `exemplo`;
+- Configure as *urls* do projeto (em `config`) e as *urls* do *app*;
+- As *urls* do *app* devem apontar para uma *view*: `index`;
+- Crie a *views* `index` e o *template* `index.html`. O conteúdo do *template* pode ser uma página simples;
+- Verifique o funcionamento do sistema;
 - Faça os commits quando julgar necessário, e envie para o Github. 
 
 ---

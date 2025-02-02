@@ -164,7 +164,7 @@ python manage.py runserver
 - Use o `Tab` no teclado para auto-completar os comandos e evitar erros de digitação.
 
 ---
-# Tarefa
+# Tarefa 01
 - Configure o ambiente(git/venv) de acordo com as aulas passadas;
 - Instale o Django;
 - Crie uma pasta `tarefas`;

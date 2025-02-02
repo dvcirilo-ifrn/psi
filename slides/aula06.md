@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 06: Templates
+title: Aula 05: Apps Django
 author: Diego Cirilo
 
 ---
@@ -19,237 +19,138 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 06**: Templates
+**Aula 06**: Function-based Views
 
 ---
-# Templates
-- As *views* podem retornar páginas estáticas, mas qual seria a vantagem?
-- Templates permitem a substituição dinâmica de dados em uma página HTML
-- Isso é possível através de *tags*.
-- A estrutura é de um HTML normal, com *tags* extras.
+# Function-based Views
+- Cada função representa uma *view*;
+- As funções são chamadas a partir das regras de `urls.py`;
+- Cada *view* recebe um argumento `request`, que traz os dados da requisição;
+- Dentro da função fazemos o processamento/tratamento/aquisição/armazenamento/etc dos dados;
+- No fim a função *renderiza* e retorna uma página web, através de *templates*.
 
 ---
-# Templates
-- O Django por padrão procura os templates na pasta `templates` em cada *app*
-- É possível configurar outra pasta no arquivo `settings.py`
+# Views
+```python
+from django.shortcuts import render
 
----
-# Tags
 
-- `{{ variáveis }}`
-- `{% tags/funções %}`
-- [Lista das tags](https://docs.djangoproject.com/en/5.0/ref/templates/builtins/#ref-templates-builtins-tags)
-
----
-# Exemplos
-- HTML
-```html
-<ul>
-    <li>Batata</li>
-    <li>Farinha</li>
-    <li>Queijo</li>
-</ul>
-```
-- Template Django
-```django
-<ul>
-    {% for item in lista_compras %}
-        <li>{{ item  }}</li>
-    {% endfor %}
-</ul>
-
-```
-
----
-# Tags
-- For
-```django
-{% for variavel in lista %}
-    ...{{ variavel }}...
-{% endfor %}
-```
-- If
-```django
-{% if condicao %}
-    ...verdadeiro
-{% elif outracondicao %}
-    ...verdadeiro
-{% else %}
-    ...falso
-{% endif %}
-```
-
----
-# Contexto
-- De onde vem os dados para o template?
-- R. da *view*!
-- A função `render` aceita (além de `request` e o nome do *template*) mais um parâmetro: um dicionário com dados para o template.
-- Dicionário: `{"chave": "valor", "outrachave": "outrovalor"}`
-- Esse dicionário é normalmente chamado de contexto ou `context`
-
----
-# Contexto
-- Na *view*:
-```py
 def index(request):
-    dados_usuario = {"nome": "Michael Douglas", "idade": 23}
-    return render(request, "index.html", dados_usuario)
-```
-- No *template*:
-```html
-...
-<p>Nome: {{ nome }}</p>
-<p>Idade: {{ idade }}</p>
-...
+    return render(request, "index.html")
+
 ```
 
 ---
-# Contexto
-- Para passar vários dados podemos utilizar listas de dicionários.
-- Ex.
-```py
-def index(request):
-    lista_usuarios = [
-        {"nome": "Michael Douglas", "idade": 23},
-        {"nome": "James Wilson", "idade": 55},
-        {"nome": "Peter Parker", "idade": 22},
-    ]
-
-    context = {
-        "usuarios": lista_usuarios,
-    }
-    return render(request, "index.html", context)
-```
----
-# Contexto
-- No *template*:
-```django
-...
-{% for usuario in usuarios %}
-    <p>Nome: {{ usuario.nome }}</p>
-    <p>Idade: {{usuario.idade }}</p>
-{% endfor %}
-...
-```
+# Argumentos
+- Como é uma função, a *view* pode receber argumentos;
+- Os argumentos vêm depois do `request`;
+- Ex.: `def minha_view(request, usuario)`;
+- Como passar esses argumentos?
 
 ---
-# Tarefa
-- Usando o mesmo projeto da aula anterior:
-- Crie uma *view* e um *template* `usuarios`. Configure as *urls* para `/usuarios`
-- Na sua *view* de usuários, crie uma lista de 5 dicionários, cada dicionário deve ter os seguintes dados:
-    - Nome, matrícula, idade, cidade
-- Crie dados fictícios para esses 5 usuários.
-- Crie um *template* que consiga apresentar os dados de todos os usuários listados
-- Teste o sistema e faça o commit quando tiver funcionando.
-
----
-# Herança de templates
-- Páginas web repetem muito código
-- Ex. um menu que aparece em todas as páginas, o *header* e o *footer*
-- Os templates podem "importar" pedaços de outros templates
-- Usamos um template base com o que deve ser padrão em todas as páginas
-- As outras páginas apenas substituem partes do template base.
-
----
-# Herança de templates
-- Na página base:
-```django
-{% block nome-do-bloco %}
-    <conteúdo padrão do bloco>
-{% endblock %}
-```
-- Na página que herda:
-```django
-{% extends "pagina-base.html" %}
-...
-{% block nome-do-bloco %}
-    <novo conteúdo do bloco>
-{% endblock %}
-```
----
-# Herança de templates
-- A *tag* `extends` deve ser a primeira do documento.
-- É possível criar vários `block`s no mesmo template, sem repetir seus nomes.
-- O conteúdo padrão do `block` pai pode ser acessado com `{{ block.super }}`
+# Argumentos na URL
+- Usamos `<tipo:variavel>` para definir argumentos na URL;
+    - `tipo` é o tipo de dado (`str`, `int`, `slug`, `uuid`, `path`);
+    - `variavel` é exatamente o argumento que será passado para a função;
 
 ---
 # Exemplo
-- `base.html`:
-```django
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Título base do site{% endblock %}</title>
-  </head>
-  <body>
-    {% block content %}
-      <p>Conteúdo do site</p>
-    {% endblock %}
-  </body>
-</html>
+```python
+# url.py
+...
+path("fotos/<int:id_foto>/", views.fotos, name="fotos"),
+...
+
+# views.py
+...
+def fotos(request, id_foto):
+    print(f"O id da foto é {id_foto}")
+...
+
 ```
+---
+# URLs no template
+- Para gerar as URLs com os argumentos nos templates fazemos:
+```django
+<a href="{% url 'fotos' id_foto %}"
+```
+- Se houver mais de um argumento:
+```django
+{% url 'fotos' id_foto id_usuario %}
+```
+- É possível também explicitar de qual app é a URL, para evitar conflitos:
+```django
+{% url 'meuapp:fotos' id_foto id_usuario %}
+```
+
+---
+# O `request`
+- O objeto `request` possui vários atributos úteis;
+    - `request.method`: o método HTTP (`GET`, `POST`, etc.);
+    - `request.GET`: um *QueryDict* com todos os valores da *querystring*;
+    - `request.POST`: um *QueryDict* com os parâmetros do POST;
+    - `request.FILES`: idem para arquivos enviados em um formulário;
+    - `request.user`: o usuário que fez a requisição;
+- [Referência](https://docs.djangoproject.com/en/5.1/ref/request-response/#httprequest-objects).
 
 ---
 # Exemplo
-- `pagina.html`
-```django
-{% extends "base.html" %}
-{% block title %}{{ block.super }} - Nome da página{% endblock %}
-{% block content %}
-<div class="classe">
-  <h1> Conteúdo do meu site </h1>
-</div>
-{% endblock %}
+- views.py
+```python
+...
+def minha_view(request):
+    if request.method == "GET":
+        print("Essa página foi acessada com uma requisição GET")
+...
 ```
 
 ---
-# Arquivos Estáticos
-- Os arquivos estáticos não ficam dentro de `templates`
-- O motivo é: os `templates` não são páginas HTML! Não ficam públicos para os clientes.
-- Os `templates` são renderizados e então disponibilizados pelo servidor.
-- Os arquivos estáticos, como imagens, JS e CSS são disponibilizados diretamente pelo servidor web.
-- O caminho padrão do Django é a pasta `static` dentro do *app*
+# Querystring
+- *Querystrings* são expressões adicionadas a URL;
+- Não interferem nas rotas;
+- Podem trazer informações para filtragem de dados, paginação, etc;
+- Seguem o padrão:
+    - `url-original?chave=valor&outrachave=outrovalor`
+- São utilizadas para requisições que não alteram o estado do sistema;
+- Permitem compartilhar uma visualização específica do sistema.
 
 ---
-# Arquivos Estáticos
-- Usamos `{% load static %}` no início da página.
-- Usamos `{% static 'nomedoarquivo.etc' %}` no lugar do nome do arquivo.
-- Os caminhos são relativos ao diretório `static`.
-- Ex.
-```django
-<img src="{% static 'cat.jpg' %}" alt="Foto do gato">
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+# Querystring
+- Podem ser acessadas na view com `request.GET`;
+- O valor retornado é um objeto do tipo *QueryDict*;
+- Funciona como um dict, com algumas diferenças;
+- Os valores podem ser acessados com:
+    - `query_dict["chave"]`;
+    - `query_dict.get("chave")`;
+- A vantagem do `.get()` é que não dá erro se a chave não existir.
+
+---
+# Exemplo
+- URL: 
+```
+http://127.0.0.1:8000/usuarios?ordenar=idade&cidade=SPP
+```
+- No views.py:
+```
+...
+def usuarios(request):
+    query_dict = request.GET
+    print(f"O usuarios serão ordenados por {query_dict['ordenar']}")
+    print(f"O usuarios são da cidade {query_dict.get('cidade')}")
+...
 ```
 
 ---
-# URLs/Links
-- É possível escrever os links diretamente:
+# Redirecionamento
+- Além de usar o `return render('template.html')` é possível redirecionar para outra URL;
+- Usamos o `redirect(nome-da-url)`
+- Ex.:
+```python
+def minha_view(request):
+    if not request.GET.get("status"):
+        print("Não veio o status na querystring!")
+        redirect('nomedoapp:nomedaview') # o nomedoapp é opcional!
 ```
-<a href="/index">Página Inicial</a>
-```
-- Também é possível usar os templates:
-```
-<a href="{% url 'index' %}">Página Inicial</a>
-```
-- Usamos o mesmo `name` definido nos arquivos `urls.py`.
-
----
-<style scoped>section { font-size: 20px; }</style>
-# Tarefa
-- Utilizando seus conhecimentos de *webdesign*:
-    - Crie um site para divulgar uma equipe de futebol (masculino, feminino, seleção, etc).
-    - O site deve ter 3 páginas: Início, Jogadores, Sobre.
-    - Início: informações gerais sobre o time, com imagens, histórico, etc.
-    - Atletas: foto, nome, idade, posição e local de nascimento. Basta 11 atletas.
-    - Sobre: informações sobre o site, autores, etc.
-- O site deve ter um menu global e um *footer* com informações como *copyright*.
-- O site deve funcionar dentro do Django, usando um *template* base e os atletas devem ser descritos em um dicionário na *view*.
-- Use o repositório modelo para fazer o upload do trabalho.
-
----
-![](../img/css.gif)
 
 ---
 
