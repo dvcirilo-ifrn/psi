@@ -101,6 +101,7 @@ def post_list(request):
     return render(request, 'post_list.html', context)
 ```
 ---
+<style scoped>pre { font-size: 20px; }</style>
 # Exemplo
 - No template
 ```django
@@ -236,6 +237,7 @@ def editar_tarefas(request):
 - Muitas vezes nossos formulários escrevem em mais de um model;
 - Ex. a página de editar perfil de um usuário (models User e Perfil);
 - Usamos formsets inline para criar esses formulários mais complexos;
+- https://stackoverflow.com/questions/53035151/django-formset-factory-vs-modelformset-factory-vs-inlineformset-factory
 
 ---
 # <!--fit--> Dúvidas? 🤔

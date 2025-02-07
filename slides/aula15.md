@@ -22,4 +22,7 @@ img {
 **Aula 15**: Sessão/Cookies/Context Processors
 
 ---
+- Shopping Cart: session for anonymous users
+
+---
 # <!--fit--> Dúvidas? 🤔
