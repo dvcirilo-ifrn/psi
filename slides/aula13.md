@@ -161,10 +161,10 @@ const bejeto = {
 ---
 # Strings
 - Podem ser delimitadas com:
-    - ````
-    - ""
-    - ''
-- O ```` é chamado de *string literal* e permite interpolação, múltiplas linhas, etc.
+    - \`...\`
+    - "..."
+    - '...'
+- O \`...\` é chamado de *string literal* e permite interpolação, múltiplas linhas, etc.
 ```js
 const cor = "azul";
 const informacao = `O display é ${cor}.`;
@@ -207,6 +207,8 @@ switch (a) {
 ```
 
 ---
+<style scoped>section { font-size: 24px; }</style>
+<style scoped>pre { font-size: 18px; }</style>
 # Laços
 - `for`
 ```js
@@ -232,6 +234,7 @@ do {
 ```
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # Funções no JS
 - Funções padrão:
 ```js

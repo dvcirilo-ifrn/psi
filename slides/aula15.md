@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 15: Formsets
+title: Aula 15: RichText/Formsets
 author: Diego Cirilo
 
 ---
