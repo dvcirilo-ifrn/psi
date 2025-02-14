@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 16: Class-based Views
+title: Aula 15: Sessão/Cookies/Context Processors
 author: Diego Cirilo
 
 ---
@@ -19,7 +19,10 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 16**: Class-based Views
+**Aula 15**: Sessão/Cookies/Context Processors
+
+---
+- Shopping Cart: session for anonymous users
 
 ---
 # <!--fit--> Dúvidas? 🤔
