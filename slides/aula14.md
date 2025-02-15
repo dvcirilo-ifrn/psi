@@ -258,12 +258,12 @@ $("div").find();
 ```
 
 ---
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 15px; }</style>
 # Exemplo
 - `meuScript.js`
 ```js
-const botao = $("#meuBotao");
 const conteudo = $(".conteudo p");
-const header1 = $(".conteudo h1");
 let contador = 0;
 botao.click( () => {
   contador++;
@@ -271,9 +271,9 @@ botao.click( () => {
     conteudo.html(`<p>O botão foi clicado ${contador} vezes!</p>`);
   } else if (contador < 16){
     conteudo.html(`<p>O botão foi clicado ${contador} vezes! Por favor, pare!</p>`);
-    header1.text("TESTE");
-    botao.text("Não clique aqui!");
-    botao.css({
+    $(".conteudo h1").text("TESTE");
+    $("#meuBotao").text("Não clique aqui!");
+    $("#meuBotao").css({
         "position": "absolute",
         "top": `${contador**2}px`
     });

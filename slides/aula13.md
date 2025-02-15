@@ -84,6 +84,7 @@ img {
 
 ---
 # Embutindo o JS no HTML
+<style scoped>section { font-size: 24px; }</style>
 - É possível importar scripts no `<head>`, como é feito com o CSS;
 - Para garantir que só sejam executados com o DOM carregado usamos o atributo `defer`:
     - `<script defer src="meuscript.js"></script>`
@@ -106,7 +107,7 @@ img {
 
 ---
 # Sintaxe JS
-- A sintaxe é parecida com C;
+- A sintaxe é parecida com C/C++/Java;
 - Usa `;` para indicar o fim de uma diretiva;
 - Usa `{}` para abrir e fechar diretivas, funções, etc;
 - O *whitespace* não importa, ao contrário do Python;
@@ -296,6 +297,8 @@ hello = val => "Hello " + val;
 - Ou definir a função antes, e passar apenas seu nome.
 
 ---
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 18px; }</style>
 # Exemplo
 ```js
 function minhaFuncao(par1, par2, outraFuncao) {
@@ -407,6 +410,8 @@ elemento.addEventListener('click', function() {
 ```
 
 ---
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 20px; }</style>
 # Exemplo
 - `teste.html`:
 ```html
@@ -429,6 +434,8 @@ elemento.addEventListener('click', function() {
 ```
 
 ---
+<style scoped>section { font-size: 22px; }</style>
+<style scoped>pre { font-size: 20px; }</style>
 # Exemplo
 - `meuScript.js`
 ```js
