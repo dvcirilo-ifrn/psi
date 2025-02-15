@@ -126,7 +126,8 @@ img {
     - Automaticamente (não recomendado);
     - `var` - Escopo global com *hoisting* (*legado*);
     - `let` - Variável *normal* com escopo de bloco;
-    - `const` - Escopo de bloco, o tipo não pode mudar, o valor sim.
+    - `const` - Escopo de bloco, o valor não pode ser atribuído novamente;
+- No caso do `const`, se o valor for um objeto/array, o conteúdo do objeto pode ser modificado.
 
 ---
 # Declarações
@@ -151,8 +152,7 @@ rua = 77; //funciona
 let rua; //cria outra variavel rua, perde a anterior
 
 const bairro = "Centro";
-bairro = "Mirassol"; //funciona
-bairro = 62; //não funciona!
+bairro = "Mirassol"; //não funciona!
 ```
 
 ---
@@ -466,7 +466,7 @@ botao.addEventListener("click", () => {
 
 ---
 # Bibliotecas JS
-- No contexto da disciplina podem ser importadas na tag `<script src="biblioteca.js"></script>`
+- No contexto da disciplina podem ser importadas na tag `<script src="biblioteca.js"></script>`;
 - A ordem importa!
 - Fornecem funcionalidades prontas;
 - Exemplos: jQuery, React, Bootstrap, PDF.js, Babylon...
