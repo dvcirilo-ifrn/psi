@@ -23,56 +23,27 @@ img {
 
 ---
 # Introdução
-- Usualmente as funcionalidades de um sistema web estão no servidor;
+- Até agora as funcionalidades do sistema web estão no servidor (*back-end*);
 - O servidor recebe as requisições, processa/acessa dados e *monta* o HTML;
 - As páginas HTML são enviadas *prontas* para o cliente (navegador);
 - Depois de enviado ao cliente, o servidor não tem mais controle sobre a página;
-- *Front-end* - interface gráfica do usuário;
-- Como *desacoplar* a interface de usuário do servidor?
+- Os sistemas atuais não estão mais limitados a isso.
 
 ---
 # JavaScript
 - Linguagem *interpretada*, com tipagem dinâmica e multi-paradigma;
-- Desenvolvida nos anos 90 para dinamizar páginas web;
+- Desenvolvida nos anos 90 para **dinamizar** páginas web;
 - Permite alterar o conteúdo da página no lado do cliente;
 - É executada por uma *engine* no navegador;
-- Em meados dos anos 2000 surgiram os *runtimes* nativos, como o Node.js.
-
----
-# Versões do JavaScript
-- Padrão ECMAScript (*European Computer Manufacturers Association*);
-- Iniciais:
-    - ECMAScript 1 (1997): Primeira versão padronizada para compatibilidade entre navegadores;
-    - ECMAScript 3 (1999): Introduziu tratamento de erros, expressões regulares e estabeleceu a base do JavaScript moderno.
-
----
-# Versões do JavaScript
-- ECMAScript 5 (2009):
-    - Adicionou modo estrito, suporte a JSON e métodos de arrays (map, filter, reduce);
-    - `"use strict";`
-- ECMAScript 6 (ES6, 2015):
-  - Let/Const (variáveis de escopo de bloco);
-  - *Arrow functions*;
-  - Classes e módulos;
-  - *Promises* para operações assíncronas.
-
----
-# Recursos Modernos do JavaScript
-- ECMAScript 2016-2017 (ES7 & ES8):
-    - ES7 (2016): Adicionou `Array.prototype.includes()` e o operador de exponenciação (`**`);
-    - ES8 (2017): Introduziu async/await e métodos de objeto como `Object.entries()`;
-- ECMAScript 2018-2023 (ES9 a ES13):
-    - Operadores spread/rest para objetos;
-    - Encadeamento opcional (`?.`) e operador de coalescência nula (`??`);
-    - Top-level await para simplificar operações assíncronas.
-
+- Em meados dos anos 2000 surgiram os *runtimes* nativos, como o Node.js;
+- Hoje em dia é uma linguagem de uso geral (*full-stack*).
 
 ---
 # Runtimes do JS
-- Node.js:
+- Nativas:
     - Ambiente de execução de JavaScript *server-side*;
-    - Utiliza a *engine* V8 do Chrome;
     - Oferece APIs para acessar o sistema de arquivos, redes e outras funcionalidades do servidor;
+    - Exemplos: Node.js, Deno, Bun;
 - Browser Engines:
     - V8 (Chrome, Edge), SpiderMonkey (Firefox), JavaScriptCore (Safari);
     - Executam JavaScript diretamente nos navegadores, oferecendo suporte para aplicações web interativas.
@@ -80,19 +51,23 @@ img {
 ---
 # JavaScript em PSI
 - Nessa disciplina utilizaremos o JS no *browser*;
-- É possível usar o *console* do navegador diretamente;
-- Também é possível embutir o JS em arquivos HTML (ou templates Django);
-- Tag `<script></script>`;
+- Os objetivos são:
+    - Melhorar a interface com a manipulação do DOM;
+    - Criar páginas mais dinâmicas;
+    - Trocar informações com servidor sem recarregar a página (AJAX).
 
 ---
-# JavaScript em PSI
-- A tag `<script>` pausa o carregamento do HTML para baixar e executar o JS;
-- Normalmente os *scripts* JS são carregados no final do arquivo, antes do `</body>`:
-    - Não atrapalha o carregamento do HTML;
-    - Garante que DOM já foi toda carregada antes.
+# Executando o JS
+- No *browser*:
+    - É possível usar o *console* do navegador;
+    - É possível embutir o JS em arquivos HTML (ou templates Django);
+        - Tag `<script></script>`;
+- É possível também executar nativamente usando um *runtime* como Node.js, Deno, etc;
+    - Não é nosso objetivo agora.
 
 ---
-# JavaScript em PSI
+# Embutindo o JS no HTML
+- Podemos escrever o JS diretamente no arquivo HTML, dentro da tag `<script>`;
 - Podemos separar o código JS em arquivos estáticos `.js`;
 - No HTML é carregado com:
     - `<script src="meuscript.js"></script>`;
@@ -100,11 +75,34 @@ img {
     - `<script src="{% static 'meuscript.js' %}"></script>`;
 
 ---
-# JavaScript em PSI
-- É possível importar scripts no `<head>`
+# Embutindo o JS no HTML
+- A tag `<script>` pausa o carregamento do HTML para baixar e executar o JS;
+- A ordem importa!
+- Normalmente os *scripts* JS são carregados no final do arquivo, antes do `</body>`:
+    - Não atrapalha o carregamento do HTML;
+    - "Garante" que DOM já foi toda carregada antes.
+
+---
+# Embutindo o JS no HTML
+- É possível importar scripts no `<head>`, como é feito com o CSS;
 - Para garantir que só sejam executados com o DOM carregado usamos o atributo `defer`:
-    - `<script src="meuscript.js" defer></script>`
-- A vantagem em relação a colocar a tag no final do `<body>` é que o *script* é baixado junto com a página.
+    - `<script defer src="meuscript.js"></script>`
+- A vantagem em relação a colocar a tag no final do `<body>` é que o *script* é baixado junto com a página;
+- A desvantagem é que os blocos `<script>` *inline* não terão acesso às funções importadas dessa forma, pois serão carregadas antes;
+- A ordem de carregamento importa!
+
+---
+# Embutindo o JS no HTML
+- Em um bloco `<script>` *inline*, podemos garantir que o código só será executado após o carregamento completo do conteúdo com:
+```js
+<script>
+    window.onload = function () {
+        // codigo executado apenas após o
+        // carregamento completo
+        // da pagina
+    }
+</script>
+```
 
 ---
 # Sintaxe JS
@@ -125,16 +123,36 @@ img {
 # Declarações
 - Variáveis podem ser declaradas com:
     - Automaticamente (não recomendado);
-    - `var` - Escopo global com *hoisting*;
-    - `let` - Variável com escopo de bloco;
-    - `const` - Constantes, o valor/tipo não pode mudar.
+    - `var` - Escopo global com *hoisting* (*legado*);
+    - `let` - Variável *normal* com escopo de bloco;
+    - `const` - Escopo de bloco, o tipo não pode mudar, o valor sim.
 
 ---
-# *Hoisting*
-- Joga as declarações automaticamente para o topo do script;
-- Permite usar variáveis/funções que ainda serão declaradas;
-- Funciona com `var` e declaração de funções;
-- Pode ser uma fonte de *bugs* se não for tratado com cuidado.
+# Declarações
+- *Hoisting* (içamento):
+    - Joga as declarações automaticamente para o topo do script;
+    - Permite usar variáveis/funções que ainda serão declaradas;
+    - Funciona com `var` e declaração de funções;
+    - Pode ser uma fonte de *bugs* se não for tratado com cuidado.
+- O uso de `var` [não é mais recomendado](https://google.github.io/styleguide/jsguide.html#features-local-variable-declarations), mas ainda existe em exemplos de código antigos;
+
+---
+# Exemplos
+```js
+casa = "IFRN";
+casa = 8; //funciona
+var casa; //declarou depois de usar, funciona e não perde o conteúdo (hoisting)
+
+// recomendado atualmente
+let rua = "Principal";
+rua = "Rua de Cima";
+rua = 77; //funciona
+let rua; //cria outra variavel rua, perde a anterior
+
+const bairro = "Centro";
+bairro = "Mirassol"; //funciona
+bairro = 62; //não funciona!
+```
 
 ---
 # Tipo de dados
@@ -174,15 +192,15 @@ const informacao = `O display é ${cor}.`;
 # Condicionais
 - `if`:
 ```js
-if (year < 2015) {
-  alert( 'Too early...' );
-} else if (year > 2015) {
-  alert( 'Too late' );
+if (media > 60) {
+  alert( 'Aprovado!' );
+} else if (media > 40) {
+  alert( 'Recuperação!' );
 } else {
-  alert( 'Exactly!' );
+  alert( 'Reprovado!' );
 }
 ```
-- ternário:
+- Operador ternário:
 ```js
 let resultado = (idade > 18) ? "acesso permitido" : "acesso negado";
 ```
@@ -196,8 +214,7 @@ switch (a) {
     alert( 'Primeiro!' );
     break;
   case 2:
-    alert( 'Segundo!' );
-    break;
+    alert( 'Segundo!' ); // sem o break;
   case 3:
     alert( 'Terceiro!' );
     break;
@@ -271,6 +288,43 @@ hello = val => "Hello " + val;
 ```
 
 ---
+# Funções *Callback*
+- Funções que são passadas como parâmetro para outra função;
+- Permite que a função original tenha controle sobre o momento de chamar a segunda função, mesmo que não saiba o nome dela;
+- Muito usado no JS;
+- Podemos passar uma função anônima *inline* como parâmetro;
+- Ou definir a função antes, e passar apenas seu nome.
+
+---
+# Exemplo
+```js
+function minhaFuncao(par1, par2, outraFuncao) {
+    let soma = par1 + par2;
+    outraFuncao(soma); //callback
+}
+
+let resultado = minhaFuncao(3, 5, function(valor){
+    //estou dentro do callback
+    console.log(valor);
+    return valor;
+});
+
+// como arrow function
+resultado = minhaFuncao(3, 5, (valor) => {
+    console.log(valor);
+    return valor;
+});
+
+// definindo a função antes
+function funcaoNova(resultado){
+    console.log(resultado);
+}
+
+//passando a função definida
+minhaFuncao(3, 5, funcaoNova);
+```
+
+---
 # Arrays
 - Funcionam como listas do Python;
 - Coleção indexada de objetos;
@@ -320,6 +374,8 @@ meuArray.forEach( function (item) {
 - Criar e Inserir Elementos
     - `document.createElement('div')`
     - `parentElement.appendChild(novoElemento)`
+- Substituir conteúdo
+    - `element.replaceChildren(novoElemento)`
 
 ---
 # Manipulação do DOM
@@ -332,207 +388,87 @@ document.body.appendChild(paragrafo);
 
 ---
 # Eventos DOM
-- Os eventos reagem a ações do usuário, servidor ou temporizadas
-- Permitem a execução de funções quando algo acontece
+- Os eventos reagem a ações do usuário, servidor ou temporizadas;
+- Permitem a execução de funções quando algo acontece;
 - Ex. `click`, `mouseover`, etc;
-- Usamos o `elemento.addEventListener('nome_do_evento', funcao_callback())`
+- Usamos o `elemento.addEventListener('nome_do_evento', funcao_callback)`.
 
 ---
 # Eventos DOM
 - Funções *callback* são executadas quando o *EventListener* detecta o evento;
 - Ex.:
 ```js
+const elemento = document.getElementById("meuBotao");
 elemento.addEventListener('click', function() {
-    alert('Elemento clicado!');
+  minhaDiv = document.getElementById("minhaDiv");
+  minhaDiv.style.backgroundColor = "red";
+  minhaDiv.innerHTML = "<p class="alert">Clicaram no botão!</p>";
 });
 ```
 
 ---
-# jQuery
-- Biblioteca desenvolvida pra simplificar a manipulação da DOM, eventos, requisições, etc;
-- Usa uma linguagem menos *verbosa* que o JavaScript puro (*Vanilla*);
-- Já foi quase "obrigatória", hoje nem tanto;
-- Mesmo assim, ainda é mais cômodo utilizá-la;
-- [*You might not need jQuery*](https://youmightnotneedjquery.com/).
-
----
-# jQuery
-- Pode ser baixada e incluída no projeto localmente;
-- Também pode ser importada online via CDN (*Content Delivery Network*);
-- Versões:
-    - `uncompressed`: código normal;
-    - `minified`: código comprimido;
-    - `slim`: versão com menos recursos;
-- Normalmente utilizamos a versão `minified` ou `min`;
-- `<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>`
-
----
-# Conceitos
-- As funções *jQuery* iniciam com `$`;
-- A sintaxe básica é:
-    - `$("seletor").ação()`
-- O `seletor` seleciona qual/quais elementos serão utilizados;
-- A `ação()` executa alguma funcionalidade;
-
----
-# `$(document).ready()`
-- Normalmente os códigos *jQuery* ficam dentro de um:
-```js
-$(document).ready(function(){
-    //...codigo...
-})
-```
-- Essa função garante que a página já foi toda carregada.
-
----
-# Seletores *jQuery*
-- O seletor básico é `$()`:
-    - `$("p")`
-    - `$(".classe")`
-    - `$("#id")`
-- Equivalente aos `document.querySelector()`, `document.querySelectorAll()` e `document.getElementById()` do JS *Vanilla*;
-- É possível compor seletores mais específicos
-
----
-# Seletores *jQuery*
-- Exemplos:
-```js
-$("*")	                // tudo
-$(this)	                // o elemento atual
-$("p.intro")	        // todos <p> com classe intro
-$("p:first")	        // o primeiro <p>
-$("ul li:first")	    // o primeiro <li> do primeiro <ul>
-$("ul li:first-child")	// o primeiro <li> de todos <ul>
-$("[href]")	            // todos elementos com atributo href
-$("a[target='_blank']")	// todos <a> com target="_blank"	
-$("a[target!='_blank']")// todos <a> com target diferente de "_blank"	
-$(":button")	        // todos <button> e <input> com type="button"	
-$("tr:even")	        // <tr> par
-$("tr:odd")	            // <tr> impar
+# Exemplo
+- `teste.html`:
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Teste</title>
+    <script defer src="meuScript.js"></script>
+  </head>
+  <body>
+    <div class="conteudo outra-classe">
+      <h1>Teste</h1>
+      <button id="meuBotao">Clique aqui!</button>
+      <p>Meu conteúdo relevante.</p>  
+    </div>
+  </body>
+</html>
 ```
 
 ---
-# Eventos *jQuery*
-- `click`, `dblclick`, `hover`, `keypress`, `focus`, `change`, etc;
-- Ex.:
+# Exemplo
+- `meuScript.js`
 ```js
-$("#meuBotao").click(function() {
-  $(this).css("color", "red");
+const botao = document.getElementById("meuBotao");
+const conteudo = document.querySelector(".conteudo p");
+const header1 = document.querySelector(".conteudo h1")
+let contador = 0;
+botao.addEventListener("click", () => {
+  contador++;
+  if (contador < 10) {
+    conteudo.innerHTML = `<p>O botão foi clicado ${contador} vezes!</p>`;
+  } else if (contador < 16){
+    conteudo.innerHTML = `<p>O botão foi clicado ${contador} vezes! Por favor, pare!</p>`;
+    header1.innerText = "TESTE";
+    botao.innerText = "Não clique aqui!";
+    botao.style.position = "absolute";
+    botao.style.top = `${contador**2}px`;
+  } else {
+    let aviso = document.createElement('h1');
+    aviso.innerText = "PARE!!!";
+    aviso.style.fontSize = "20em";
+    aviso.style.color = "yellow";
+    document.body.style.backgroundColor = "red"
+    document.body.replaceChildren(aviso);
+  }
 });
 ```
 
 ---
-# Manipulação da DOM com *jQuery*
-- CSS
-```js
-$("#id").css({
-  "color": "blue",
-  "background-color": "red"
-});
-```
-- Class
-```js
-$("#id").addClass("btn btn-primary");
-```
-
----
-# Manipulação da DOM com *jQuery*
-- Hide/Show:
-```js
-$("#id").hide();
-$("#id").show();
-```
-- Get/Set:
-```js
-let conteudo = $(sel).text(); // get
-$(sel).text("conteúdo de texto"); // set
-let conteudo = $(sel).html(); //get
-$(sel).html("conteudo <strong>HTML interno</strong>"); //set
-let conteudo = $(sel).val(); //get
-$(sel).val("valor de form"); //set
-```
-
----
-# Manipulação da DOM com *jQuery*
-- Atributos:
-```js
-let atributo = $("#id").attr("href"); //get
-$("#id").attr("href", "https://site.com"); //set
-```
-
-- Propriedades:
-```js
-$("#id").prop("checked", false);
-```
-
----
-# Manipulação da DOM com *jQuery*
-- Adicionar elementos:
-```js
-$("#lista").append("<li>Item no final</li>");
-$("#lista").prepend("<li>Item no início</li>");
-$("#lista").after("<p>Texto depois da lista</p>");
-$("#lista").before("<p>Texto antes da lista</p>");
-```
-- Remover:
-```js
-$("#id").remove();  // Remove o elemento completamente
-$("#id").empty();   // Remove apenas o conteúdo interno
-```
-
----
-# Manipulação da DOM com *jQuery*
-- Clone:
-```js
-let clone = $("#meuElemento").clone();
-$("#outroElemento").append(clone);
-```
-
-- Substituir:
-```js
-$("#meuElemento").replaceWith("<p>Novo Parágrafo</p>");
-```
-
----
-# Manipulação da DOM com *jQuery*
-- Criar elemento
-```js
-let botao = $("<button>", {
-    text: "Clique Aqui",
-    id: "meuBotao",
-    class: "btn btn-primary"
-});
-
-$("#container").append(botao);
-
-```
-
----
-# Manipulação da DOM com *jQuery*
-- Acessar elementos *pais*:
-```js
-$("span").parent();
-$("span").parents();
-$("span").parents("ul"); //filtro
-$("span").parentsUntil("div");
-```
-- *Filhos*/*Irmãos*
-```js
-$("div").children();
-$("div").siblings();
-$("div").prev();
-$("div").next();
-$("div").find();
-
-```
+# Bibliotecas JS
+- No contexto da disciplina podem ser importadas na tag `<script src="biblioteca.js"></script>`
+- A ordem importa!
+- Fornecem funcionalidades prontas;
+- Exemplos: jQuery, React, Bootstrap, PDF.js, Babylon...
 
 ---
 # Referências
 - https://javascript.info/
 - https://developer.mozilla.org/pt-BR/docs/Web/JavaScript
 - https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript
-- https://jquery.com/
-- https://www.w3schools.com/jquery/default.asp
 
 ---
 # <!--fit--> Dúvidas? 🤔

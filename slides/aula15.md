@@ -4,7 +4,7 @@ size: 4:3
 marp: true
 paginate: true
 _paginate: false
-title: Aula 15: RichText/Formsets
+title: Aula 15: AJAX
 author: Diego Cirilo
 
 ---
@@ -19,116 +19,119 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 15**: Formsets
+**Aula 15**: AJAX
 
 ---
-# Formsets
-- Conjuntos (sets) de forms;
-- Permite exibir e salvar mais de uma cópia de um form em uma mesma página;
-- Ex. adicionar várias tarefas de uma só vez;
-- Faz muito sentido quando utilizado com JS/AJAX.
+# AJAX
+- *Asynchronous JavaScript and XML*
+- XML (*eXtensible Markup Language*)
+- Permite a troca de informações com o servidor sem recarregar a página;
+- Ao invés no *browser* fazer a requisição diretamente, o JS é o responsável;
+- Pode carregar novas informações do servidor depois que a página já está carregada;
+- Dá *dinamicidade* aos sites.
 
 ---
-# Exemplo
-- Considerando um model Tarefa e um ModelForm TarefaForm (feitos normalmente)
-- No forms.py
-```python
-from django import forms
-from django.forms import formset_factory
-from .models import Tarefa
+# AJAX
+- Hoje se usa mais o JSON no lugar do XML;
+- JSON (*JavaScript Object Notation*);
+- Usa programação no front e no back-end.
 
-class TarefaForm(forms.ModelForm):
-    class Meta:
-        model = Tarefa
-        fields = "__all__"
+---
+# AJAX com *jQuery*
+- O *jQuery* tem uma função `$.ajax`;
+```js
+$.ajax({
+  url: "https://api.exemplo.com/dados", // URL do servidor
+  type: "POST", // Método HTTP (GET, POST, PUT, DELETE)
+  data: JSON.stringify({ nome: "João" }), // Dados enviados
+  contentType: "application/json", // Tipo de conteúdo
+  success: function(response) { // Quando a requisição for bem-sucedida
+    console.log(response);
+  },
+  error: function(xhr, status, error) { // Em caso de erro
+    console.error("Erro:", error);
+  }
+});
 
-
-TarefaFormSet = formset_factory(TarefaForm, extra=2)  # 2 forms por padrão
 ```
 
 ---
+# AJAX com *jQuery*
+- Também existem os *atalhos*:
+```js
+$.get("https://jsonplaceholder.typicode.com/posts/1", function(data) {
+  console.log(data);
+});
+
+$.post("https://api.exemplo.com/novo", { nome: "Maria" }, function(response) {
+  console.log("Usuário criado!");
+});
+
+```
+
+---
+# AJAX com *jQuery*
+- As requisições são *assíncronas*;
+- O código continua antes da resposta chegar;
+- Devemos executar o que for necessário dentro da função `success`
+- O JavaScript permite lidar melhor com essas operações assíncronas:
+    - `async/await`
+    - `.then()`
+- Assunto da próxima disciplina.
+
+---
+# Atualizando o DOM com AJAX GET
+- A resposta do request GET pode ser acessada na função *callback*;
+- Se for um JSON, podemos tratar como um objeto JS comum (parece o dict do Python);
+- Usamos as funções de manipulação do DOM para atualizar o conteúdo;
+
+---
 # Exemplo
-- No views.py:
+```js
+$(#meuBotao).click(() => {
+  $.get("https://jsonplaceholder.typicode.com/posts/1", function(data) {
+    $("#minhaDiv").append(
+      `<div>
+         <p>${data.title}</p>
+         <p>${data.body}</p>
+       </div>`
+    );
+  });
+});
+```
+
+---
+# AJAX no Django
+- Para o Django o AJAX é uma requisição qualquer;
+- A diferença é que ele vai receber/responder JSON e não HTML;
+- Já existem bibliotecas para isso:
+    - `from django.http import JsonResponse`
+    - `import json`
+
+---
+# AJAX no Django
+- Normalmente separamos as *views* do AJAX das comuns;
+- Exemplo de consulta:
 ```python
-from django.shortcuts import render, redirect
-from .forms import TarefaFormSet
-
-def criar_tarefas(request):
-    if request.method == 'POST':
-        formset = TarefaFormSet(request.POST)
-        if formset.is_valid():
-            for form in formset:       # Fazemos o for pois são vários forms
-                if form.cleaned_data:  
-                    task = form.save()  
-            return redirect('success_url')  
-    else:
-        formset = TarefaFormSet()  # Cria o formset vazio
-
-    context = {
-        'formset': formset
+def ajax_livro(request, id):
+    livro = get_object_or_404(Livro, id=id)
+    resultado = {
+        "nome": livro.nome,
+        "autor": livro.autor,
+        "ano": livro.ano,
     }
-    return render(request, 'criar_tarefas.html', context)
+    return JsonResponse(resultado)
 ```
 
 ---
-# Exemplo
-- No template:
-```django
-...
-<form method="post">
-    {% csrf_token %}
-    {{ formset.management_form }}  <!-- Necessário para formsets -->
-    
-    <!-- Carrega os forms um por um -->
-    {% for form in formset %}
-        <div class="form">
-            {{ form }}
-        </div>
-        <hr>
-    {% endfor %}
-    
-    <button type="submit">Save</button>
-</form>
-...
-```
+# Serializer
 
 ---
-# Editar Formsets
-- Caso seja necessário carregar dados no formulário, como em uma view de editar:
-- No views.py
-```python
-from .models import Tarefa
-from .forms import TarefaFormSet
-
-def editar_tarefas(request):
-    if request.method == 'POST':
-        formset = TaskFormSet(request.POST)
-        if formset.is_valid():
-            for form in formset:
-                if form.cleaned_data:
-                    form.save()
-            return redirect('success_url')
-    else:
-        tarefas = Tarefas.objects.all()
-        initial_data = [{'title': task.title, 'description': task.description, 'completed': task.completed} for task in tasks]
-        lista_tarefas = []
-        for tarefa in tarefas:
-            lista_tarefas.append(tarefa)
-        formset = TarefasFormSet(initial=lista_tarefas)
-
-    context = {
-        'formset': formset,
-    }
-
-    return render(request, 'editar_tarefas.html', context)
-```
+# POST
 
 ---
-# Formsets Inline
-- Muitas vezes nossos formulários escrevem em mais de um model;
-- Ex. a página de editar perfil de um usuário (models User e Perfil);
-- Usamos formsets inline para criar esses formulários mais complexos;
-- https://stackoverflow.com/questions/53035151/django-formset-factory-vs-modelformset-factory-vs-inlineformset-factory
+# Referências
+- https://api.jquery.com
 
 ---
 # <!--fit--> Dúvidas? 🤔
