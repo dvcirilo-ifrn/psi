@@ -149,7 +149,7 @@ var casa; //declarou depois de usar, funciona e não perde o conteúdo (hoisting
 let rua = "Principal";
 rua = "Rua de Cima";
 rua = 77; //funciona
-let rua; //cria outra variavel rua, perde a anterior
+let rua; //erro! não pode declarar novamente
 
 const bairro = "Centro";
 bairro = "Mirassol"; //não funciona!
