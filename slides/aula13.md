@@ -225,6 +225,22 @@ switch (a) {
 ```
 
 ---
+# Operadores de comparação
+- `==` igual, mas aceita tipos de dados diferentes;
+- `===` igual até no tipo;
+- `>, >=, <, <=, !=, !==`;
+```js
+const a = 5;
+const b = "5";
+if (a == b){
+  // é verdade!
+}
+if (a === b){
+  // falso!
+}
+```
+
+---
 <style scoped>section { font-size: 24px; }</style>
 <style scoped>pre { font-size: 18px; }</style>
 # Laços
