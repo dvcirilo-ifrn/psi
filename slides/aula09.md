@@ -83,6 +83,7 @@ img {
 - O atributo `name` é importante pois é como o dado vai ser referenciado no servidor.
 
 ---
+<style scoped>section { font-size: 22px; }</style>
 # Method/Action
 - O atributo `action` indica o caminho/url para onde o form será enviado.;
 - O `method` pode ser `POST` ou `GET`:

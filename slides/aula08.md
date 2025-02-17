@@ -76,15 +76,15 @@ CREATE TABLE myapp_pessoa (
 # Alguns tipos de dados
 
 - EmailField: Endereços de e-mail (validação automática);
+- FileField: Arquivos;
+- ImageField: Imagens;
 - ForeignKey: Relacionamentos um-para-muitos;
 - ManyToManyField: Relacionamentos muitos-para-muitos;
 - OneToOneField: Relacionamentos um-para-um;
-- FileField: Arquivos;
-- ImageField: Imagens;
 - [Referência](https://docs.djangoproject.com/pt-br/5.1/ref/models/fields/#model-field-types).
 
 ---
-# Algumas opções dos dados
+# Alguns atributos dos campos
 - `max_length` - tamanho máximo para texto;
 - `null` - se vazio usa o `NULL` do SGBD;
 - `blank` - o campo pode ser vazio se `True`, por padrão é `False`;
@@ -93,19 +93,152 @@ CREATE TABLE myapp_pessoa (
 - `choices` - lista de valores possíveis.
 
 ---
+# *FileField* e *ImageField*
+- Sobem arquivos para uma pasta no servidor;
+- Segurança!
+- No BD fica salvo o endereço o arquivo;
+- Para *ImageField* é necessário instalar o pacote `pillow`;
+- Os arquivos são salvos na pasta configurada em `MEDIA_ROOT`;
+- O link para acesso aos arquivos fica configurado em `MEDIA_URL`;
+
+---
+# *FileField* e *ImageField*
+- Esses diretórios não são configurados por padrão;
+- Devemos adicionar no `settings.py`:
+```python
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
+```
+
+---
+# *FileField* e *ImageField*
+- No `urls.py` (apenas durante o desenvolvimento!):
+```python
+from django.conf.urls.static import static
+
+urlpatterns = [
+    # ... the rest of your URLconf goes here ...
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
+
+---
+# *FileField* e *ImageField*
+- Atributo `upload_to`:
+    - diretório dentro de `MEDIA_ROOT`;
+    - permite organizar melhor os arquivos;
+```python
+class Perfil(models.Model):
+    documento = FileField(upload_to="documentos/")
+    avatar = ImageField(upload_to="avatars/")
+```
+
+---
 # Relacionamentos
 - Relacionam modelos;
 - Recebem como argumentos o nome da classe relacionada;
-- ForeignKey: chave estrangeira;
-- ManyToManyField: Relacionamentos muitos-para-muitos;
-- OneToOneField: Relacionamentos um-para-um.
+- ForeignKey: chave estrangeira (um-para-vários);
+- ManyToManyField: muitos-para-muitos;
+- OneToOneField: um-para-um.
 
 ---
 # Relacionamentos
 - `on_delete` - define o que ocorre quando o objeto é removido;
 - `on_delete=models.CASCADE` - deleta os objetos relacionados junto;
 - `on_delete=models.SET_NULL` - escreve `NULL`;
+- `on_delete=models.PROTECT` - impede a remoção enquanto houver dados relacionados;
 - [Referência](https://docs.djangoproject.com/pt-br/5.1/ref/models/fields/#django.db.models.ForeignKey.on_delete).
+
+---
+# Exemplos
+- Um pra um:
+```python
+class Pessoa(models.Model):
+    nome = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=11, unique=True)
+
+class DadosPessoais(models.Model):
+    pessoa = models.OneToOneField(Pessoa, on_delete=models.CASCADE)
+    data_nascimento = models.DateField()
+```
+
+---
+# Exemplos
+- Um pra vários:
+```python
+class Pessoa(models.Model):
+    nome = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=11, unique=True)
+
+class Veiculo(models.Model):
+    pessoa = models.ForeignKey(Pessoa, on_delete=models.PROTECT)
+    placa = models.CharField(max_length=7)
+    modelo = models.CharField(max_length=50)
+```
+
+---
+# Exemplos
+- Vários pra vários:
+```python
+class Pessoa(models.Model):
+    nome = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=11, unique=True)
+
+class Empresa(models.Model):
+    socios = models.ManyToManyField(Pessoa)
+    nome = models.CharField(max_length=50)
+    cnpj = models.CharField(max_length=14, unique=True)
+```
+
+---
+# Exemplos
+- Vários pra vários (com tabela intermediária):
+```python
+class Pessoa(models.Model):
+    nome = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=11, unique=True)
+
+class Empresa(models.Model):
+    socios = models.ManyToManyField(Pessoa, through="Socio")
+    nome = models.CharField(max_length=50)
+    cnpj = models.CharField(max_length=14, unique=True)
+
+class Socio(models.Model):
+    pessoa = ForeignKey(Pessoa, on_delete=models.CASCADE)
+    empresa = ForeignKey(Pessoa, on_delete=models.CASCADE)
+    data_entrada = DateField() # campos extras
+    data_saida = DateField() # campos extras
+```
+
+---
+# Choices
+<style scoped>pre { font-size: 18px; }</style>
+- Lista de valores que um campo pode assumir;
+- Validação automática e consistência;
+```python
+class Usuario(models.Model):
+    ALUNO = "AL"
+    PROFESSOR = "PR"
+    MONITOR = "MO"
+    TIPOS = {
+        ALUNO: "Aluno",
+        PROFESSOR: "Professor",
+        MONITOR: "Monitor",
+    }
+
+    nome = models.CharField(max_length=100)
+    tipo = models.CharField(max_length=2, choices=TIPOS, default=ALUNO)
+```
+
+---
+# Choices
+- É possível acessar com `Usuario.ALUNO`, etc;
+- Ex.
+```python
+from .models import Usuario
+...
+if usuario.tipo == Usuario.ALUNO:
+    print("O usuário é aluno.")
+```
 
 ---
 # Classe Meta
