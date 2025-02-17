@@ -117,8 +117,10 @@ MEDIA_ROOT = BASE_DIR / "media"
 from django.conf.urls.static import static
 
 urlpatterns = [
-    # ... the rest of your URLconf goes here ...
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    ..., # importante acabar com vírgula!
+]
+# concatena a lista acima com o resultado de static()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
 
 ---
