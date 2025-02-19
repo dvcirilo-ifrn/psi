@@ -93,6 +93,7 @@ cpf_do_user = usuario.perfil.cpf
 - Como tudo no Django, é possível customizar.
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # URLs
 - Para utilizar as views padrão, devemos adicionar ao `config/urls.py` (ou diretamente no app):
 ```
@@ -130,6 +131,7 @@ urlpatterns = [
 ```
 AUTH_USER_MODEL = "usuarios.User"
 
+LOGIN_URL = "login"
 LOGOUT_REDIRECT_URL = "index"
 LOGIN_REDIRECT_URL = "index"
 ```
@@ -144,6 +146,7 @@ path("change-password/",
     auth_views.PasswordChangeView.as_view(template_name="change-password.html"),
 ),
 ```
+- Dica: é possível ver os templates que Django Admin usa [aqui](https://github.com/django/django/tree/main/django/contrib/admin/templates/registration).
 
 ---
 # Forms
@@ -157,7 +160,8 @@ path("change-password/",
 # Recuperação de Senha
 - O Django já gera o email com o link para recuperação de senha;
 - Para que o email seja enviado, é necessário ter um servidor de emails e configurar o `EMAIL_BACKEND` no `settings.py`;
-- O backend padrão para testes o Django apenas imprime o email no terminal.
+- Backend padrão para testes o Django apenas imprime o email no terminal.
+    - `EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"`
 
 ---
 # Limitando acesso a usuários logados
