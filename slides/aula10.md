@@ -155,14 +155,15 @@ path("change-password/",
 - Basta usar `{{ form  }}`;
 - Assim como os forms comuns é possível customizar ou construir o form diretamente;
 - Esses forms podem ser utilizados diretamente em outras partes do sistema, como o *PasswordChangeForm*;
-- Outro form importante é o *BaseUserCreationForm* que pode ser utilizado na página de registro.
+- Outro form importante é o *UserCreationForm* que pode ser utilizado na página de registro.
 
 ---
 # Recuperação de Senha
 - O Django já gera o email com o link para recuperação de senha;
+- Assim como os outros, precisa ter os templates em `registration`;
 - Para que o email seja enviado, é necessário ter um servidor de emails e configurar o `EMAIL_BACKEND` no `settings.py`;
-- Backend padrão para testes o Django apenas imprime o email no terminal.
-    - `EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"`
+- Backend para testes que apenas imprime o email no terminal:
+- `EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"`
 
 ---
 # Limitando acesso a usuários logados
