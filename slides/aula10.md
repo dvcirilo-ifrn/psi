@@ -137,6 +137,7 @@ LOGIN_REDIRECT_URL = "index"
 ```
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # Templates
 - Os *templates* devem ser colocados em `templates/registration` por padrão;
 - Os nomes são respectivamente: `login.html`, `logged_out.html`, `password_change_form.html`, `password_change_done.html`, `password_reset_form.html`, `password_reset_done.html`, `password_reset_confirm.html`, `password_reset_complete`.
