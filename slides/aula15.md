@@ -412,7 +412,7 @@ def ajax_get_livro(request, id):
 ...
 {% block script %}
 {{ block.super }}
-$(#meuBotao).click(() => {
+$(#meuBotao).click( function () {
   $.get("{% url 'ajax_get_livros' %}", function(data) {
     $("#minhaDiv").append(
       `<div>
@@ -424,6 +424,40 @@ $(#meuBotao).click(() => {
 });
 </body>
 ...
+```
+
+---
+# Atributos `data` do HTML5
+- Representam informações extras não-visuais;
+- Podem ser utilizados para passar informações para o JS;
+- Muito útil para passar URLs, IDs, etc, para o JS.
+- Basta adicionar à *tag*;
+- `<tag data-minhainfo="minha info extra" id="meuSeletor">`
+
+---
+# Atributos `data` do HTML5
+- Para acessar no JS:
+```js
+$("#meuSeletor").data("minhainfo");
+// retorna "minha info extra"
+```
+
+---
+# Exemplo
+- No template:
+```django
+<button data-url="{% url 'detalhar-view' coisa.id }" class="btn btn-ajax">Clique</button>
+```
+- No JS:
+```js
+$(".btn-ajax").click( function () {
+  $.get(
+    $(this).data("url"), //passou a URL e funciona fora do template!
+    function (resposta) {
+      console.log(resposta);
+    }
+});
+
 ```
 
 ---
@@ -473,7 +507,7 @@ $(#meuBotao).click(() => {
 - `script.js`
 ```javascript
 function carregarLivrosJson(botao, url) {
-  botao.click((url) => {
+  botao.click( function () {
     $.get(url, function(data) {
       $("#minhaDiv").append(
         `<div>
@@ -500,7 +534,7 @@ function carregarLivrosJson(botao, url) {
 # Recebendo HTML renderizado
 - Caso o Django responda HTML, o JS fica bem simplificado;
 ```javascript
-$(#meuBotao).click(() => {
+$(#meuBotao).click( function () {
   $.get("{% url 'ajax_get_livros' %}", function(bloco_html) {
     $("#minhaDiv").html(bloco_html);
   });
@@ -526,19 +560,19 @@ function getCSRFToken() {
         ?.split('=')[1];
 }
 
-$("#botaoLike").click( () => {
-  $.post(
-    "{% url 'ajax_like_livro' %}", // só funciona dentro do template
-    { //dados
+$("#botaoLike").click( function() {
+  $.ajax(
+    url: "{% url 'ajax_like_livro' %}", // só funciona dentro do template
+    data: { //dados
       csrfmiddlewaretoken: getCSRFToken(),
       id_livro: 6
     },
-    (resposta) => {//callback de sucesso
+    success: function (resposta) {//callback de sucesso
       alert(resposta.mensagem)
       $("#numLikes").text(resposta.likes);
     },
-    (resposta) => {//callback de erro
-      alert(resposta.mensagem);
+    error: function (xhr, status, error) => {//callback de erro
+      alert(data.status);
     }
   );
 });
@@ -584,18 +618,18 @@ def ajax_like_livro(request):
 ---
 # Exemplo form já carregado 
 ```javascript
-$("#livroForm").submit( (evento) => {
+$("#livroForm").submit( function (evento) {
   evento.preventDefault(); // evita a submissão "normal" do form
   $.ajax({
     url: {% url 'ajax_criar_livro' %},
     method: "POST",
     data: new FormData($("#livroForm")[0]), //cria o objeto FormData
-    success: (resposta) => {
+    success: function (resposta) {
       $("#livroForm")[0].reset(); //limpa o form pra permitir nova submissao
       alert(resposta.mensagem);
     },
-    error: (resposta) => {
-      $("#livroForm").html(resposta); //substitui com o form do django (traz os erros)
+    error: function (xhr, status, error) {
+      $("#livroForm").html(error); //substitui com o form do django (traz os erros)
       alert(resposta.mensagem);
     }
   });
@@ -605,17 +639,17 @@ $("#livroForm").submit( (evento) => {
 ---
 # Carregando form
 ```javascript
-$("#botaoNovoForm").click( () => {
-    $.ajax({
-        url:{% url 'ajax_criar_livro' %},
-        method: "GET",
-        success: (resposta) => {
-            $(#divForm).append(resposta.form);
-        },
-        error: (resposta) => {
-            alert("Erro ao carregar dados");
-        }
-    })
+$("#botaoNovoForm").click( function () {
+  $.ajax({
+    url:{% url 'ajax_criar_livro' %},
+    method: "GET",
+    success: function (resposta) {
+      $(#divForm).append(resposta.form);
+    },
+    error: function (xhr, status, error) {
+      alert("Erro ao carregar dados");
+    }
+  })
 })
 ```
 - O resto é igual ao anterior.
@@ -761,8 +795,16 @@ $.ajax({
 - Uma das formas de exibir informação dinâmica é com o uso de *modais*;
 - Janelas pop-up que sobrepõem o conteúdo da página;
 - [Bootstrap](https://getbootstrap.com/docs/5.3/components/modal/)
-- `$("#meuModal").modal("show")`
-- `$("#meuModal").modal("hide")`
+- Usam os atributos `data-bs-toggle="modal"` e `data-bs-target="#id-do-modal"` no botão que abre o modal;
+- O Bootstrap5 não usa mais jQuery.
+
+---
+# Modais
+- Para controlar o modal usando JS Vanilla:
+```js
+const meuModal = new bootstrap.Modal(document.getElementById('id-do-modal'));
+meuModal.show();
+```
 
 ---
 # Latência
@@ -778,6 +820,7 @@ $.ajax({
 - Verifique sempre o console do navegador para ver os erros de JS;
 - Teste adicionando um `time.sleep(tempo_em_segundos)` na view;
     - Precisa importar `import time` antes.
+- Não esqueça de remover isso antes de fazer o commit!!!
 
 ---
 # CRUD completo com AJAX
