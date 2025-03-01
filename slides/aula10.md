@@ -85,6 +85,27 @@ cpf_do_user = usuario.perfil.cpf
 ```
 
 ---
+# Custom User
+- O Django por padrão usa o `username` como chave de login;
+- É comum usarmos `email` ou mesmo `cpf` ao invés de `username`;
+- Na customização podemos configurar isso;
+- É necessário fazer várias alterações;
+- Porém podemos reutilizar o código em outros projetos.
+
+---
+# Exemplo
+```python
+class Usuario(AbstractUser):
+    # Para usar como login, é necessário ser único
+    email = models.EmailField(max_length=255, unique=True)
+   
+    # Define qual o campo é o nome de usuário
+    USERNAME_FIELD = "email"
+    # Necessário para createsuperuser continuar funcionando
+    REQUIRED_FIELDS = ["username"]
+```
+
+---
 # Views padrão de autenticação
 - O Django possui um sistema completo de autenticação pronto;
 - Views de Login/Logout/Alterar Senha/etc.;
@@ -156,6 +177,11 @@ path("change-password/",
 - Assim como os forms comuns é possível customizar ou construir o form diretamente;
 - Esses forms podem ser utilizados diretamente em outras partes do sistema, como o *PasswordChangeForm*;
 - Outro form importante é o *UserCreationForm* que pode ser utilizado na página de registro.
+
+---
+# Forms
+- Os forms podem ser customizados herdando do form original;
+- Por exemplo, para remover o campo `username` quando não for necessário.
 
 ---
 # Recuperação de Senha
