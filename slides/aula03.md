@@ -27,7 +27,7 @@ img {
 - Ambiente Virtual Python (`venv`);
 - Frameworks Flask e Django;
 - VSCode;
-- Git/Github para versionamento ([minicurso](https://dvcirilo.github.io/tutorials/git/git.html)).
+- Git/Github para versionamento ([minicurso](https://dvcirilo-ifrn.github.io/minicursos/git/git.html)).
 
 ---
 # Ambiente Virtual Python (`venv`)

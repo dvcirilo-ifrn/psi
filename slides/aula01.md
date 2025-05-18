@@ -82,9 +82,25 @@ img {
 
 ---
 # Avaliação
-- Quiz teórico
-- Tarefas práticas
-- Projetos
+## Unidade 01
+    - Quiz teórico (50pts)
+    - Tarefas práticas (50pts)
+
+## Unidade 02
+    - Quiz teórico (25pts)
+    - Tarefas práticas (25pts)
+    - Projeto (50pts)
+
+---
+# Avaliação
+## Unidade 03
+    - Quiz teórico (50pts)
+    - Tarefas práticas (50pts)
+
+## Unidade 04
+    - Quiz teórico (25pts)
+    - Tarefas práticas (25pts)
+    - Projeto (50pts)
 
 ---
 # <!--fit--> Dúvidas? 🤔
