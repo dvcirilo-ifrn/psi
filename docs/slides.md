@@ -5,25 +5,25 @@
 
 | #  | Título                                     | Links                                              |
 |:----|:--------------------------------------------|---------------------------------------------------:|
-| 01  | Apresentação da Disciplina                  | [:material-presentation:](build/aula01.html) - [:material-file-pdf-box:](build/aula01.pdf) |
-| 02  | Conceitos Básicos                           | [:material-presentation:](build/aula02.html) - [:material-file-pdf-box:](build/aula02.pdf) |
-| 03  | Preparação do Ambiente                      | [:material-presentation:](build/aula03.html) - [:material-file-pdf-box:](build/aula03.pdf) |
-| 04  | Desenvolvimento web com Python/Django       | [:material-presentation:](build/aula04.html) - [:material-file-pdf-box:](build/aula04.pdf) |
-| 05  | Apps Django                                 | [:material-presentation:](build/aula05.html) - [:material-file-pdf-box:](build/aula05.pdf) |
-| 06  | Function-based Views                        | [:material-presentation:](build/aula06.html) - [:material-file-pdf-box:](build/aula06.pdf) |
-| 07  | Templates                                   | [:material-presentation:](build/aula07.html) - [:material-file-pdf-box:](build/aula07.pdf) |
-| 08  | Models                                      | [:material-presentation:](build/aula08.html) - [:material-file-pdf-box:](build/aula08.pdf) |
-| 09  | Forms                                       | [:material-presentation:](build/aula09.html) - [:material-file-pdf-box:](build/aula09.pdf) |
-| 10  | Autenticação                                | [:material-presentation:](build/aula10.html) - [:material-file-pdf-box:](build/aula10.pdf) |
-| 11  | Autorização                                 | [:material-presentation:](build/aula11.html) - [:material-file-pdf-box:](build/aula11.pdf) |
-| 12  | Mensagens/Paginação                         | [:material-presentation:](build/aula12.html) - [:material-file-pdf-box:](build/aula12.pdf) |
-| 13  | Introdução ao JavaScript                    | [:material-presentation:](build/aula13.html) - [:material-file-pdf-box:](build/aula13.pdf) |
-| 14  | jQuery                                      | [:material-presentation:](build/aula14.html) - [:material-file-pdf-box:](build/aula14.pdf) |
-| 15  | AJAX                                        | [:material-presentation:](build/aula15.html) - [:material-file-pdf-box:](build/aula15.pdf) |
+| 01  | Apresentação da Disciplina                  | [:material-presentation:](aula01.html) - [:material-file-pdf-box:](aula01.pdf) |
+| 02  | Conceitos Básicos                           | [:material-presentation:](aula02.html) - [:material-file-pdf-box:](aula02.pdf) |
+| 03  | Preparação do Ambiente                      | [:material-presentation:](aula03.html) - [:material-file-pdf-box:](aula03.pdf) |
+| 04  | Desenvolvimento web com Python/Django       | [:material-presentation:](aula04.html) - [:material-file-pdf-box:](aula04.pdf) |
+| 05  | Apps Django                                 | [:material-presentation:](aula05.html) - [:material-file-pdf-box:](aula05.pdf) |
+| 06  | Function-based Views                        | [:material-presentation:](aula06.html) - [:material-file-pdf-box:](aula06.pdf) |
+| 07  | Templates                                   | [:material-presentation:](aula07.html) - [:material-file-pdf-box:](aula07.pdf) |
+| 08  | Models                                      | [:material-presentation:](aula08.html) - [:material-file-pdf-box:](aula08.pdf) |
+| 09  | Forms                                       | [:material-presentation:](aula09.html) - [:material-file-pdf-box:](aula09.pdf) |
+| 10  | Autenticação                                | [:material-presentation:](aula10.html) - [:material-file-pdf-box:](aula10.pdf) |
+| 11  | Autorização                                 | [:material-presentation:](aula11.html) - [:material-file-pdf-box:](aula11.pdf) |
+| 12  | Mensagens/Paginação                         | [:material-presentation:](aula12.html) - [:material-file-pdf-box:](aula12.pdf) |
+| 13  | Introdução ao JavaScript                    | [:material-presentation:](aula13.html) - [:material-file-pdf-box:](aula13.pdf) |
+| 14  | jQuery                                      | [:material-presentation:](aula14.html) - [:material-file-pdf-box:](aula14.pdf) |
+| 15  | AJAX                                        | [:material-presentation:](aula15.html) - [:material-file-pdf-box:](aula15.pdf) |
 <!--
-| 16  | RichText/Formsets                           | [:material-presentation:](build/aula16.html) - [:material-file-pdf-box:](build/aula16.pdf) |
-| 17  | Sessão/Cookies/Context Processors           | [:material-presentation:](build/aula17.html) - [:material-file-pdf-box:](build/aula17.pdf) |
-| 18  | Class-based Views                           | [:material-presentation:](build/aula18.html) - [:material-file-pdf-box:](build/aula18.pdf) |
-| 19  | Customizando o Django Admin                 | [:material-presentation:](build/aula19.html) - [:material-file-pdf-box:](build/aula19.pdf) |
+| 16  | RichText/Formsets                           | [:material-presentation:](aula16.html) - [:material-file-pdf-box:](aula16.pdf) |
+| 17  | Sessão/Cookies/Context Processors           | [:material-presentation:](aula17.html) - [:material-file-pdf-box:](aula17.pdf) |
+| 18  | Class-based Views                           | [:material-presentation:](aula18.html) - [:material-file-pdf-box:](aula18.pdf) |
+| 19  | Customizando o Django Admin                 | [:material-presentation:](aula19.html) - [:material-file-pdf-box:](aula19.pdf) |
 -->
 
