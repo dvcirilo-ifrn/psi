@@ -4,7 +4,7 @@ Material de aula da disciplina de **Programação de Sistemas para Internet (PSI
 
 ## Conteúdo
 
-- [Slides](slides/index.md)
+- [Slides](slides/)
 - [Tutoriais](tutoriais/)
 - [Listas de exercícios (teóricos)](listas/)
 
