@@ -41,10 +41,10 @@ O *venv* precisa estar ativo no terminal para os comandos e também no editor pa
 
 ## Arquivo de dependências (*requirements*)
 
-Com o *venv* inicializado e ativo, podemos instalar algum pacote necessário usando o *pip*. Esses pacotes ficarão instalados automaticamente dentro da pasta `/venv`.
+Com o *venv* inicializado e ativo, podemos instalar algum pacote necessário usando o *pip*. Esses pacotes ficarão instalados automaticamente dentro da pasta `/venv`. Usaremos como exemplo o pacote `cowsay`.
 
 ```sh
-pip install nomedopacote
+pip install cowsay
 ```
 
 Como o *venv* não será reutilizado em outros computadores, guardamos a lista dos pacotes instalados em um arquivo para que possam ser instalados novamente quando necessário. Esse arquivo de dependências de projeto é nomeado `requirements.txt` por padrão.
@@ -74,6 +74,27 @@ git config --global user.name "Seu Nome"
 git config --global user.email "seuemail@servidor.com"
 ```
 
+## Gitignore
+
+Existe um arquivo muito importante para o repositório que é o `.gitgnore`. Como é padrão em sistemas Posix (família do Unix, Linux, MacOS, etc.), arquivos que iniciam com ponto (`.`) são arquivos *ocultos*, e não aparecem normalmente na listagem de arquivos.
+
+Esse arquivo define os arquivos que **não podem** entrar no repositório, como arquivos com senhas, arquivos temporários, arquivos do ambiente de desenvolvimento e arquivos irrelevantes no geral.
+
+Quando iniciamos um repositório, devemos definir um `.gitignore` com os arquivos que não podem entrar no repositório. O maior exemplo disso agora é o *venv*.
+
+Crie um arquivo com o nome `.gitgnore` e o seguinte conteúdo:
+
+```
+venv
+```
+
+Para ignorar mais arquivos/pastas, basta ir adicionando seus nomes, linha a linha.
+
+!!! warning "Importante!"
+    Recentemente o *venv* passou a incluir um `.gitignore` automaticamente internamente, porém é importante garantir que nosso `.gitignore` do projeto ignore a pasta `venv`, pois é possível que seu projeto seja executado em um computador com uma versão antiga.
+
+    Nunca adicione ambientes de desenvolvimento no repositório!
+
 ## Adicionando arquivos ao repositório
 
 Seguindo a lógica do *git*, devemos primeiro adicionar os arquivos a área de *staging*, e aí sim podemos realizar o *commit* com uma mensagem, que vai realmente adicionar aquela versão do arquivo ao nosso repositório.
@@ -81,6 +102,7 @@ Seguindo a lógica do *git*, devemos primeiro adicionar os arquivos a área de *
 No VSCode é possível realizar isso diretamente na interface gráfica ou pelo terminal.
 
 ```sh
+git add .gitignore
 git add requirements.txt
 git commit -m "Mensagem que descreve o que você fez"
 ```

@@ -12,9 +12,9 @@ nav:
   - Tutoriais:
     - 'tutoriais/index.md'
     - 'Configurando o ambiente': 'tutoriais/tutorial01.md'
-    - 'Iniciando um projeto Django': 'tutoriais/tutorial02.md'
-    - 'Convertendo um site estático para templates Django': 'tutoriais/tutorial04.md'
-    - 'Enviando dados da view para o template': 'tutoriais/tutorial04.md'
+    # - 'Iniciando um projeto Django': 'tutoriais/tutorial02.md'
+    # - 'Convertendo um site estático para templates Django': 'tutoriais/tutorial04.md'
+    # - 'Enviando dados da view para o template': 'tutoriais/tutorial04.md'
   - Listas:
     - 'listas/index.md'
     - 'Lista 01': listas/lista01.md
@@ -69,13 +69,5 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/dvcirilo-ifrn/psi
-
-  extra_footer: |
-    <p style="text-align: center;">
-      Este conteúdo está licenciado sob
-      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">
-        <i class="fab fa-creative-commons"></i> CC BY 4.0
-      </a>
-    </p>
 extra_css:
   - extra.css
