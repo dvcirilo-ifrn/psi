@@ -165,12 +165,17 @@ python manage.py runserver
 
 ---
 # Tarefa 01
-- Configure o ambiente(git/venv) de acordo com as aulas passadas;
+- Clone o repositório das tarefas da disciplina (link no GSA);
+- Dentro desse repositório configure o venv de acordo com as aulas passadas;
+- Crie o arquivo `.gitignore`;
 - Instale o Django;
-- Crie uma pasta `tarefas`;
-- **Dentro** dessa pasta inicialize um projeto `config` (entre na pasta com `cd tarefas`);
-- Rode o sistema;
+- Crie o arquivo `requirements.txt`;
+- Crie uma pasta chamada `tarefa01`;
+- No terminal, entre nessa pasta com `cd tarefa01`;
+- Dentro da pasta, inicialize um projeto `config`;
+- Rode o servidor;
 - Verifique se está funcionando no navegador.
+- Adicione os arquivos, faça o commit e o push.
 
 ---
 # <!--fit--> Dúvidas? 🤔
