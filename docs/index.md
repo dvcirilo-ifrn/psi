@@ -11,6 +11,7 @@ Material de aula da disciplina de **Programação de Sistemas para Internet (PSI
 
 ## Links Úteis
 
+- [Minicurso de Git](https://dvcirilo-ifrn.github.io/minicursos/git/git.html)
 - [Ementa da disciplina - PPC 2013](ementa.pdf)
 - [Google Sala de Aula](https://classroom.google.com/)
 
