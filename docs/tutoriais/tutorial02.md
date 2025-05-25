@@ -1,13 +1,9 @@
-# Primeiro projeto Django
+# Tutorial: Criando *forks* e enviando trabalhos da disciplina
 
-Neste tutorial criaremos um repositório com um projeto Django e duas páginas estáticas.
+Nessa disciplina utilizaremos o GitHub para o acompanhamento e envio dos trabalhos.
 
-## Iniciando o repositório
+Será disponibilizado no Google Sala de Aula o link para o repositório base das tarefas. Esse repositório contém apenas um arquivo `README.md`. Nesse arquivo, estará a listagem das tarefas até o momento, com suas instruções básicas, link para o slide com instruções detalhadas e data máxima de entrega.
 
-Crie e abra uma nova pasta no VSCode.
+Cada aluno deverá criar um *fork* desse repositório.
 
-Nessa pasta inicialize um repositório Git, usando o botão na aba de *Gerenciamento de código*
 
-```sh
-git 
-```
