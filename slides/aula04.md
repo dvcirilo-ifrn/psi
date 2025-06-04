@@ -164,10 +164,12 @@ python manage.py runserver
 - Use o `Tab` no teclado para auto-completar os comandos e evitar erros de digitação.
 
 ---
+<style scoped>ul { font-size: 22px; }</style>
 # Tarefa 01
-- Clone o repositório das tarefas da disciplina (link no GSA);
-- Dentro desse repositório configure o venv de acordo com as aulas passadas;
-- Crie o arquivo `.gitignore`;
+- Crie um *fork* do repositório das tarefas da disciplina (link no GSA);
+- Clone **o seu repositório** (fork) usando o VSCode;
+- Dentro desse repositório configure o *venv* de acordo com as aulas passadas;
+- Crie o arquivo `.gitignore` (veja o [tutorial](https://dvcirilo-ifrn.github.io/psi/tutoriais/));
 - Instale o Django;
 - Crie o arquivo `requirements.txt`;
 - Crie uma pasta chamada `tarefa01`;

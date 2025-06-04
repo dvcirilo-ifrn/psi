@@ -80,12 +80,15 @@ Existe um arquivo muito importante para o repositório que é o `.gitgnore`. Com
 
 Esse arquivo define os arquivos que **não podem** entrar no repositório, como arquivos com senhas, arquivos temporários, arquivos do ambiente de desenvolvimento e arquivos irrelevantes no geral.
 
-Quando iniciamos um repositório, devemos definir um `.gitignore` com os arquivos que não podem entrar no repositório. O maior exemplo disso agora é o *venv*.
+Quando iniciamos um repositório, devemos definir um `.gitignore` com os arquivos que não podem entrar no repositório.
+
+O maior exemplo disso agora é o *venv*. Também é importante ignorar as pastas `__pycache__` que são arquivos temporários que o Python gera.
 
 Crie um arquivo com o nome `.gitgnore` e o seguinte conteúdo:
 
 ```
 venv
+__pycache__
 ```
 
 Para ignorar mais arquivos/pastas, basta ir adicionando seus nomes, linha a linha.
