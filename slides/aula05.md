@@ -160,9 +160,11 @@ TEMPLATES = [
 ```
 
 ---
-<style scoped>section { font-size: 28px; }</style>
+<style scoped>section { font-size: 24px; }</style>
 # Tarefa 02
-- Configure o ambiente (venv, git);
+- Clone o repositório de tarefas, crie e ative o `venv` e instale o `requirements.txt`;
+- Crie uma pasta `tarefa02`;
+- **Entre na pasta** - `cd tarefa02`;
 - Inicialize um projeto (`config`) e um *app* chamado `exemplo`;
 - Configure as *urls* do projeto (em `config`) e as *urls* do *app*;
 - As *urls* do *app* devem apontar para uma *view*: `index`;
