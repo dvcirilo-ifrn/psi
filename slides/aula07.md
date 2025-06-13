@@ -176,13 +176,15 @@ def index(request):
 
 ---
 # Tarefa 03
-- Usando o mesmo projeto da aula anterior:
+- Crie uma nova pasta `tarefa03`
+- Entre na pasta e crie novo projeto Django, e também um novo app chamado `app`
+- Crie uma *view* e um *template* `index`. Configure as *urls* para `''`.
 - Crie uma *view* e um *template* `usuarios`. Configure as *urls* para `/usuarios`
 - Na sua *view* de usuários, crie uma lista de 5 dicionários, cada dicionário deve ter os seguintes dados:
     - Nome, matrícula, idade, cidade
 - Crie dados fictícios para esses 5 usuários.
 - Crie um *template* que consiga apresentar os dados de todos os usuários listados
-- Teste o sistema e faça o commit quando tiver funcionando.
+- Teste o sistema e faça o commit/push quando tiver funcionando.
 
 ---
 # Herança de templates
