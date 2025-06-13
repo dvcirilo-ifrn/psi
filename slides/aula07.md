@@ -175,6 +175,7 @@ def index(request):
 ```
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # Tarefa 03
 - Crie uma nova pasta `tarefa03`
 - Entre na pasta e crie novo projeto Django, e também um novo app chamado `app`
