@@ -340,15 +340,16 @@ path('alunos/', views.alunos, name="estudantes"),
 
 ---
 <style scoped>section { font-size: 22px; }</style>
-# Tarefa 04
+# Projeto 01
 - Utilizando seus conhecimentos de *webdesign*:
-    - Crie um site para divulgar uma equipe de futebol (masculino, feminino, seleção, etc);
-    - O site deve ter 3 páginas: Início, Jogadores, Sobre;
-    - Início: informações gerais sobre o time, com imagens, histórico, etc;
-    - Atletas: foto, nome, idade, posição e local de nascimento. Basta 11 atletas;
+    - Crie um site para divulgar uma equipe de algum esporte ou elenco de série, etc.
+    - O site deve ter 3 páginas: Início, Equipe/Elenco, Sobre;
+    - Início: informações gerais sobre a equipe/série, com imagens, histórico, etc;
+    - Equipe/Elenco: foto, nome, idade, posição e local de nascimento. Basta 11 atletas;
     - Sobre: informações sobre o site, autores, etc.
 - O site deve ter um menu global e um *footer* com informações como *copyright* que devem aparecer em todas as páginas;
-- O site deve funcionar dentro do Django, usando um *template* base e os atletas devem ser descritos em um dicionário na *view*;
+- O site deve funcionar dentro do Django, usando um *template* base e os integrantes da equipe/elenco devem ser descritos em um dicionário na *view*;
+- As informações do site, autores, etc, também devem estar em um dicionário nas *views*;
 - Use o repositório modelo para fazer o upload do trabalho.
 
 ---
