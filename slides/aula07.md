@@ -339,7 +339,7 @@ path('alunos/', views.alunos, name="estudantes"),
 ```
 
 ---
-<style scoped>section { font-size: 22px; }</style>
+<style scoped>section { font-size: 20px; }</style>
 # Projeto 01
 - Utilizando seus conhecimentos de *webdesign*:
     - Crie um site para divulgar uma equipe de algum esporte ou elenco de série, etc.
