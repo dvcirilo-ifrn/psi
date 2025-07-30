@@ -439,8 +439,10 @@ context['hoje'] = date.today()
 
 ---
 # Tarefa 05
-- Crie um blog simples;
-- O blog deve ter um *header* com o título e um *footer* com informações do desenvolvedor;
+- Crie um blog simples com duas views:
+    - index: lista de todos os posts com título, data e link da postagem;
+    - post/<id>: página com o conteúdo do post
+- O blog deve ter um *header* com o título e link para o index, e um *footer* com informações do desenvolvedor;
 - O conteúdo de cada postagem deve ser apenas uma imagem, um título, o texto e a data de publicação;
 - Todas essas informações devem existir no BD;
 - Crie um *superuser* e cadastre as postagens pela página de *admin*.
