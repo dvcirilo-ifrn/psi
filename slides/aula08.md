@@ -423,12 +423,12 @@ def __str__(self):
 ```
 
 ---
-# Tarefa 05
+# Tarefa 04
 - Crie um site simples de lista de tarefas;
-- Cada tarefa deve ter: nome, status e prazo;
+- Cada tarefa deve ter: nome, status e prazo; (Model)
 - O cadastro das tarefas deve ser feito pelo Django Admin;
 - Diferencie as tarefas que estão atrasadas;
-- Dica: use a biblioteca `datetime` do Python na view para passar a data atual no `context`:
+    - Dica: use a biblioteca `datetime` do Python na view para passar a data atual no `context`:
 ```
 from datetime import date
 
@@ -438,7 +438,7 @@ context['hoje'] = date.today()
 ```
 
 ---
-# Tarefa 06
+# Tarefa 05
 - Crie um blog simples;
 - O blog deve ter um *header* com o título e um *footer* com informações do desenvolvedor;
 - O conteúdo de cada postagem deve ser apenas uma imagem, um título, o texto e a data de publicação;
