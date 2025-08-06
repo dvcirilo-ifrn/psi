@@ -448,4 +448,11 @@ context['hoje'] = date.today()
 - Crie um *superuser* e cadastre as postagens pela página de *admin*.
 
 ---
+# Projeto 02
+- Converta o Projeto 01 em um sistema dinâmico, usando os Models;
+- Crie os Models para cada um dos dicionários que você usou nas *views*;
+- Adicione esses models no Django Admin e cadastre todos os dados por lá;
+- O site deve funcionar do mesmo jeito do anterior (ou melhor!).
+
+---
 # <!--fit--> Dúvidas? 🤔
