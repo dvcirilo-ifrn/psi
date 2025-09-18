@@ -175,14 +175,17 @@ def index(request):
 ```
 
 ---
+<style scoped>section { font-size: 24px; }</style>
 # Tarefa 03
-- Usando o mesmo projeto da aula anterior:
+- Crie uma nova pasta `tarefa03`
+- Entre na pasta e crie novo projeto Django, e também um novo app chamado `app`
+- Crie uma *view* e um *template* `index`. Configure as *urls* para `''`.
 - Crie uma *view* e um *template* `usuarios`. Configure as *urls* para `/usuarios`
 - Na sua *view* de usuários, crie uma lista de 5 dicionários, cada dicionário deve ter os seguintes dados:
     - Nome, matrícula, idade, cidade
 - Crie dados fictícios para esses 5 usuários.
 - Crie um *template* que consiga apresentar os dados de todos os usuários listados
-- Teste o sistema e faça o commit quando tiver funcionando.
+- Teste o sistema e faça o commit/push quando tiver funcionando.
 
 ---
 # Herança de templates
@@ -336,16 +339,17 @@ path('alunos/', views.alunos, name="estudantes"),
 ```
 
 ---
-<style scoped>section { font-size: 22px; }</style>
-# Tarefa 04
+<style scoped>section { font-size: 20px; }</style>
+# Projeto 01
 - Utilizando seus conhecimentos de *webdesign*:
-    - Crie um site para divulgar uma equipe de futebol (masculino, feminino, seleção, etc);
-    - O site deve ter 3 páginas: Início, Jogadores, Sobre;
-    - Início: informações gerais sobre o time, com imagens, histórico, etc;
-    - Atletas: foto, nome, idade, posição e local de nascimento. Basta 11 atletas;
+    - Crie um site para divulgar uma equipe de algum esporte ou elenco de série, etc.
+    - O site deve ter 3 páginas: Início, Equipe/Elenco, Sobre;
+    - Início: informações gerais sobre a equipe/série, com imagens, histórico, etc;
+    - Equipe/Elenco: foto, nome, idade, posição e local de nascimento. Basta 11 atletas;
     - Sobre: informações sobre o site, autores, etc.
 - O site deve ter um menu global e um *footer* com informações como *copyright* que devem aparecer em todas as páginas;
-- O site deve funcionar dentro do Django, usando um *template* base e os atletas devem ser descritos em um dicionário na *view*;
+- O site deve funcionar dentro do Django, usando um *template* base e os integrantes da equipe/elenco devem ser descritos em um dicionário na *view*;
+- As informações do site, autores, etc, também devem estar em um dicionário nas *views*;
 - Use o repositório modelo para fazer o upload do trabalho.
 
 ---
