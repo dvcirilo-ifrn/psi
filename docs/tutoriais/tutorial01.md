@@ -16,11 +16,18 @@ Esse tutorial considera que essas ferramentas já estão instaladas no computado
 
 Após abrir o VSCode vá no botão `Open Folder` (*File/Open Folder*) e crie uma nova pasta para o seu projeto.
 
+![Nova Pasta](img/t01-01.png)
+
 Confirme na janela que você confia no autores da pasta.
+
+![Confimação](img/t01-02.png)
 
 ## Ambiente Virtual Python (*venv*)
 
 Abra um terminal (*Terminal/New terminal*) e inicialize um ambiente virtual Python chamado `venv`:
+
+![Novo terminal](img/t01-03.png)
+
 
 ```sh
 python -m venv venv
@@ -32,16 +39,22 @@ Para utilizar o ambiente é necessário ativá-lo.
 ./venv/Scripts/Activate.ps1
 ```
 
+![Venv ativa](img/t01-04.png)
+
 !!! warning "Atenção!"
     Lembre de utilizar a tecla Tab no teclado para auto-completar os comandos e evitar erros de digitação.
 
 O VSCode normalmente identifica e pergunta se você quer usar o *venv* que foi criado, e você deve aceitar.
 
-O *venv* precisa estar ativo no terminal para os comandos e também no editor para que ele reconheça as bibliotecas e não fique acusando erros inexistentes. Verifique no canto inferior direito da tela se aparece o Python com o indicador de *venv*. Caso não apareça, clique no nome Python e selecione o seu *venv* na lista que vai aparecer.
+O *venv* precisa estar ativo no terminal para os comandos e também no editor para que ele reconheça as bibliotecas e não fique acusando erros inexistentes. Com um arquivo `.py` aberto, verifique no canto inferior direito da tela se aparece o Python com o indicador de *venv*. Caso não apareça, clique no nome Python e selecione o seu *venv* na lista que vai aparecer.
+
+![Venv VSCode](img/t01-05.png)
+
+![Venv VSCode](img/t01-06.png)
 
 ## Arquivo de dependências (*requirements*)
 
-Com o *venv* inicializado e ativo, podemos instalar algum pacote necessário usando o *pip*. Esses pacotes ficarão instalados automaticamente dentro da pasta `/venv`. Usaremos como exemplo o pacote `cowsay`.
+Com o *venv* inicializado e ativo, podemos instalar algum pacote necessário usando o *pip*. Esses pacotes ficarão instalados automaticamente dentro da pasta `/venv`. Usaremos como **exemplo** o pacote `cowsay`.
 
 ```sh
 pip install cowsay
@@ -61,6 +74,24 @@ O operador `>` é chamado de redirecionamento de saída, e sua função é redir
 
 Existe também a versão `>>` que adiciona ao final do arquivo original, sem apagar o que já estava lá.
 
+## Testando o funcionamento
+
+Crie um arquivo `teste.py` com o seguinte conteúdo:
+
+```python
+import cowsay
+
+cowsay.cow("Hello, world!")
+```
+
+Execute esse arquivo no terminal com o comando:
+
+```sh
+python teste.py
+```
+
+Verifique o que acontece. Caso não funcione, reveja os passos anteriores para garantir que tudo foi realizado corretamente.
+
 ## Configurando o Git
 
 Primeiramente, se não tiver, crie uma conta no [GitHub](https://github.com). Use seu email pessoal (não perca a senha!) e crie um *username* adequado, que possa ser utilizado em situações profissionais no futuro.
@@ -74,6 +105,18 @@ git config --global user.name "Seu Nome"
 git config --global user.email "seuemail@servidor.com"
 ```
 
+## Inicializando o repositório
+
+Todo o gerenciamento de repositório do VSCode fica no lado esquerdo, na seção "*Source Control*". Podemos inicializar o repositório por lá, ou diretamente no terminal com:
+
+```sh
+git init
+```
+
+![Source Control](img/t01-07.png)
+
+![Inicializar repositório](img/t01-08.png)
+
 ## Gitignore
 
 Existe um arquivo muito importante para o repositório que é o `.gitgnore`. Como é padrão em sistemas Posix (família do Unix, Linux, MacOS, etc.), arquivos que iniciam com ponto (`.`) são arquivos *ocultos*, e não aparecem normalmente na listagem de arquivos.
@@ -84,7 +127,7 @@ Quando iniciamos um repositório, devemos definir um `.gitignore` com os arquivo
 
 O maior exemplo disso agora é o *venv*. Também é importante ignorar as pastas `__pycache__` que são arquivos temporários que o Python gera.
 
-Crie um arquivo com o nome `.gitgnore` e o seguinte conteúdo:
+Crie um arquivo com o nome `.gitignore` e o seguinte conteúdo:
 
 ```
 venv
@@ -94,9 +137,17 @@ __pycache__
 Para ignorar mais arquivos/pastas, basta ir adicionando seus nomes, linha a linha.
 
 !!! warning "Importante!"
-    Recentemente o *venv* passou a incluir um `.gitignore` automaticamente internamente, porém é importante garantir que nosso `.gitignore` do projeto ignore a pasta `venv`, pois é possível que seu projeto seja executado em um computador com uma versão antiga.
+    Recentemente o *venv* passou a incluir um `.gitignore` interno automaticamente, porém é importante garantir que nosso `.gitignore` do projeto ignore a pasta `venv`, pois é possível que seu projeto seja executado em um computador com uma versão antiga.
 
     Nunca adicione ambientes de desenvolvimento no repositório!
+
+## Verificando status do repositório
+
+No terminal utilizamos o comando `git status`. Já na interface gráfica vemos na aba *Source Control*.
+
+![Adicionando arquivos](img/t01-09.png)
+
+O status `U` significa que o arquivo não faz parte do repositório ainda.
 
 ## Adicionando arquivos ao repositório
 
@@ -106,9 +157,20 @@ No VSCode é possível realizar isso diretamente na interface gráfica ou pelo t
 
 ```sh
 git add .gitignore
-git add requirements.txt
+git add requirements.txt teste.py
 git commit -m "Mensagem que descreve o que você fez"
 ```
+
+![Adicionando arquivos](img/t01-10.png)
+
+![Adicionando arquivos](img/t01-11.png)
+
+Depois de adicionados, o status muda para `A` e podemos fazer o commit.
+
+!!! warning "Importante!"
+    A mensagem de *commit* é obrigatória! Caso você esqueça de colocar, e clique em *Commit*, uma janela do editor abrirá para que você adicione a mensagem. Escreva a mensagem, salve e feche o arquivo para poder continuar.
+
+![Commit](img/t01-12.png)
 
 ## Enviando as alterações para o GitHub
 
@@ -121,9 +183,13 @@ Clique no botão *Create* ou *New* na sua página do GitHub.
 
 Defina um nome para o repositório. No caso desse tutorial use `tutorial01`.
 
+![Novo repositório](img/t01-13.png)
+
 O Github oferece a possibilidade de criação de alguns arquivos padrão, como o `README.md`, usado para escrever informações sobre o projeto e o `.gitignore`, que evita que arquivos indesejados entrem no nosso repositório. Como nosso projeto já tem *commits*, não vamos utilizar essas opções, pois causaria conflitos. Também não defina uma licença.
 
 Após criar o repositório, o Github dá as informações de como configurar o repositório local (no git) para se comunicar com o repositório remoto (no Github)
+
+![Configuração github](img/t01-14.png)
 
 Seguiremos as instruções em *Existing local repository*, que é o nosso caso. O GitHub nos dá 3 comandos, que devemos executar linha por linha no terminal. 
 
@@ -142,6 +208,22 @@ O segundo comando renomeia o nosso *branch* principal de `master` para `main`, q
 
 E por último, o comando `git push` *empurra* o nosso código para o repositório remoto (`origin`) no *branch* `main`.
 A opção `-u` serve para relacionar o *branch* remoto `main` com nosso *branch* local `main`. Só é necessário fazer isso na primeira vez que fizer *push* de um *branch*.
+
+No primeiro envio, o Github vai precisar autenticar sua conta, aparecerá a seguinte janela, que você deve clicar em "Sign in with your browser"
+
+![Autenticação](img/t01-15.png)
+
+Insira seus dados de login e aceite o acesso:
+
+![Autenticação](img/t01-16.png)
+
+No final do processo aparecerá uma página de erro, mas a autenticação já deu certo.
+
+![Autenticação](img/t01-17.png)
+
+Acesse a página do repositório para verificar.
+
+![Autenticação](img/t01-18.png)
 
 A partir de agora todas as modificações podem seguir a sequência:
 
