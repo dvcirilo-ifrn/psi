@@ -114,6 +114,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 # *FileField* e *ImageField*
 - No `urls.py` (apenas durante o desenvolvimento!):
 ```python
+# adicionar no inicio do arquivo:
+from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
