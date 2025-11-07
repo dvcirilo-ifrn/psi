@@ -385,6 +385,81 @@ DATABASES = {
 - É importante sempre lembrar de criar/aplicar as migrations.
 
 ---
+# Fixtures
+- As *fixtures* permitem popular o banco de dados com dados iniciais;
+- São úteis para testes, protótipos e replicação de ambientes;
+- São arquivos em formatos como JSON, XML ou YAML contendo registros dos models;
+- São criadas e carregadas pelos comandos:
+```
+python manage.py dumpdata > dados.json
+python manage.py loaddata dados.json
+```
+
+---
+# Fixtures
+- É possível exportar apenas apps específicos:
+```
+python manage.py dumpdata minha_app > dados.json
+```
+- Também podemos exportar apenas determinados models:
+```
+python manage.py dumpdata minha_app.Modelo > dados.json
+```
+
+---
+# Fixtures
+- Para evitar conflitos comuns com apps do Django, use o parâmetro `--exclude`:
+```
+python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude admin.logentry --exclude sessions > dados.json
+```
+- Isso exclui dados de apps padrão que geralmente causam erros ao usar `loaddata`;
+- Recomendado exportar apenas os dados criados na sua aplicação.
+
+---
+# Django Shell
+- O Django possui um terminal interativo com acesso ao ambiente do projeto:
+```
+python manage.py shell
+```
+- É possível importar os models e interagir com o banco de dados;
+- Exemplo:
+```python
+from minha_app.models import Pessoa
+Pessoa.objects.all()
+```
+
+---
+# Criando, Salvando e Editando Objetos
+- Criar e salvar um objeto:
+```python
+from minha_app.models import Pessoa
+p = Pessoa(nome="João", sobrenome="Silva")
+p.save()
+```
+
+- Criar diretamente:
+```python
+Pessoa.objects.create(nome="Maria", sobrenome="Oliveira")
+```
+
+---
+# Criando, Salvando e Editando Objetos
+- Editar:
+```python
+p = Pessoa.objects.get(id=1)
+p.nome = "José"
+p.save()
+```
+- Excluir:
+```python
+p.delete()
+```
+- Consultar:
+```python
+Pessoa.objects.filter(sobrenome="Silva")
+```
+
+---
 # Django Admin
 - O Django foi pensado para facilitar o processo de desenvolvimento;
 - Um projeto Django já possui uma interface de administração pronta;
