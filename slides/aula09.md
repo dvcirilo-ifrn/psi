@@ -207,6 +207,10 @@ temporario.save()
 # Upload de arquivos
 - Usando um form do Django, passamos o `request.FILES` além do `request.POST`:
     - `form = ComArquivoForm(request.POST, request.FILES)`.
+- No template utilizamos:
+```django
+<form method="post" enctype="multipart/form-data">
+```
 
 ---
 # Validação
