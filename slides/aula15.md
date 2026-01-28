@@ -83,44 +83,45 @@ img {
     - O JS processa o JSON para atualizar o DOM com o novo conteúdo.
 
 ---
-# AJAX com *jQuery*
-- O *jQuery* tem uma função `$.ajax`;
+# AJAX com JavaScript
+- Usamos a função `fetch()` do JS;
+- Retorna uma *Promise*;
 ```js
-$.ajax({
-  url: "https://api.exemplo.com/dados", // URL do servidor
-  type: "POST", // Método HTTP (GET, POST, PUT, DELETE)
-  data: JSON.stringify({ nome: "João" }), // Dados enviados
-  contentType: "application/json", // Tipo de conteúdo
-  success: function(response) { // Quando a requisição for bem-sucedida
-    console.log(response);
+fetch("https://api.exemplo.com/dados", {
+  method: "POST", // Método HTTP (GET, POST, PUT, DELETE)
+  headers: {
+    "Content-Type": "application/json", // Tipo de conteúdo
   },
-  error: function(xhr, status, error) { // Em caso de erro
-    console.error("Erro:", error);
-  }
-});
-
+  body: JSON.stringify({ nome: "João" }), // Dados enviados
+})
+.then(response => response.json()) // Converte a resposta para JSON
+.then(data => console.log(data)) // Quando a requisição for bem-sucedida
+.catch(error => console.error("Erro:", error)); // Em caso de erro
 ```
 
 ---
-# AJAX com *jQuery*
-- Também existem os *atalhos*;
-- O ponto negativo é que não tem a função de `error`;
+# AJAX com JavaScript
+- A função `fetch` é flexível;
+- GET é o método padrão;
 ```js
-$.get("https://jsonplaceholder.typicode.com/posts/1", function(data) {
-  console.log(data);
-});
+// GET simples
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+  .then(response => response.json())
+  .then(data => console.log(data));
 
-$.post("https://api.exemplo.com/novo", { nome: "Maria" }, function(response) {
-  console.log("Usuário criado!");
-});
-
+// POST
+fetch("https://api.exemplo.com/novo", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ nome: "Maria" })
+}).then(response => console.log("Usuário criado!"));
 ```
 
 ---
-# AJAX com *jQuery*
+# AJAX com JavaScript
 - As requisições são *assíncronas*;
 - O código continua antes da resposta chegar;
-- Devemos executar o que for necessário dentro das funções `success` e `error`;
+- Devemos executar o que for necessário dentro do `.then()` ou `.catch()`;
 - O JavaScript permite lidar melhor com essas operações assíncronas:
     - `async/await`
     - `.then()`
@@ -135,15 +136,17 @@ $.post("https://api.exemplo.com/novo", { nome: "Maria" }, function(response) {
 ---
 # Exemplo
 ```js
-$(#meuBotao).click(() => {
-  $.get("https://jsonplaceholder.typicode.com/posts/1", function(data) {
-    $("#minhaDiv").append(
-      `<div>
-         <h1>${data.title}</h1>
-         <p>${data.body}</p>
-       </div>`
-    );
-  });
+document.querySelector("#meuBotao").addEventListener("click", () => {
+  fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(response => response.json())
+    .then(data => {
+      document.querySelector("#minhaDiv").insertAdjacentHTML("beforeend",
+        `<div>
+           <h1>${data.title}</h1>
+           <p>${data.body}</p>
+         </div>`
+      );
+    });
 });
 ```
 
@@ -346,7 +349,6 @@ def ajax_get_livro(request, id):
 
 ---
 # AJAX nos templates Django
-- Nos templates base adicionamos o `jQuery`;
 - Criamos o `<script>` que fará as requisições;
 - Se o `<script>` estiver dentro do template, funções com `url` e `static` podem ser usadas;
 - Se estiver em outro arquivo `.js`, não!
@@ -363,36 +365,13 @@ def ajax_get_livro(request, id):
 - No `base.html`:
 ```django
 ...
-<head>
-...
-<script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-</head>
-...
 <body>
 ...
-  <script>
-    window.onload = () => { //garante que os scripts defer foram carregados
-      {% block script %}
-      {% endblock %}
-    }
-  </script>
-</body>
-```
-
----
-# Exemplo
-- Ou:
-```django
-...
-<body>
-...
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script>
     {% block script %}
     {% endblock %}
   </script>
 </body>
-...
 ```
 
 ---
@@ -412,17 +391,19 @@ def ajax_get_livro(request, id):
 ...
 {% block script %}
 {{ block.super }}
-$(#meuBotao).click( function () {
-  $.get("{% url 'ajax_get_livros' %}", function(data) {
-    $("#minhaDiv").append(
-      `<div>
-         <h1>${data.titulo}</h1>
-         <p>${data.autor}</p>
-       </div>`
-    );
-  });
+document.querySelector("#meuBotao").addEventListener("click", function () {
+  fetch("{% url 'ajax_get_livros' %}")
+    .then(response => response.json())
+    .then(data => {
+      document.querySelector("#minhaDiv").insertAdjacentHTML("beforeend",
+        `<div>
+           <h1>${data.titulo}</h1>
+           <p>${data.autor}</p>
+         </div>`
+      );
+    });
 });
-</body>
+{% endblock %}
 ...
 ```
 
@@ -438,7 +419,7 @@ $(#meuBotao).click( function () {
 # Atributos `data` do HTML5
 - Para acessar no JS:
 ```js
-$("#meuSeletor").data("minhainfo");
+document.querySelector("#meuSeletor").dataset.minhainfo;
 // retorna "minha info extra"
 ```
 
@@ -450,14 +431,13 @@ $("#meuSeletor").data("minhainfo");
 ```
 - No JS:
 ```js
-$(".btn-ajax").click( function () {
-  $.get(
-    $(this).data("url"), //passou a URL e funciona fora do template!
-    function (resposta) {
-      console.log(resposta);
-    }
+document.querySelectorAll(".btn-ajax").forEach(btn => {
+  btn.addEventListener("click", function () {
+    fetch(this.dataset.url) //passou a URL e funciona fora do template!
+      .then(response => response.json())
+      .then(resposta => console.log(resposta));
+  });
 });
-
 ```
 
 ---
@@ -473,7 +453,6 @@ $(".btn-ajax").click( function () {
 ```django
 <head>
 ...
-  <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script defer src="{% static 'js/script.js' %}"></script>
 </head>
 <body>
@@ -490,32 +469,20 @@ $(".btn-ajax").click( function () {
 
 ---
 # Exemplo
-- Ou:
-```django
-...
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="{% static 'js/script.js' %}"></script>
-  <script>
-    {% block script %}
-    {% endblock %}
-  </script>
-</body>
-```
-
----
-# Exemplo
 - `script.js`
 ```javascript
 function carregarLivrosJson(botao, url) {
-  botao.click( function () {
-    $.get(url, function(data) {
-      $("#minhaDiv").append(
-        `<div>
-           <h1>${data.titulo}</h1>
-           <p>${data.autor}</p>
-         </div>`
-      );
-    });
+  botao.addEventListener("click", function () {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        document.querySelector("#minhaDiv").insertAdjacentHTML("beforeend",
+          `<div>
+             <h1>${data.titulo}</h1>
+             <p>${data.autor}</p>
+           </div>`
+        );
+      });
   });
 }
 ```
@@ -526,7 +493,7 @@ function carregarLivrosJson(botao, url) {
 ```django
 ...
 {% block script %}
-  carregarLivrosJson($("#meuBotao"), {% url 'ajax_get_livros' %})
+  carregarLivrosJson(document.querySelector("#meuBotao"), "{% url 'ajax_get_livros' %}")
 {% endblock %}
 ```
 
@@ -534,12 +501,13 @@ function carregarLivrosJson(botao, url) {
 # Recebendo HTML renderizado
 - Caso o Django responda HTML, o JS fica bem simplificado;
 ```javascript
-$(#meuBotao).click( function () {
-  $.get("{% url 'ajax_get_livros' %}", function(bloco_html) {
-    $("#minhaDiv").html(bloco_html);
-  });
+document.querySelector("#meuBotao").addEventListener("click", function () {
+  fetch("{% url 'ajax_get_livros' %}")
+    .then(response => response.text())
+    .then(bloco_html => {
+      document.querySelector("#minhaDiv").innerHTML = bloco_html;
+    });
 });
-
 ```
 
 ---
@@ -560,21 +528,21 @@ function getCSRFToken() {
         ?.split('=')[1];
 }
 
-$("#botaoLike").click( function() {
-  $.ajax(
-    url: "{% url 'ajax_like_livro' %}", // só funciona dentro do template
-    data: { //dados
-      csrfmiddlewaretoken: getCSRFToken(),
-      id_livro: 6
+document.querySelector("#botaoLike").addEventListener("click", function() {
+  fetch("{% url 'ajax_like_livro' %}", { // só funciona dentro do template
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "X-CSRFToken": getCSRFToken()
     },
-    success: function (resposta) {//callback de sucesso
-      alert(resposta.mensagem)
-      $("#numLikes").text(resposta.likes);
-    },
-    error: function (xhr, status, error) => {//callback de erro
-      alert(data.status);
-    }
-  );
+    body: new URLSearchParams({ id_livro: 6 })
+  })
+  .then(response => response.json())
+  .then(resposta => { //callback de sucesso
+    alert(resposta.mensagem);
+    document.querySelector("#numLikes").textContent = resposta.likes;
+  })
+  .catch(error => alert(error)); //callback de erro
 });
 ```
 
@@ -616,22 +584,22 @@ def ajax_like_livro(request):
         - Outra pra enviar os dados (POST).
 
 ---
-# Exemplo form já carregado 
+# Exemplo form já carregado
 ```javascript
-$("#livroForm").submit( function (evento) {
+document.querySelector("#livroForm").addEventListener("submit", function (evento) {
   evento.preventDefault(); // evita a submissão "normal" do form
-  $.ajax({
-    url: {% url 'ajax_criar_livro' %},
+  fetch("{% url 'ajax_criar_livro' %}", {
     method: "POST",
-    data: new FormData($("#livroForm")[0]), //cria o objeto FormData
-    success: function (resposta) {
-      $("#livroForm")[0].reset(); //limpa o form pra permitir nova submissao
-      alert(resposta.mensagem);
-    },
-    error: function (xhr, status, error) {
-      $("#livroForm").html(error); //substitui com o form do django (traz os erros)
-      alert(resposta.mensagem);
-    }
+    body: new FormData(this) //cria o objeto FormData
+  })
+  .then(response => response.json())
+  .then(resposta => {
+    this.reset(); //limpa o form pra permitir nova submissao
+    alert(resposta.mensagem);
+  })
+  .catch(error => {
+    document.querySelector("#livroForm").innerHTML = error;
+    alert(error);
   });
 });
 ```
@@ -639,18 +607,14 @@ $("#livroForm").submit( function (evento) {
 ---
 # Carregando form
 ```javascript
-$("#botaoNovoForm").click( function () {
-  $.ajax({
-    url:{% url 'ajax_criar_livro' %},
-    method: "GET",
-    success: function (resposta) {
-      $(#divForm).append(resposta.form);
-    },
-    error: function (xhr, status, error) {
-      alert("Erro ao carregar dados");
-    }
-  })
-})
+document.querySelector("#botaoNovoForm").addEventListener("click", function () {
+  fetch("{% url 'ajax_criar_livro' %}")
+    .then(response => response.text())
+    .then(resposta => {
+      document.querySelector("#divForm").insertAdjacentHTML("beforeend", resposta);
+    })
+    .catch(error => alert("Erro ao carregar dados"));
+});
 ```
 - O resto é igual ao anterior.
 
@@ -702,17 +666,19 @@ def view_protegida(request):
 ---
 # Exemplo
 ```javascript
-$.ajax({
-  url: "url/view_protegida",
-  method: "GET",
-  success: (resposta) => {
-   ...
-  },
-  error: (xhr, status, error) => {
-    const resposta = xhr.responseJSON;
-    alert(resposta.mensagem);
-  }
-})
+fetch("url/view_protegida")
+  .then(response => {
+    if (!response.ok) {
+      return response.json().then(data => { throw data; });
+    }
+    return response.json();
+  })
+  .then(resposta => {
+    ...
+  })
+  .catch(erro => {
+    alert(erro.mensagem);
+  });
 ```
 
 ---
@@ -764,11 +730,11 @@ def ajax_mensagens(request):
 - JS:
 ```javascript
 function buscarMensagens() {
-  $.get("url das mensagens",
-    (resposta) => {
-      $("#div-mensagens").html(resposta);
-    }
-  );
+  fetch("url das mensagens")
+    .then(response => response.text())
+    .then(resposta => {
+      document.querySelector("#div-mensagens").innerHTML = resposta;
+    });
 }
 ```
 - Essa função deve ser chamada sempre que quisermos atualizar as mensagens depois de um request AJAX;
@@ -776,18 +742,16 @@ function buscarMensagens() {
 ---
 # Exemplo
 ```javascript
-$.ajax({
-  url: "ler_livro/2",
-  method: "GET",
-  success: (resposta) => {
+fetch("ler_livro/2")
+  .then(response => response.json())
+  .then(resposta => {
     ...
     buscarMensagens(); //atualiza as mensagens
-  },
-  error: (xhr, status, error) => {
+  })
+  .catch(error => {
     ...
     buscarMensagens(); //atualiza as mensagens
-  }
-});
+  });
 ```
 
 ---
@@ -828,14 +792,15 @@ meuModal.show();
     - [Github](https://github.com/dvcirilo/ajax-crud-django)
 
 ---
-# AJAX sem jQuery
-- [You might not need jQuery](https://youmightnotneedjquery.com/)
-- Usamos a função `fetch()` do JS *Vanilla*;
-- A manipulação do DOM é como vimos na aula anterior;
+# AJAX com async/await
+- A sintaxe `async/await` simplifica o uso do `fetch()`;
+- `async` define uma função assíncrona;
+- `await` espera a *Promise* ser resolvida;
+- O código fica mais legível, parecendo síncrono;
 - Usaremos na próxima disciplina.
 
 ---
-# AJAX sem jQuery
+# AJAX com async/await
 <style scoped>pre { font-size: 18px; }</style>
 ```javascript
 async function lerLivro(){
@@ -848,8 +813,8 @@ async function lerLivro(){
     });
 
     const data = await response.json();
-    
-    const minhaDiv = document.querysetSelector("#minhaDiv");
+
+    const minhaDiv = document.querySelector("#minhaDiv");
     minhaDiv.innerHTML = `
       <h1>${data.titulo}</h1>
       <h2>${data.autor}</h2>
@@ -864,7 +829,7 @@ lerLivro();
 
 ---
 # Referências
-- https://api.jquery.com
+- https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API
 - https://docs.djangoproject.com/en/5.1/topics/serialization/
 
 ---
