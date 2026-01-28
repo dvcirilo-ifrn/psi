@@ -125,7 +125,6 @@ fetch("https://api.exemplo.com/novo", {
 - O JavaScript permite lidar melhor com essas operações assíncronas:
     - `async/await`
     - `.then()`
-- Assunto da próxima disciplina.
 
 ---
 # Atualizando o DOM com AJAX GET
