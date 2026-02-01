@@ -368,60 +368,235 @@ meuArray.forEach( function (item) {
 ```
 
 ---
-# Manipulação do DOM
-- *Document Object Model*;
-- Uma das principais funções do JS é manipular o DOM;
-- Criar/remover elementos, substituir conteúdo, alterar atributos, etc;
-- Isso permite interfaces de usuário dinâmicas.
+# O que é o DOM?
+- *Document Object Model* (Modelo de Objeto do Documento);
+- Representação da página HTML como uma árvore de objetos;
+- Cada elemento HTML vira um *nó* (node) na árvore;
+- O JS acessa e manipula essa árvore através do objeto `document`;
+- Modificar o DOM = modificar a página em tempo real.
 
 ---
-# Manipulação do DOM
-- Selecionar elementos:
-    - `document.getElementById('id')`
+# Estrutura do DOM
+- O `document` é a raiz da árvore;
+- Cada elemento tem relações de parentesco:
+    - `parentElement` - elemento pai
+    - `children` - elementos filhos
+    - `nextElementSibling` - próximo irmão
+    - `previousElementSibling` - irmão anterior
+- Podemos navegar pela árvore usando essas propriedades.
+
+---
+# Selecionando Elementos
+- Por ID (retorna um elemento):
+    - `document.getElementById('meuId')`
+- Por seletor CSS (retorna o primeiro):
     - `document.querySelector('.classe')`
-    - `document.querySelectorAll('tag')`
-- Modificar Conteúdo:
-    - `element.textContent = 'Novo texto'`
-    - `element.innerHTML = '<p>Novo HTML</p>'`
+    - `document.querySelector('#id')`
+    - `document.querySelector('div.classe')`
+- Por seletor CSS (retorna todos):
+    - `document.querySelectorAll('p')` - retorna NodeList
 
 ---
-# Manipulação do DOM
-- Alterar Estilos
-    - `element.style.color = 'red'`
-    - `element.classList.add('nova-classe')`
-    - `element.classList.remove('classe-existente')`
-- Criar e Inserir Elementos
-    - `document.createElement('div')`
-    - `parentElement.appendChild(novoElemento)`
-- Substituir conteúdo
-    - `element.replaceChildren(novoElemento)`
-
----
-# Manipulação do DOM
-- Exemplo:
+# Selecionando Elementos
+- Exemplos:
 ```js
-const paragrafo = document.createElement('p');
-paragrafo.textContent = 'Este é um novo parágrafo.';
-document.body.appendChild(paragrafo);
+// por ID
+const botao = document.getElementById("meuBotao");
+
+// por classe (primeiro elemento)
+const card = document.querySelector(".card");
+
+// seletor composto
+const link = document.querySelector("nav a.active");
+
+// todos os elementos
+const itens = document.querySelectorAll("ul li");
+itens.forEach(item => console.log(item));
+```
+
+---
+# Modificando Conteúdo
+- `textContent` - apenas texto (mais seguro):
+    - `element.textContent = 'Novo texto'`
+- `innerHTML` - aceita HTML (cuidado com XSS!):
+    - `element.innerHTML = '<p>Novo HTML</p>'`
+- `innerText` - texto visível (considera CSS):
+    - `element.innerText = 'Texto visível'`
+
+---
+# Modificando Conteúdo
+```js
+const div = document.querySelector("#minhaDiv");
+
+// apenas texto
+div.textContent = "Olá, mundo!";
+
+// com HTML (cuidado!)
+div.innerHTML = "<strong>Texto em negrito</strong>";
+
+// usando template literals
+const nome = "João";
+div.innerHTML = `<p>Bem-vindo, ${nome}!</p>`;
+```
+
+---
+# Modificando Atributos
+- Ler atributo: `element.getAttribute('href')`
+- Definir atributo: `element.setAttribute('href', 'url')`
+- Remover atributo: `element.removeAttribute('disabled')`
+- Alguns atributos são propriedades diretas:
+```js
+const img = document.querySelector("img");
+img.src = "nova-imagem.jpg";
+img.alt = "Descrição da imagem";
+
+const input = document.querySelector("input");
+input.value = "novo valor";
+input.disabled = true;
+```
+
+---
+# Modificando Classes CSS
+- `classList` oferece métodos para manipular classes:
+```js
+const elemento = document.querySelector(".card");
+
+elemento.classList.add("ativo");      // adiciona classe
+elemento.classList.remove("ativo");   // remove classe
+elemento.classList.toggle("ativo");   // alterna classe
+elemento.classList.contains("ativo"); // verifica (true/false)
+elemento.classList.replace("old", "new"); // substitui
+```
+
+---
+# Modificando Estilos Inline
+- Propriedade `style` modifica o CSS inline:
+```js
+const div = document.querySelector("div");
+
+div.style.color = "red";
+div.style.backgroundColor = "yellow"; // camelCase!
+div.style.fontSize = "20px";
+div.style.display = "none"; // esconde elemento
+div.style.display = "block"; // mostra elemento
+```
+- Prefira usar `classList` para manter CSS separado do JS.
+
+---
+# Criando Elementos
+- `document.createElement('tag')` cria um novo elemento;
+- O elemento ainda não está na página!
+- Precisamos inserí-lo no DOM.
+```js
+const novoItem = document.createElement("li");
+novoItem.textContent = "Item novo";
+novoItem.classList.add("item-lista");
+```
+
+---
+# Inserindo Elementos
+- `appendChild(elemento)` - adiciona no final
+- `insertBefore(novo, referencia)` - antes de outro
+- `prepend(elemento)` - no início (dentro)
+- `append(elemento)` - no final (dentro)
+```js
+const lista = document.querySelector("ul");
+const novoItem = document.createElement("li");
+novoItem.textContent = "Novo item";
+
+lista.appendChild(novoItem);  // adiciona no final
+lista.prepend(novoItem);      // adiciona no início
+```
+
+---
+# Inserindo HTML
+- `insertAdjacentHTML(posição, html)` - insere HTML em posição específica:
+    - `'beforebegin'` - antes do elemento
+    - `'afterbegin'` - início do conteúdo
+    - `'beforeend'` - final do conteúdo
+    - `'afterend'` - depois do elemento
+```js
+const div = document.querySelector("#container");
+div.insertAdjacentHTML("beforeend", "<p>Novo parágrafo</p>");
+```
+
+---
+# Removendo Elementos
+```js
+const elemento = document.querySelector("#remover");
+
+// remove o próprio elemento
+elemento.remove();
+
+// remove filho específico
+const pai = document.querySelector("#lista");
+const filho = document.querySelector("#item1");
+pai.removeChild(filho);
+
+// limpa todo o conteúdo
+elemento.innerHTML = "";
+// ou
+elemento.replaceChildren();
 ```
 
 ---
 # Eventos DOM
-- Os eventos reagem a ações do usuário, servidor ou temporizadas;
-- Permitem a execução de funções quando algo acontece;
-- Ex. `click`, `mouseover`, etc;
-- Usamos o `elemento.addEventListener('nome_do_evento', funcao_callback)`.
+- Eventos reagem a ações do usuário ou do sistema;
+- Permitem criar interfaces interativas;
+- Exemplos de eventos:
+    - `click`, `dblclick` - cliques
+    - `mouseover`, `mouseout` - mouse
+    - `keydown`, `keyup` - teclado
+    - `submit` - envio de formulário
+    - `change`, `input` - mudança em inputs
+    - `load` - carregamento completo
 
 ---
-# Eventos DOM
-- Funções *callback* são executadas quando o *EventListener* detecta o evento;
-- Ex.:
+# addEventListener
+- Sintaxe: `elemento.addEventListener('evento', callback)`
+- O *callback* é executado quando o evento ocorre:
 ```js
-const elemento = document.getElementById("meuBotao");
-elemento.addEventListener('click', function() {
-  minhaDiv = document.getElementById("minhaDiv");
-  minhaDiv.style.backgroundColor = "red";
-  minhaDiv.innerHTML = "<p class="alert">Clicaram no botão!</p>";
+const botao = document.getElementById("meuBotao");
+
+botao.addEventListener("click", function() {
+  alert("Botão clicado!");
+});
+
+// com arrow function
+botao.addEventListener("click", () => {
+  alert("Botão clicado!");
+});
+```
+
+---
+# O Objeto Event
+- O *callback* recebe um objeto `event` com informações:
+```js
+botao.addEventListener("click", function(event) {
+  console.log(event.target);      // elemento clicado
+  console.log(event.type);        // tipo do evento
+  event.preventDefault();          // cancela ação padrão
+  event.stopPropagation();        // para propagação
+});
+
+// útil em formulários
+form.addEventListener("submit", (e) => {
+  e.preventDefault(); // evita recarregar a página
+  // processa os dados...
+});
+```
+
+---
+# Eventos em Múltiplos Elementos
+```js
+// adiciona evento a todos os botões
+const botoes = document.querySelectorAll(".btn");
+
+botoes.forEach(botao => {
+  botao.addEventListener("click", function() {
+    // 'this' se refere ao botão clicado
+    this.classList.toggle("ativo");
+  });
 });
 ```
 
@@ -486,6 +661,24 @@ botao.addEventListener("click", () => {
 - A ordem importa!
 - Fornecem funcionalidades prontas;
 - Exemplos: jQuery, React, Bootstrap, PDF.js, Babylon...
+
+---
+# jQuery
+- Biblioteca criada em 2006 para simplificar o desenvolvimento JS;
+- Garantia compatibilidade entre navegadores (grande problema na época);
+- Simplificava a manipulação do DOM, eventos, animações e AJAX;
+- Foi praticamente *obrigatória* por muitos anos.
+
+---
+# jQuery
+- O JS, CSS e HTML evoluíram e absorveram funcionalidades do jQuery:
+    - `document.querySelector()` substitui `$()`
+    - `fetch()` substitui `$.ajax()`
+    - CSS3 trouxe animações e transições nativas
+    - `classList` facilita manipulação de classes
+- Hoje o jQuery está em **desuso** para novos projetos;
+- [*You might not need jQuery*](https://youmightnotneedjquery.com/)
+- Ainda aparece em projetos legados e em alguns exemplos antigos.
 
 ---
 # Referências
