@@ -20,6 +20,7 @@ nav:
     - 'Lista 01': listas/lista01.md
     - 'Lista 02': listas/lista02.md
     - 'Lista 03': listas/lista03.md
+    - 'Lista 04': listas/lista04.md
 markdown_extensions:
   - admonition
   - attr_list
