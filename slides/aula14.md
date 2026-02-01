@@ -19,7 +19,7 @@ img {
 
 ### Prof. Diego Cirilo
 
-**Aula 15**: AJAX
+**Aula 14**: AJAX
 
 ---
 # AJAX
