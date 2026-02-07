@@ -788,7 +788,7 @@ meuModal.show();
 ---
 # CRUD completo com AJAX
 - Exemplo completo com tudo isso:
-    - [Github](https://github.com/dvcirilo/ajax-crud-django)
+    - [Github](https://github.com/dvcirilo-ifrn/ajax-crud-django)
 
 ---
 # AJAX com async/await
