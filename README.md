@@ -4,7 +4,6 @@ Material de aula da disciplina de Programação de Sistemas para Internet - IFRN
 
 > [!WARNING]
 > A disciplina equivalente no currículo atual é: https://github.com/dvcirilo-ifrn/pweb
-> Este repositório não será mais atualizado.
 
 ## Licença
 
