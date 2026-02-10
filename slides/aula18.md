@@ -87,8 +87,8 @@ class ProdutoAdmin(admin.ModelAdmin):
 
     def estoque_formatado(self, obj):
         if obj.estoque > 10:
-            return f"✅ {obj.estoque} unidades"
-        return f"⚠️ {obj.estoque} unidades"
+            return f"{obj.estoque} unidades"
+        return f"{obj.estoque} unidades"
 
     estoque_formatado.short_description = "Estoque"
 ```

@@ -19,10 +19,10 @@
 | 12  | Mensagens/Paginação                         | [:material-presentation:](aula12.html) - [:material-file-pdf-box:](aula12.pdf) |
 | 13  | Introdução ao JavaScript                    | [:material-presentation:](aula13.html) - [:material-file-pdf-box:](aula13.pdf) |
 | 14  | AJAX                                      | [:material-presentation:](aula14.html) - [:material-file-pdf-box:](aula14.pdf) |
-<!--
 | 15  | RichText/Formsets                           | [:material-presentation:](aula15.html) - [:material-file-pdf-box:](aula16.pdf) |
 | 16  | Sessão/Cookies/Context Processors           | [:material-presentation:](aula16.html) - [:material-file-pdf-box:](aula17.pdf) |
 | 17  | Class-based Views                           | [:material-presentation:](aula17.html) - [:material-file-pdf-box:](aula18.pdf) |
 | 18  | Customizando o Django Admin                 | [:material-presentation:](aula18.html) - [:material-file-pdf-box:](aula19.pdf) |
+| 19  | jQuery (extra)                              | [:material-presentation:](jquery.html) - [:material-file-pdf-box:](jquery.pdf) |
 -->
 
