@@ -24,5 +24,3 @@
 | 17  | Class-based Views                           | [:material-presentation:](aula17.html) - [:material-file-pdf-box:](aula18.pdf) |
 | 18  | Customizando o Django Admin                 | [:material-presentation:](aula18.html) - [:material-file-pdf-box:](aula19.pdf) |
 | 19  | jQuery (extra)                              | [:material-presentation:](jquery.html) - [:material-file-pdf-box:](jquery.pdf) |
--->
-
